@@ -1,0 +1,56 @@
+/*
+Theme Name: Blocksy Child - SciuuuS Kids
+Theme URI: https://sciuuuskids.it
+Description: Custom child theme for SciuuuS Kids barefoot shoes. Code-based header/footer implementation without Elementor.
+Author: Damian
+Author URI: https://sciuuuskids.it
+Template: blocksy
+Version: 1.0.0
+Text Domain: blocksy-child
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+/*
+ * Custom styles will be loaded from separate CSS files for better organization:
+ * - assets/css/header-custom.css
+ * - assets/css/footer-custom.css
+ */
+
+/* Global Overrides */
+:root {
+    --sciuuuskids-primary: #ff6b6b;
+    --sciuuuskids-secondary: #2c3e50;
+    --sciuuuskids-accent: #4ecdc4;
+    --sciuuuskids-text: #333333;
+    --sciuuuskids-light: #f8f9fa;
+}
+
+/* Hide default Blocksy header/footer if using custom ones */
+body.using-custom-header .ct-header {
+    display: none !important;
+}
+
+body.using-custom-footer .ct-footer {
+    display: none !important;
+}
+
+/* Utility Classes */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}

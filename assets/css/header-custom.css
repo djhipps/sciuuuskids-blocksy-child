@@ -1,0 +1,463 @@
+/**
+ * Custom Header Styles for SciuuuS Kids
+ * 
+ * @package Blocksy_Child_SciuuusKids
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   Header Container
+   ========================================================================== */
+
+.sciuuuskids-custom-header {
+    background: #ffffff;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* ==========================================================================
+   Logo Section
+   ========================================================================== */
+
+.header-logo {
+    flex: 0 0 auto;
+}
+
+.header-logo .custom-logo-link {
+    display: inline-block;
+    line-height: 0;
+}
+
+.header-logo img {
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.header-logo img:hover {
+    transform: scale(1.05);
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.site-title:hover {
+    color: var(--sciuuuskids-primary, #ff6b6b);
+}
+
+.site-description {
+    font-size: 12px;
+    color: #666;
+    margin: 5px 0 0;
+}
+
+/* ==========================================================================
+   Navigation Section
+   ========================================================================== */
+
+.header-navigation {
+    flex: 1 1 auto;
+}
+
+.main-navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.primary-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.primary-menu li {
+    position: relative;
+}
+
+.primary-menu li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 10px 0;
+    display: block;
+    position: relative;
+}
+
+.primary-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--sciuuuskids-primary, #ff6b6b);
+    transition: width 0.3s ease;
+}
+
+.primary-menu li a:hover::after,
+.primary-menu li.current-menu-item a::after {
+    width: 100%;
+}
+
+.primary-menu li a:hover,
+.primary-menu li.current-menu-item a {
+    color: var(--sciuuuskids-primary, #ff6b6b);
+}
+
+/* Dropdown Menu Styles */
+.primary-menu .sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.primary-menu li:hover > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.primary-menu .sub-menu li {
+    display: block;
+}
+
+.primary-menu .sub-menu li a {
+    padding: 10px 20px;
+}
+
+.primary-menu .sub-menu li a::after {
+    display: none;
+}
+
+/* ==========================================================================
+   WooCommerce Elements
+   ========================================================================== */
+
+.header-woo-elements {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Search */
+.header-search {
+    position: relative;
+}
+
+.search-toggle {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.search-toggle:hover {
+    color: var(--sciuuuskids-primary, #ff6b6b);
+}
+
+.search-toggle svg {
+    stroke: currentColor;
+}
+
+.search-form-wrapper {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.header-search.active .search-form-wrapper {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.search-form-wrapper input[type="search"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+
+/* Account & Cart */
+.header-cart,
+.header-account {
+    position: relative;
+}
+
+.cart-link,
+.account-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 8px;
+}
+
+.cart-link:hover,
+.account-link:hover {
+    color: var(--sciuuuskids-primary, #ff6b6b);
+}
+
+.cart-link svg,
+.account-link svg {
+    fill: currentColor;
+}
+
+.account-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cart-count {
+    background: var(--sciuuuskids-primary, #ff6b6b);
+    color: #fff;
+    border-radius: 50%;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0 6px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(25%, -25%);
+}
+
+/* ==========================================================================
+   Mobile Menu Toggle
+   ========================================================================== */
+
+.mobile-menu-toggle {
+    display: none;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-icon {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: #333;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    .header-row {
+        gap: 20px;
+    }
+    
+    .primary-menu {
+        gap: 20px;
+    }
+    
+    .primary-menu li a {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sciuuuskids-custom-header {
+        padding: 15px 0;
+    }
+    
+    .header-row {
+        flex-wrap: wrap;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        order: 3;
+    }
+    
+    .header-navigation {
+        order: 4;
+        flex-basis: 100%;
+        display: none;
+    }
+    
+    .header-navigation.active {
+        display: block;
+        margin-top: 20px;
+    }
+    
+    .main-navigation {
+        justify-content: flex-start;
+    }
+    
+    .primary-menu {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+    
+    .primary-menu li {
+        border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .primary-menu li a {
+        padding: 15px 0;
+    }
+    
+    .primary-menu li a::after {
+        display: none;
+    }
+    
+    /* Mobile Dropdown */
+    .primary-menu .sub-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        padding-left: 20px;
+        display: none;
+    }
+    
+    .primary-menu li.menu-item-has-children > a::before {
+        content: '+';
+        float: right;
+        font-weight: bold;
+    }
+    
+    .primary-menu li.menu-item-has-children.active > a::before {
+        content: '−';
+    }
+    
+    .primary-menu li.menu-item-has-children.active > .sub-menu {
+        display: block;
+    }
+    
+    .header-woo-elements {
+        order: 2;
+        gap: 15px;
+    }
+    
+    .account-text {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-logo img {
+        max-height: 50px;
+    }
+    
+    .site-title {
+        font-size: 20px;
+    }
+    
+    .header-woo-elements {
+        gap: 10px;
+    }
+    
+    .search-form-wrapper {
+        min-width: 200px;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+.menu-toggle:focus,
+.cart-link:focus,
+.account-link:focus,
+.search-toggle:focus,
+.primary-menu a:focus {
+    outline: 2px solid var(--sciuuuskids-primary, #ff6b6b);
+    outline-offset: 2px;
+}
+
+/* Skip to content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--sciuuuskids-primary, #ff6b6b);
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+}
+
+.skip-link:focus {
+    top: 0;
+}
