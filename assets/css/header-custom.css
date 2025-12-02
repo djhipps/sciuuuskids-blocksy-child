@@ -11,31 +11,84 @@
 
 .sciuuuskids-custom-header {
     background: #ffffff;
-    padding: 20px 0;
-    border-bottom: 1px solid #e5e5e5;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    position: relative;
+    padding: 0;
+    border-bottom: none;
 }
 
 .header-container {
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
-}
-
-.header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
+    padding: 0;
+    position: relative;
 }
 
 /* ==========================================================================
-   Logo Section
+   Cart Icon (Absolute positioned top-right)
    ========================================================================== */
 
+.header-cart-wrapper {
+    position: absolute;
+    top: 25px;
+    right: 12px;
+    z-index: 100;
+}
+
+.header-cart {
+    position: relative;
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 8px;
+}
+
+.cart-link:hover {
+    color: #333333;
+    transform: scale(1.1);
+}
+
+.cart-link svg {
+    fill: currentColor;
+    width: 24px;
+    height: 24px;
+}
+
+.cart-count {
+    background: #FC7D06;
+    color: #ffffff;
+    border-radius: 50%;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0 6px;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+}
+
+/* ==========================================================================
+   Logo Section (Centered)
+   ========================================================================== */
+
+.header-logo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px 10px;
+}
+
 .header-logo {
-    flex: 0 0 auto;
+    text-align: center;
 }
 
 .header-logo .custom-logo-link {
@@ -44,45 +97,60 @@
 }
 
 .header-logo img {
-    max-height: 60px;
+    max-width: 683px;
     width: auto;
-    height: auto;
-    transition: transform 0.3s ease;
+    height: 180px;
+    object-fit: contain;
+    /* Drop shadow */
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .header-logo img:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
 }
 
 .site-title {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
 .site-title:hover {
-    color: var(--sciuuuskids-primary, #ff6b6b);
+    color: #FC7D06;
 }
 
 .site-description {
-    font-size: 12px;
+    font-size: 14px;
     color: #666;
-    margin: 5px 0 0;
+    margin: 10px 0 0;
 }
 
 /* ==========================================================================
-   Navigation Section
+   Navigation Section (Centered, below logo)
    ========================================================================== */
 
+.header-navigation-section {
+    background: #FC7D06;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
 .header-navigation {
-    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-navigation {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .primary-menu {
@@ -90,43 +158,32 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 30px;
+    gap: 1px;
+    justify-content: center;
 }
 
 .primary-menu li {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .primary-menu li a {
-    color: #333;
+    color: #ffffff;
     text-decoration: none;
+    font-family: 'Quicksand', sans-serif;
     font-size: 16px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    padding: 10px 0;
+    font-weight: 600;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 20px 25px;
     display: block;
-    position: relative;
-}
-
-.primary-menu li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--sciuuuskids-primary, #ff6b6b);
-    transition: width 0.3s ease;
-}
-
-.primary-menu li a:hover::after,
-.primary-menu li.current-menu-item a::after {
-    width: 100%;
+    white-space: nowrap;
 }
 
 .primary-menu li a:hover,
 .primary-menu li.current-menu-item a {
-    color: var(--sciuuuskids-primary, #ff6b6b);
+    color: #161616;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Dropdown Menu Styles */
@@ -134,8 +191,8 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: #FC7D06;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     list-style: none;
     padding: 10px 0;
     margin: 0;
@@ -159,122 +216,35 @@
 
 .primary-menu .sub-menu li a {
     padding: 10px 20px;
+    color: #ffffff;
 }
 
-.primary-menu .sub-menu li a::after {
-    display: none;
+.primary-menu .sub-menu li a:hover {
+    color: #161616;
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 /* ==========================================================================
-   WooCommerce Elements
+   Orange Wave Divider
    ========================================================================== */
 
-.header-woo-elements {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-/* Search */
-.header-search {
+.header-wave-divider {
+    height: 40px;
+    background: #FC7D06;
     position: relative;
+    overflow: hidden;
 }
 
-.search-toggle {
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    color: #333;
-    transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-}
-
-.search-toggle:hover {
-    color: var(--sciuuuskids-primary, #ff6b6b);
-}
-
-.search-toggle svg {
-    stroke: currentColor;
-}
-
-.search-form-wrapper {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    min-width: 250px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 100;
-}
-
-.header-search.active .search-form-wrapper {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.search-form-wrapper input[type="search"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #e5e5e5;
-    border-radius: 4px;
-}
-
-/* Account & Cart */
-.header-cart,
-.header-account {
-    position: relative;
-}
-
-.cart-link,
-.account-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    padding: 8px;
-}
-
-.cart-link:hover,
-.account-link:hover {
-    color: var(--sciuuuskids-primary, #ff6b6b);
-}
-
-.cart-link svg,
-.account-link svg {
-    fill: currentColor;
-}
-
-.account-text {
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.cart-count {
-    background: var(--sciuuuskids-primary, #ff6b6b);
-    color: #fff;
-    border-radius: 50%;
-    min-width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 0 6px;
+.header-wave-divider::before {
+    content: '';
     position: absolute;
     top: 0;
-    right: 0;
-    transform: translate(25%, -25%);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0,20 C150,5 350,35 600,20 C850,5 1050,35 1200,20 L1200,40 L0,40 Z" fill="%23FFFFFF"/></svg>') repeat-x;
+    background-size: 1200px 40px;
+    background-position: 0 0;
 }
 
 /* ==========================================================================
@@ -283,28 +253,34 @@
 
 .mobile-menu-toggle {
     display: none;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 101;
 }
 
 .menu-toggle {
-    background: none;
+    background: #FC7D06;
     border: none;
     padding: 10px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    border-radius: 4px;
 }
 
 .menu-icon {
     display: block;
     width: 25px;
-    height: 2px;
-    background: #333;
+    height: 3px;
+    background: #ffffff;
     transition: all 0.3s ease;
 }
 
 .menu-toggle[aria-expanded="true"] .menu-icon:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    transform: translateY(7px) rotate(45deg);
 }
 
 .menu-toggle[aria-expanded="true"] .menu-icon:nth-child(2) {
@@ -312,7 +288,7 @@
 }
 
 .menu-toggle[aria-expanded="true"] .menu-icon:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ==========================================================================
@@ -320,42 +296,66 @@
    ========================================================================== */
 
 @media (max-width: 992px) {
-    .header-row {
-        gap: 20px;
+    .header-cart-wrapper {
+        right: 23px;
     }
     
     .primary-menu {
-        gap: 20px;
+        gap: 1px;
     }
     
     .primary-menu li a {
         font-size: 15px;
+        padding: 20px 20px;
     }
 }
 
 @media (max-width: 768px) {
     .sciuuuskids-custom-header {
-        padding: 15px 0;
+        padding: 0;
     }
     
-    .header-row {
-        flex-wrap: wrap;
+    .header-cart-wrapper {
+        top: 25px;
+        right: 15px;
+    }
+    
+    .cart-link svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .header-logo-section {
+        padding: 15px 20px 10px;
+    }
+    
+    .header-logo img {
+        max-width: 100%;
+        height: auto;
+        max-height: 130px;
     }
     
     .mobile-menu-toggle {
         display: block;
-        order: 3;
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        padding: 10px 20px;
+        background: #FC7D06;
+    }
+    
+    .header-navigation-section {
+        position: relative;
     }
     
     .header-navigation {
-        order: 4;
-        flex-basis: 100%;
         display: none;
+        width: 100%;
     }
     
     .header-navigation.active {
         display: block;
-        margin-top: 20px;
     }
     
     .main-navigation {
@@ -369,15 +369,13 @@
     }
     
     .primary-menu li {
-        border-bottom: 1px solid #e5e5e5;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
     }
     
     .primary-menu li a {
-        padding: 15px 0;
-    }
-    
-    .primary-menu li a::after {
-        display: none;
+        padding: 15px 20px;
+        width: 100%;
     }
     
     /* Mobile Dropdown */
@@ -389,15 +387,17 @@
         box-shadow: none;
         padding-left: 20px;
         display: none;
+        background: rgba(0, 0, 0, 0.1);
     }
     
-    .primary-menu li.menu-item-has-children > a::before {
+    .primary-menu li.menu-item-has-children > a::after {
         content: '+';
         float: right;
         font-weight: bold;
+        font-size: 20px;
     }
     
-    .primary-menu li.menu-item-has-children.active > a::before {
+    .primary-menu li.menu-item-has-children.active > a::after {
         content: '−';
     }
     
@@ -405,31 +405,48 @@
         display: block;
     }
     
-    .header-woo-elements {
-        order: 2;
-        gap: 15px;
-    }
-    
-    .account-text {
-        display: none;
+    .header-wave-divider {
+        height: 30px;
     }
 }
 
 @media (max-width: 480px) {
+    .header-cart-wrapper {
+        top: 20px;
+        right: 12px;
+    }
+    
+    .cart-link {
+        padding: 5px;
+    }
+    
+    .cart-link svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .cart-count {
+        min-width: 18px;
+        height: 18px;
+        font-size: 11px;
+    }
+    
     .header-logo img {
-        max-height: 50px;
+        max-width: 165px;
+        max-height: 100px;
     }
     
     .site-title {
-        font-size: 20px;
+        font-size: 24px;
     }
     
-    .header-woo-elements {
-        gap: 10px;
+    .primary-menu li a {
+        font-size: 14px;
+        padding: 12px 15px;
     }
     
-    .search-form-wrapper {
-        min-width: 200px;
+    .header-wave-divider {
+        height: 25px;
     }
 }
 
@@ -439,10 +456,8 @@
 
 .menu-toggle:focus,
 .cart-link:focus,
-.account-link:focus,
-.search-toggle:focus,
 .primary-menu a:focus {
-    outline: 2px solid var(--sciuuuskids-primary, #ff6b6b);
+    outline: 2px solid #ffffff;
     outline-offset: 2px;
 }
 
@@ -451,7 +466,7 @@
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--sciuuuskids-primary, #ff6b6b);
+    background: #FC7D06;
     color: #fff;
     padding: 8px 16px;
     text-decoration: none;
@@ -460,4 +475,33 @@
 
 .skip-link:focus {
     top: 0;
+}
+
+/* Screen reader text */
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
 }

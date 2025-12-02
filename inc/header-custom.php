@@ -33,27 +33,27 @@ add_action('widgets_init', 'sciuuuskids_register_header_widgets');
 function sciuuuskids_custom_header() {
     ?>
     <header class="sciuuuskids-custom-header" role="banner">
-        <div class="header-container container">
-            <div class="header-row">
-                
-                <!-- Logo Section -->
+        <div class="header-container">
+            
+            <!-- Cart Icon (Absolute positioned, top-right) -->
+            <?php if (class_exists('WooCommerce')) : ?>
+            <div class="header-cart-wrapper">
+                <?php sciuuuskids_header_cart(); ?>
+            </div>
+            <?php endif; ?>
+            
+            <!-- Logo Section (Centered) -->
+            <div class="header-logo-section">
                 <div class="header-logo">
                     <?php sciuuuskids_logo(); ?>
                 </div>
-                
-                <!-- Navigation Section -->
+            </div>
+            
+            <!-- Navigation Section (Centered, below logo) -->
+            <div class="header-navigation-section">
                 <div class="header-navigation" id="primary-menu">
                     <?php sciuuuskids_primary_navigation(); ?>
                 </div>
-                
-                <!-- WooCommerce Section -->
-                <?php if (class_exists('WooCommerce')) : ?>
-                <div class="header-woo-elements">
-                    <?php sciuuuskids_header_search(); ?>
-                    <?php sciuuuskids_header_account(); ?>
-                    <?php sciuuuskids_header_cart(); ?>
-                </div>
-                <?php endif; ?>
                 
                 <!-- Mobile Menu Toggle -->
                 <div class="mobile-menu-toggle">
@@ -63,9 +63,12 @@ function sciuuuskids_custom_header() {
                         <span class="menu-icon"></span>
                     </button>
                 </div>
-                
             </div>
+            
         </div>
+        
+        <!-- Orange Wave Divider -->
+        <div class="header-wave-divider"></div>
     </header>
     <?php
 }
