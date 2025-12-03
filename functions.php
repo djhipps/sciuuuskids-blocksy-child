@@ -4,7 +4,7 @@
  * SciuuuS Kids Customizations
  * 
  * @package Blocksy_Child_SciuuusKids
- * @version 1.0.0
+ * @version 1.1.2
  */
 
 // Prevent direct access
@@ -152,3 +152,5 @@ function sciuuuskids_excerpt_more($more) {
     return '...';
 }
 add_filter('excerpt_more', 'sciuuuskids_excerpt_more');
+
+

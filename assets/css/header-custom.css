@@ -2,7 +2,7 @@
  * Custom Header Styles for SciuuuS Kids
  * 
  * @package Blocksy_Child_SciuuusKids
- * @version 1.0.0
+ * @version 1.1.2
  */
 
 /* ==========================================================================
@@ -30,7 +30,7 @@
 .header-cart-wrapper {
     position: absolute;
     top: 25px;
-    right: 12px;
+    right: 30px;
     z-index: 100;
 }
 
@@ -55,21 +55,22 @@
 
 .cart-link svg {
     fill: currentColor;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
 }
 
 .cart-count {
     background: #FC7D06;
-    color: #ffffff;
+    color: #ffffff !important;
     border-radius: 50%;
-    min-width: 20px;
-    height: 20px;
+    min-width: 22px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
+    line-height: 1;
     padding: 0 6px;
     position: absolute;
     top: -2px;
@@ -101,7 +102,6 @@
     width: auto;
     height: 180px;
     object-fit: contain;
-    /* Drop shadow */
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
     transition: transform 0.3s ease, filter 0.3s ease;
 }
@@ -128,6 +128,31 @@
     font-size: 14px;
     color: #666;
     margin: 10px 0 0;
+}
+
+/* ==========================================================================
+   Wavy Decoration Above Navigation
+   ========================================================================== */
+
+.header-wave-decoration {
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+    line-height: 0;
+    background: #ffffff;
+    position: relative;
+}
+
+.header-wave-decoration svg {
+    display: block;
+    width: 100%;
+    height: 30px;
+    position: relative;
+    transform: scaleY(-1);
+}
+
+.header-wave-decoration .wave-fill {
+    fill: #FC7D06;
 }
 
 /* ==========================================================================
@@ -168,22 +193,23 @@
     align-items: center;
 }
 
-.primary-menu li a {
+.header-navigation-section .primary-menu li a {
     color: #ffffff;
     text-decoration: none;
     font-family: 'Quicksand', sans-serif;
     font-size: 16px;
     font-weight: 600;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition: color 0.2s ease;
     padding: 20px 25px;
     display: block;
     white-space: nowrap;
 }
 
-.primary-menu li a:hover,
-.primary-menu li.current-menu-item a {
-    color: #161616;
-    background-color: rgba(255, 255, 255, 0.1);
+.header-navigation-section .primary-menu li a:hover,
+.header-navigation-section .primary-menu li.current-menu-item a,
+.header-navigation-section .primary-menu li.current_page_item a {
+    color: #161616 !important;
+    background-color: transparent !important;
 }
 
 /* Dropdown Menu Styles */
@@ -225,26 +251,11 @@
 }
 
 /* ==========================================================================
-   Orange Wave Divider
+   Wave Divider Below Navigation (Hidden)
    ========================================================================== */
 
 .header-wave-divider {
-    height: 40px;
-    background: #FC7D06;
-    position: relative;
-    overflow: hidden;
-}
-
-.header-wave-divider::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0,20 C150,5 350,35 600,20 C850,5 1050,35 1200,20 L1200,40 L0,40 Z" fill="%23FFFFFF"/></svg>') repeat-x;
-    background-size: 1200px 40px;
-    background-position: 0 0;
+    display: none;
 }
 
 /* ==========================================================================
@@ -317,12 +328,12 @@
     
     .header-cart-wrapper {
         top: 25px;
-        right: 15px;
+        right: 20px;
     }
     
     .cart-link svg {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
     }
     
     .header-logo-section {
@@ -333,6 +344,14 @@
         max-width: 100%;
         height: auto;
         max-height: 130px;
+    }
+    
+    .header-wave-decoration {
+        height: 20px;
+    }
+    
+    .header-wave-decoration svg {
+        height: 20px;
     }
     
     .mobile-menu-toggle {
@@ -404,16 +423,12 @@
     .primary-menu li.menu-item-has-children.active > .sub-menu {
         display: block;
     }
-    
-    .header-wave-divider {
-        height: 30px;
-    }
 }
 
 @media (max-width: 480px) {
     .header-cart-wrapper {
         top: 20px;
-        right: 12px;
+        right: 15px;
     }
     
     .cart-link {
@@ -421,14 +436,14 @@
     }
     
     .cart-link svg {
-        width: 18px;
-        height: 18px;
+        width: 22px;
+        height: 22px;
     }
     
     .cart-count {
-        min-width: 18px;
-        height: 18px;
-        font-size: 11px;
+        min-width: 20px;
+        height: 20px;
+        font-size: 12px;
     }
     
     .header-logo img {
@@ -440,13 +455,17 @@
         font-size: 24px;
     }
     
+    .header-wave-decoration {
+        height: 15px;
+    }
+    
+    .header-wave-decoration svg {
+        height: 15px;
+    }
+    
     .primary-menu li a {
         font-size: 14px;
         padding: 12px 15px;
-    }
-    
-    .header-wave-divider {
-        height: 25px;
     }
 }
 
@@ -461,7 +480,6 @@
     outline-offset: 2px;
 }
 
-/* Skip to content link */
 .skip-link {
     position: absolute;
     top: -40px;
@@ -477,7 +495,6 @@
     top: 0;
 }
 
-/* Screen reader text */
 .screen-reader-text {
     clip: rect(1px, 1px, 1px, 1px);
     height: 1px;
