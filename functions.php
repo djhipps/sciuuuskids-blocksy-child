@@ -4,7 +4,7 @@
  * SciuuuS Kids Customizations
  * 
  * @package Blocksy_Child_SciuuusKids
- * @version 1.1.2
+ * @version 1.1.3
  */
 
 // Prevent direct access
@@ -45,7 +45,7 @@ function blocksy_child_enqueue_styles() {
         'custom-header',
         get_stylesheet_directory_uri() . '/assets/css/header-custom.css',
         array('blocksy-style', 'google-fonts-quicksand'),
-        '1.1.2'
+        '1.1.8'  // BUMP THIS VERSION
     );
     
     // Custom footer CSS
@@ -53,7 +53,7 @@ function blocksy_child_enqueue_styles() {
         'custom-footer',
         get_stylesheet_directory_uri() . '/assets/css/footer-custom.css',
         array('blocksy-style'),
-        '1.0.0'
+        '1.0.1'
     );
     
     // Custom JavaScript
@@ -61,11 +61,29 @@ function blocksy_child_enqueue_styles() {
         'custom-scripts',
         get_stylesheet_directory_uri() . '/assets/js/custom.js',
         array('jquery'),
-        '1.0.0',
+        '1.0.3',  // BUMP THIS VERSION
         true
     );
 }
 add_action('wp_enqueue_scripts', 'blocksy_child_enqueue_styles');
+
+/**
+ * Hide default Blocksy footer with inline CSS
+ */
+function sciuuuskids_hide_blocksy_footer() {
+    echo '<style>
+        /* Hide default Blocksy footer */
+        #footer.ct-footer {
+            display: none !important;
+        }
+        
+        /* Ensure custom footer displays */
+        footer.sciuuuskids-custom-footer {
+            display: block !important;
+        }
+    </style>';
+}
+add_action('wp_head', 'sciuuuskids_hide_blocksy_footer', 100);
 
 /**
  * Add body classes for custom header/footer
@@ -140,10 +158,12 @@ add_filter('woocommerce_add_to_cart_fragments', 'sciuuuskids_cart_count_fragment
  * Remove default Blocksy header/footer hooks
  */
 function sciuuuskids_remove_default_header_footer() {
-    // This ensures our custom header/footer take precedence
-    // Adjust based on actual Blocksy hooks if needed
+    // Remove Blocksy's default footer rendering
+    remove_action('blocksy:footer:before', 'blocksy_output_footer', 10);
+    remove_action('blocksy:footer:after', 'blocksy_output_footer', 10);
+    remove_all_actions('blocksy:footer:render');
 }
-add_action('wp', 'sciuuuskids_remove_default_header_footer');
+add_action('wp', 'sciuuuskids_remove_default_header_footer', 20);
 
 /**
  * Custom excerpt length
@@ -160,5 +180,3 @@ function sciuuuskids_excerpt_more($more) {
     return '...';
 }
 add_filter('excerpt_more', 'sciuuuskids_excerpt_more');
-
-

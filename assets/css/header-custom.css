@@ -2,7 +2,7 @@
  * Custom Header Styles for SciuuuS Kids
  * 
  * @package Blocksy_Child_SciuuusKids
- * @version 1.1.2
+ * @version 1.1.8
  */
 
 /* ==========================================================================
@@ -365,16 +365,26 @@
         height: 20px;
     }
     
-    /* Mobile Menu Toggle */
+    /* Navigation section - flexbox layout */
+    .header-navigation-section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: #FC7D06;
+        min-height: auto;
+    }
+    
+    /* Mobile Menu Toggle - COMPACT */
     .mobile-menu-toggle {
         display: block;
         position: relative;
         left: 0;
         top: 0;
         transform: none;
-        padding: 15px 20px;
+        padding: 12px 18px;
         background: #FC7D06;
         order: -1;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .menu-toggle {
@@ -384,57 +394,63 @@
         cursor: pointer;
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 4px;
         border-radius: 0;
     }
     
     .menu-icon {
         display: block;
-        width: 28px;
+        width: 26px;
         height: 3px;
         background: #ffffff;
         transition: all 0.3s ease;
         border-radius: 2px;
     }
     
-    /* Navigation section - flexbox layout */
-    .header-navigation-section {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-    }
-    
+    /* Menu container - hidden by default */
     .header-navigation {
         display: none;
         width: 100%;
         order: 0;
+        background: #FC7D06;
+        padding: 0;
     }
     
+    /* Menu container - visible when active */
     .header-navigation.active {
-        display: block;
+        display: block !important;
     }
     
     .main-navigation {
         justify-content: flex-start;
+        width: 100%;
+        background: #FC7D06;
     }
     
     .primary-menu {
         flex-direction: column;
         gap: 0;
         width: 100%;
+        background: #FC7D06;
+        padding: 0;
+        margin: 0;
     }
     
     .primary-menu li {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         width: 100%;
+        display: block;
     }
     
-    /* Menu items - SMALLER text, lighter weight */
+    /* Menu items - COMPACT */
     .primary-menu li a {
-        padding: 14px 20px;
+        padding: 12px 18px;
         width: 100%;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 500;
+        color: #ffffff !important;
+        display: block;
+        background: #FC7D06;
     }
     
     /* Mobile Dropdown */
@@ -447,19 +463,19 @@
         padding: 0;
         margin: 0;
         display: none;
-        background: rgba(0, 0, 0, 0.1);
+        background: rgba(0, 0, 0, 0.15);
     }
     
     .primary-menu .sub-menu li a {
-        padding: 12px 20px 12px 40px;
-        font-size: 14px;
+        padding: 10px 18px 10px 36px;
+        font-size: 13px;
     }
     
     .primary-menu li.menu-item-has-children > a::after {
         content: '+';
         float: right;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 1;
     }
     
@@ -483,19 +499,19 @@
     }
     
     .cart-link svg {
-        width: 22px;
-        height: 22px;
+        width: 28px;
+        height: 28px;
     }
     
     .cart-count {
-        min-width: 20px;
-        height: 20px;
-        font-size: 12px;
+        min-width: 22px;
+        height: 22px;
+        font-size: 13px;
     }
     
     .header-logo img {
         max-width: 165px;
-        max-height: 100px;
+        max-height: 120px;
     }
     
     .site-title {
@@ -510,9 +526,19 @@
         height: 15px;
     }
     
+    /* Even more compact on small mobile */
+    .mobile-menu-toggle {
+        padding: 10px 15px;
+    }
+    
     .primary-menu li a {
-        font-size: 14px;
-        padding: 12px 15px;
+        font-size: 13px;
+        padding: 10px 15px;
+    }
+    
+    .primary-menu .sub-menu li a {
+        font-size: 12px;
+        padding: 8px 15px 8px 30px;
     }
 }
 

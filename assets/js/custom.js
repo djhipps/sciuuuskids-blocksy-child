@@ -2,7 +2,7 @@
  * Custom JavaScript for SciuuuS Kids
  * 
  * @package Blocksy_Child_SciuuusKids
- * @version 1.0.0
+ * @version 1.0.3
  */
 
 (function($) {
@@ -22,53 +22,47 @@
         
     });
 
-    /**
+/**
      * Mobile Menu Toggle
      */
     function initMobileMenu() {
-        const menuToggle = $('.menu-toggle');
-        const navSection = $('.header-navigation-section');
+        // Use more specific selector
+        var menuToggle = jQuery('.mobile-menu-toggle .menu-toggle');
+        var navigation = jQuery('.header-navigation-section .header-navigation');
+        
+        console.log('Menu toggle found:', menuToggle.length);
+        console.log('Navigation found:', navigation.length);
         
         menuToggle.on('click', function(e) {
             e.preventDefault();
-            e.stopPropagation();
+            console.log('Button clicked!');
             
-            const isExpanded = $(this).attr('aria-expanded') === 'true';
+            var isExpanded = jQuery(this).attr('aria-expanded') === 'true';
             
-            $(this).attr('aria-expanded', !isExpanded);
-            navSection.toggleClass('menu-open');
-            $('body').toggleClass('mobile-menu-open');
+            // Toggle aria-expanded
+            jQuery(this).attr('aria-expanded', !isExpanded);
+            
+            // Toggle active class
+            navigation.toggleClass('active');
+            
+            console.log('Active class toggled. Has active:', navigation.hasClass('active'));
         });
         
-        // Close mobile menu when clicking outside
-        $(document).on('click', function(e) {
-            if (!$(e.target).closest('.header-navigation-section').length && 
-                !$(e.target).closest('.menu-toggle').length) {
-                menuToggle.attr('aria-expanded', 'false');
-                navSection.removeClass('menu-open');
-                $('body').removeClass('mobile-menu-open');
-            }
-        });
-        
-        // Handle mobile submenu toggles
-        $('.primary-menu .menu-item-has-children > a').on('click', function(e) {
-            if ($(window).width() <= 768) {
+        // Handle submenu clicks
+        jQuery('.primary-menu .menu-item-has-children > a').on('click', function(e) {
+            if (jQuery(window).width() <= 768) {
                 e.preventDefault();
-                e.stopPropagation();
-                
-                const $parent = $(this).parent();
-                $parent.toggleClass('active');
-                $parent.siblings('.menu-item-has-children').removeClass('active');
+                jQuery(this).parent().toggleClass('active');
+                jQuery(this).parent().siblings('.menu-item-has-children').removeClass('active');
             }
         });
         
-        // Close on resize
-        $(window).on('resize', function() {
-            if ($(window).width() > 768) {
+        // Close on window resize
+        jQuery(window).on('resize', function() {
+            if (jQuery(window).width() > 768) {
                 menuToggle.attr('aria-expanded', 'false');
-                navSection.removeClass('menu-open');
-                $('body').removeClass('mobile-menu-open');
-                $('.primary-menu .menu-item-has-children').removeClass('active');
+                navigation.removeClass('active');
+                jQuery('.primary-menu .menu-item-has-children').removeClass('active');
             }
         });
     }

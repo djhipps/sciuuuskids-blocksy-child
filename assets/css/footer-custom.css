@@ -2,414 +2,254 @@
  * Custom Footer Styles for SciuuuS Kids
  * 
  * @package Blocksy_Child_SciuuusKids
- * @version 1.0.0
+ * @version 1.0.2
  */
+
+/* ==========================================================================
+   Hide Default Blocksy Footer
+   ========================================================================== */
+
+#footer.ct-footer,
+footer#footer.ct-footer,
+.ct-footer[data-id="type-1"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+}
 
 /* ==========================================================================
    Footer Main Container
    ========================================================================== */
 
-.sciuuuskids-custom-footer {
-    background: var(--sciuuuskids-secondary, #2c3e50);
-    color: #ffffff;
-    padding-top: 60px;
+footer.sciuuuskids-custom-footer {
+    background: #FC7D06 !important;
+    background-color: #FC7D06 !important;
+    color: #000000 !important;
+    padding: 30px 20px !important;
+    display: block !important;
+    visibility: visible !important;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
 /* ==========================================================================
-   Footer Widgets Section
+   Row 1: Quote
    ========================================================================== */
 
-.footer-widgets {
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.footer-quote {
+    text-align: center;
+    padding-bottom: 30px;
 }
 
-.footer-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-}
-
-.footer-column {
-    /* Individual column styling */
-}
-
-/* Widget Titles */
-.footer-widget-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-.footer-widget-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background: var(--sciuuuskids-primary, #ff6b6b);
-}
-
-/* Widget Content */
-.footer-widget ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-widget ul li {
-    margin-bottom: 10px;
-}
-
-.footer-widget ul li a {
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.footer-widget ul li a:hover {
-    color: var(--sciuuuskids-primary, #ff6b6b);
-    transform: translateX(5px);
-}
-
-.footer-widget p {
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
-
-/* Widget Images */
-.footer-widget img {
+.footer-quote p {
+    font-family: 'Gochi Hand', cursive !important;
+    font-size: 32px !important;
+    font-style: italic !important;
+    color: #1B1B1B !important;
+    margin: 0 auto !important;
+    line-height: 1.2 !important;
     max-width: 100%;
-    height: auto;
-}
-
-/* Widget Forms (Newsletter, etc.) */
-.footer-widget input[type="email"],
-.footer-widget input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-.footer-widget input[type="email"]::placeholder,
-.footer-widget input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.footer-widget input[type="submit"],
-.footer-widget button[type="submit"] {
-    background: var(--sciuuuskids-primary, #ff6b6b);
-    color: #fff;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.footer-widget input[type="submit"]:hover,
-.footer-widget button[type="submit"]:hover {
-    background: #ff5555;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* ==========================================================================
-   Footer Bottom Section
+   Row 2: Menu
    ========================================================================== */
 
-.footer-bottom {
-    padding: 30px 0;
+.footer-menu-row {
+    text-align: center;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.footer-bottom-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
+.footer-menu,
+ul.footer-menu {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px 18px !important;
 }
 
-/* Copyright */
-.footer-copyright {
-    flex: 1 1 auto;
-}
-
-.footer-copyright p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 14px;
-}
-
-/* Social Links */
-.footer-social {
-    flex: 0 0 auto;
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-}
-
-.social-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    transition: all 0.3s ease;
-}
-
-.social-link:hover {
-    background: var(--sciuuuskids-primary, #ff6b6b);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.social-link svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
-
-/* Specific Social Platform Colors (Optional) */
-.social-facebook:hover {
-    background: #1877f2;
-}
-
-.social-instagram:hover {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.social-twitter:hover {
-    background: #1da1f2;
-}
-
-.social-pinterest:hover {
-    background: #e60023;
-}
-
-.social-youtube:hover {
-    background: #ff0000;
-}
-
-/* Footer Menu */
-.footer-links {
-    flex: 0 0 auto;
-}
-
-.footer-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 20px;
-    flex-wrap: wrap;
+.footer-menu li {
+    margin: 0 !important;
 }
 
 .footer-menu li a {
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s ease;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    transition: color 0.2s ease !important;
+    padding: 8px 12px !important;
+    display: block !important;
+    white-space: nowrap !important;
 }
 
 .footer-menu li a:hover {
-    color: var(--sciuuuskids-primary, #ff6b6b);
+    color: #161616 !important;
 }
 
 /* ==========================================================================
-   Responsive Styles
+   Row 3: Company Info and Social
    ========================================================================== */
 
-@media (max-width: 992px) {
-    .footer-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-    
-    .sciuuuskids-custom-footer {
-        padding-top: 50px;
-    }
+.footer-bottom-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 20px !important;
+    padding-top: 10px !important;
 }
 
-@media (max-width: 768px) {
-    .sciuuuskids-custom-footer {
-        padding-top: 40px;
-    }
-    
-    .footer-widgets {
-        padding-bottom: 30px;
-    }
-    
-    .footer-row {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .footer-bottom {
-        padding: 20px 0;
-    }
-    
-    .footer-bottom-row {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
-    
-    .footer-copyright,
-    .footer-social,
-    .footer-links {
-        flex: 1 1 100%;
+.footer-company-info p {
+    margin: 0 0 5px 0 !important;
+    color: #000000 !important;
+    font-size: 13px !important;
+    font-weight: 300 !important;
+    line-height: 1.6 !important;
+}
+
+.footer-company-info .footer-copyright {
+    margin-top: 10px !important;
+}
+
+/* Social Icons */
+.footer-social {
+    display: flex !important;
+    gap: 25px !important;
+    align-items: center !important;
+}
+
+.social-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: rgba(0, 0, 0, 0.73) !important;
+    transition: color 0.3s ease !important;
+}
+
+.social-link:hover {
+    color: #ffffff !important;
+}
+
+.social-link svg {
+    width: 28px !important;
+    height: 28px !important;
+    fill: currentColor !important;
+}
+
+/* ==========================================================================
+   Tablet Styles (768px - 991px)
+   ========================================================================== */
+
+@media (max-width: 991px) {
+    .footer-quote p {
+        font-size: 28px !important;
     }
     
     .footer-menu {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-widget-title {
-        font-size: 16px;
-    }
-    
-    .footer-copyright p {
-        font-size: 12px;
+        gap: 12px 25px !important;
     }
     
     .footer-menu li a {
-        font-size: 12px;
-    }
-    
-    .social-link {
-        width: 36px;
-        height: 36px;
-    }
-    
-    .social-link svg {
-        width: 18px;
-        height: 18px;
+        font-size: 16px !important;
     }
 }
 
 /* ==========================================================================
-   Additional Styling for Common Widgets
+   Mobile Styles (max-width: 767px)
    ========================================================================== */
 
-/* Recent Posts Widget */
-.footer-widget .widget_recent_entries ul li {
-    padding-left: 20px;
-    position: relative;
+@media (max-width: 767px) {
+    footer.sciuuuskids-custom-footer {
+        padding: 25px 20px !important;
+    }
+    
+    /* Quote */
+    .footer-quote {
+        padding-bottom: 25px;
+    }
+    
+    .footer-quote p {
+        font-size: 24px !important;
+    }
+    
+    /* Menu - Stack vertically on mobile */
+    .footer-menu-row {
+        padding-bottom: 25px;
+    }
+    
+    .footer-menu {
+        flex-direction: column !important;
+        gap: 13px !important;
+    }
+    
+    .footer-menu li a {
+        font-size: 16px !important;
+        padding: 3px 16px !important;
+    }
+    
+    /* Bottom Row - Stack vertically */
+    .footer-bottom-row {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+    
+    .footer-company-info {
+        text-align: center !important;
+    }
+    
+    .footer-company-info p {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+    }
+    
+    .footer-social {
+        justify-content: center !important;
+        gap: 25px !important;
+    }
+    
+    .social-link svg {
+        width: 26px !important;
+        height: 26px !important;
+    }
 }
 
-.footer-widget .widget_recent_entries ul li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--sciuuuskids-primary, #ff6b6b);
-}
+/* ==========================================================================
+   Small Mobile Styles (max-width: 480px)
+   ========================================================================== */
 
-/* Categories Widget */
-.footer-widget .widget_categories ul li {
-    display: flex;
-    justify-content: space-between;
-}
-
-/* Tag Cloud Widget */
-.footer-widget .tagcloud a {
-    display: inline-block;
-    padding: 5px 15px;
-    margin: 5px 5px 5px 0;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.7);
-    border-radius: 20px;
-    font-size: 14px !important;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.footer-widget .tagcloud a:hover {
-    background: var(--sciuuuskids-primary, #ff6b6b);
-    color: #fff;
-}
-
-/* Search Widget */
-.footer-widget .widget_search form {
-    position: relative;
-}
-
-.footer-widget .widget_search input[type="search"] {
-    width: 100%;
-    padding: 12px 45px 12px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border-radius: 4px;
-}
-
-.footer-widget .widget_search input[type="submit"] {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 8px 15px;
-}
-
-/* Contact Info */
-.footer-widget .contact-info {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.footer-widget .contact-info li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.footer-widget .contact-info li svg,
-.footer-widget .contact-info li i {
-    color: var(--sciuuuskids-primary, #ff6b6b);
-    flex-shrink: 0;
+@media (max-width: 480px) {
+    .footer-quote p {
+        font-size: 20px !important;
+    }
+    
+    .footer-company-info p {
+        font-size: 11px !important;
+    }
+    
+    .footer-menu li a {
+        font-size: 15px !important;
+    }
 }
 
 /* ==========================================================================
    Accessibility
    ========================================================================== */
 
-.footer-widget a:focus,
-.social-link:focus,
-.footer-menu a:focus {
-    outline: 2px solid var(--sciuuuskids-primary, #ff6b6b);
-    outline-offset: 2px;
+.footer-menu a:focus,
+.social-link:focus {
+    outline: 2px solid #00ce1b !important;
+    outline-offset: 2px !important;
 }
