@@ -85,7 +85,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 20px 10px;
+    padding: 15px 20px 10px; 
 }
 
 .header-logo {
@@ -196,8 +196,8 @@
 .header-navigation-section .primary-menu li a {
     color: #ffffff;
     text-decoration: none;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 16px;
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 18px;
     font-weight: 600;
     transition: color 0.2s ease;
     padding: 20px 25px;
@@ -326,26 +326,37 @@
         padding: 0;
     }
     
+    /* Cart - BIGGER and fixed */
     .header-cart-wrapper {
-        top: 25px;
+        position: fixed;
+        top: 20px;
         right: 20px;
+        z-index: 1002;
     }
     
     .cart-link svg {
-        width: 24px;
-        height: 24px;
+        width: 32px;
+        height: 32px;
     }
     
+    .cart-count {
+        min-width: 24px;
+        height: 24px;
+        font-size: 14px;
+    }
+    
+    /* Logo - BIGGER */
     .header-logo-section {
-        padding: 15px 20px 10px;
+        padding: 20px 20px 15px;
     }
     
     .header-logo img {
         max-width: 100%;
         height: auto;
-        max-height: 130px;
+        max-height: 160px;
     }
     
+    /* Wave decoration */
     .header-wave-decoration {
         height: 20px;
     }
@@ -354,23 +365,49 @@
         height: 20px;
     }
     
+    /* Mobile Menu Toggle */
     .mobile-menu-toggle {
         display: block;
         position: relative;
         left: 0;
         top: 0;
         transform: none;
-        padding: 10px 20px;
+        padding: 15px 20px;
         background: #FC7D06;
+        order: -1;
     }
     
+    .menu-toggle {
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        border-radius: 0;
+    }
+    
+    .menu-icon {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: #ffffff;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+    
+    /* Navigation section - flexbox layout */
     .header-navigation-section {
         position: relative;
+        display: flex;
+        flex-direction: column;
     }
     
     .header-navigation {
         display: none;
         width: 100%;
+        order: 0;
     }
     
     .header-navigation.active {
@@ -392,9 +429,12 @@
         width: 100%;
     }
     
+    /* Menu items - SMALLER text, lighter weight */
     .primary-menu li a {
-        padding: 15px 20px;
+        padding: 14px 20px;
         width: 100%;
+        font-size: 15px;
+        font-weight: 500;
     }
     
     /* Mobile Dropdown */
@@ -404,9 +444,15 @@
         visibility: visible;
         transform: none;
         box-shadow: none;
-        padding-left: 20px;
+        padding: 0;
+        margin: 0;
         display: none;
         background: rgba(0, 0, 0, 0.1);
+    }
+    
+    .primary-menu .sub-menu li a {
+        padding: 12px 20px 12px 40px;
+        font-size: 14px;
     }
     
     .primary-menu li.menu-item-has-children > a::after {
@@ -414,6 +460,7 @@
         float: right;
         font-weight: bold;
         font-size: 20px;
+        line-height: 1;
     }
     
     .primary-menu li.menu-item-has-children.active > a::after {

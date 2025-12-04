@@ -16,6 +16,14 @@ if (!defined('ABSPATH')) {
  * Enqueue parent and child theme styles
  */
 function blocksy_child_enqueue_styles() {
+    // Google Fonts - Quicksand
+    wp_enqueue_style(
+        'google-fonts-quicksand',
+        'https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap',
+        array(),
+        null
+    );
+    
     // Parent theme style
     wp_enqueue_style(
         'blocksy-style',
@@ -36,8 +44,8 @@ function blocksy_child_enqueue_styles() {
     wp_enqueue_style(
         'custom-header',
         get_stylesheet_directory_uri() . '/assets/css/header-custom.css',
-        array('blocksy-style'),
-        '1.0.0'
+        array('blocksy-style', 'google-fonts-quicksand'),
+        '1.1.2'
     );
     
     // Custom footer CSS
