@@ -5,7 +5,7 @@ Description: Custom child theme for SciuuuS Kids barefoot shoes. Code-based head
 Author: Damian
 Author URI: https://sciuuuskids.it
 Template: blocksy
-Version: 1.0.0
+Version: 1.1.0
 Text Domain: blocksy-child
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,14 +17,145 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * - assets/css/footer-custom.css
  */
 
-/* Global Overrides */
+/* ==========================================================================
+   CSS Custom Properties (Variables)
+   ========================================================================== */
+
 :root {
+    /* Brand Colors */
+    --brand-orange: #FC7D06;
+    --brand-white: #ffffff;
+    --brand-black: #000000;
+    --brand-dark: #161616;
+    --brand-darker: #1B1B1B;
+    --brand-gray-dark: #333333;
+    --brand-gray-medium: #666666;
+    --brand-gray-light: #f1f1f1;
+    --brand-accent-green: #00ce1b;
+    --brand-accent-blue: #21759b;
+    
+    /* Legacy colors (can be deprecated later) */
     --sciuuuskids-primary: #ff6b6b;
     --sciuuuskids-secondary: #2c3e50;
     --sciuuuskids-accent: #4ecdc4;
     --sciuuuskids-text: #333333;
     --sciuuuskids-light: #f8f9fa;
+    
+    /* Typography */
+    --font-primary: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Gochi Hand', cursive;
+    --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    
+    /* Font Sizes */
+    --font-size-base: 16px;
+    --font-size-small: 13px;
+    --font-size-smaller: 12px;
+    --font-size-smallest: 11px;
+    --font-size-medium: 18px;
+    --font-size-large: 24px;
+    --font-size-xlarge: 28px;
+    --font-size-xxlarge: 32px;
+    
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Spacing */
+    --spacing-tiny: 4px;
+    --spacing-xs: 8px;
+    --spacing-small: 10px;
+    --spacing-medium: 15px;
+    --spacing-base: 20px;
+    --spacing-large: 25px;
+    --spacing-xl: 30px;
+    
+    /* Gap Spacing */
+    --gap-tiny: 1px;
+    --gap-xs: 8px;
+    --gap-small: 10px;
+    --gap-medium: 18px;
+    --gap-large: 25px;
+    
+    /* Padding */
+    --padding-xs: 5px;
+    --padding-small: 10px;
+    --padding-medium: 12px;
+    --padding-base: 20px;
+    --padding-large: 25px;
+    --padding-xl: 30px;
+    
+    /* Border Radius */
+    --radius-small: 2px;
+    --radius-medium: 3px;
+    --radius-base: 4px;
+    --radius-circle: 50%;
+    
+    /* Shadows */
+    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.2);
+    --shadow-strong: 0 0 10px rgba(0, 0, 0, 0.5);
+    --shadow-focus: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.8s ease;
+    
+    /* Container Widths */
+    --container-max-width: 1200px;
+    --container-padding: 20px;
+    
+    /* Logo Dimensions */
+    --logo-max-width: 683px;
+    --logo-height: 180px;
+    --logo-mobile-max-width: 165px;
+    --logo-mobile-height: 120px;
+    
+    /* Icon Sizes */
+    --icon-size-base: 28px;
+    --icon-size-large: 32px;
+    --icon-size-small: 26px;
+    
+    /* Cart Badge */
+    --cart-badge-size: 22px;
+    --cart-badge-size-mobile: 24px;
+    
+    /* Wave Heights */
+    --wave-height: 30px;
+    --wave-height-tablet: 20px;
+    --wave-height-mobile: 15px;
+    
+    /* Menu Widths */
+    --submenu-min-width: 200px;
+    
+    /* Z-Index Scale */
+    --z-index-base: 100;
+    --z-index-header: 101;
+    --z-index-cart: 1002;
+    --z-index-skip-link: 10000;
+    --z-index-screen-reader: 100000;
+    
+    /* Opacity Values */
+    --opacity-transparent: 0;
+    --opacity-light: 0.1;
+    --opacity-medium: 0.15;
+    --opacity-dark: 0.2;
+    --opacity-darker: 0.73;
+    --opacity-full: 1;
+    
+    /* Line Heights */
+    --line-height-tight: 1;
+    --line-height-snug: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.6;
 }
+
+/* ==========================================================================
+   Global Overrides
+   ========================================================================== */
 
 /* Hide default Blocksy header/footer if using custom ones */
 body.using-custom-header .ct-header {
@@ -35,11 +166,14 @@ body.using-custom-footer .ct-footer {
     display: none !important;
 }
 
-/* Utility Classes */
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
 .container {
-    max-width: 1200px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 var(--container-padding);
 }
 
 .screen-reader-text {
