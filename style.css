@@ -24,6 +24,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 :root {
     /* Brand Colors */
     --brand-orange: #FC7D06;
+    --brand-green: #009285;
     --brand-white: #ffffff;
     --brand-black: #000000;
     --brand-dark: #161616;
@@ -189,6 +190,56 @@ body.using-custom-footer .ct-footer {
 /* Force non-sticky header (overrides customizer setting) */
 .sciuuuskids-custom-header {
     position: relative !important;
+}
+
+/* Force full width for all content containers */
+.ct-container-full {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Remove all gaps between header and content */
+#main,
+.site-main,
+.ct-container,
+.entry-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Ensure alignfull blocks break out to full width */
+.alignfull {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Specific override for delivery banner - multiple selectors for specificity */
+.delivery-banner,
+.delivery-banner.alignfull,
+.wp-block-group.delivery-banner,
+.entry-content .delivery-banner {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Ensure no parent containers constrain full-width blocks */
+.entry-content,
+.ct-container,
+.ct-container-full {
+    overflow-x: visible !important;
 }
 
 /* ==========================================================================

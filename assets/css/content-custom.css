@@ -15,15 +15,20 @@
 }
 
 .ct-container-full {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
     background: var(--brand-white) !important;
 }
 
-/* Reduce top padding from default 60px to 20px */
-.ct-container-full {
-    padding-top: 20px !important;
+/* Remove top padding from entry-content to be flush with header */
+.entry-content.is-layout-constrained {
+    padding-top: 0 !important;
+}
+
+/* Also ensure no top padding on entry-content in general */
+.entry-content {
+    padding-top: 0 !important;
 }
 
 /* ==========================================================================
@@ -46,8 +51,8 @@ article.single {
 
 .hero-section {
     text-align: center;
-    padding: var(--spacing-base) 0 0 0 !important;  /* Removed bottom padding */
-    margin-bottom: 0 !important;  /* Set to 0 */
+    padding: var(--spacing-base) 0 0 0 !important;
+    margin-bottom: 0 !important;
     background: var(--brand-white) !important;
 }
 
@@ -66,6 +71,7 @@ h1.entry-title {
     line-height: var(--line-height-heading) !important;
     color: var(--brand-gray-dark) !important;
     margin: 0 auto !important;
+    margin-bottom: 0 !important;
     padding: 0 !important;
     text-align: center !important;
 }

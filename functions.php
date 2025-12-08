@@ -64,6 +64,14 @@ function blocksy_child_enqueue_styles() {
         '1.0.0'
     );
     
+    // Homepage patterns CSS
+    wp_enqueue_style(
+        'homepage-patterns',
+        get_stylesheet_directory_uri() . '/assets/css/homepage-patterns.css',
+        array('blocksy-style', 'google-fonts-quicksand'),
+        '1.0.0'
+    );
+    
     // Load on specific pages by slug
     if ( is_shop() || is_product_category() || is_product_tag() || is_page( array( 'scarpe-bebe', 'scarpe-bambini', 'outlet' ) ) ) {
         wp_enqueue_style(
@@ -331,9 +339,39 @@ add_filter( 'woocommerce_get_image_size_thumbnail', function( $size ) {
     );
 });
 
-// Set WooCommerce catalog image size
-add_action( 'after_setup_theme', function() {
-    update_option( 'woocommerce_thumbnail_image_width', 360 );
-    update_option( 'woocommerce_thumbnail_image_height', 270 );
-    update_option( 'woocommerce_thumbnail_cropping', '1:1' );
-});
+/**
+ * Register Custom Block Pattern Categories
+ */
+function sciuuuskids_register_block_pattern_categories() {
+    // Homepage patterns category
+    register_block_pattern_category(
+        'sciuuuskids-homepage',
+        array(
+            'label' => __('SciuuuS Kids - Homepage', 'blocksy-child'),
+            'description' => __('Block patterns for the SciuuuS Kids homepage', 'blocksy-child'),
+        )
+    );
+}
+add_action('init', 'sciuuuskids_register_block_pattern_categories');
+
+/**
+ * Register Block Patterns from files
+ */
+function sciuuuskids_register_block_patterns() {
+    $pattern_directory = get_stylesheet_directory() . '/patterns/homepage/';
+    
+    if (!is_dir($pattern_directory)) {
+        return;
+    }
+    
+    // Get all PHP files in the patterns directory
+    $pattern_files = glob($pattern_directory . '*.php');
+    
+    foreach ($pattern_files as $pattern_file) {
+        register_block_pattern(
+            'sciuuuskids/' . basename($pattern_file, '.php'),
+            require $pattern_file
+        );
+    }
+}
+add_action('init', 'sciuuuskids_register_block_patterns');

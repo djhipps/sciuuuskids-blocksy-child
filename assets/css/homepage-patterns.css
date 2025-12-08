@@ -1,0 +1,628 @@
+/**
+ * Homepage Block Patterns Styles
+ * 
+ * @package Blocksy_Child_SciuuusKids
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   Delivery Banner Pattern
+   ========================================================================== */
+
+.delivery-banner,
+.delivery-banner.wp-block-group,
+.delivery-banner.alignfull {
+    background: var(--brand-green) !important;
+    padding: 20px 0 !important;
+    margin: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Ensure parent containers don't constrain the banner */
+.entry-content .delivery-banner,
+.ct-container .delivery-banner,
+.ct-container-full .delivery-banner {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.delivery-banner p {
+    color: var(--brand-white) !important;
+    font-family: var(--font-primary);
+    font-size: 22px !important;
+    font-weight: var(--font-weight-semibold) !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: 100% !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    line-height: 1.2;
+}
+
+/* ==========================================================================
+   Hero Section Main Pattern
+   ========================================================================== */
+
+.hero-section-main {
+    background: var(--brand-white) !important;
+    padding: 60px 20px !important;
+    text-align: center;
+}
+
+.hero-section-main h1,
+.hero-section-main h2 {
+    font-family: var(--font-display) !important;
+    font-weight: var(--font-weight-normal) !important;
+    color: var(--brand-gray-dark) !important;
+    text-align: center;
+    margin-top: 0 !important;
+}
+
+.hero-section-main h1 {
+    font-size: var(--font-size-h1) !important;
+    margin-bottom: 20px !important;
+}
+
+.hero-section-main h2 {
+    font-size: var(--font-size-h2) !important;
+    margin-bottom: 20px !important;
+}
+
+.hero-section-main .wp-block-button__link {
+    background: var(--brand-orange) !important;
+    color: var(--brand-white) !important;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-semibold);
+    padding: 12px 25px;
+    border-radius: var(--radius-base);
+    text-decoration: none;
+    transition: background var(--transition-fast);
+}
+
+.hero-section-main .wp-block-button__link:hover {
+    background: var(--brand-dark) !important;
+}
+
+/* Hero images layout */
+.hero-section-main .wp-block-columns {
+    margin-top: 40px;
+    align-items: center;
+}
+
+.hero-section-main .main-hero-image {
+    text-align: center;
+}
+
+.hero-section-main .main-hero-image img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: none;
+    margin: 0 auto;
+}
+
+.hero-section-main .decorative-image {
+    text-align: center;
+}
+
+.hero-section-main .decorative-image img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: none;
+}
+
+.hero-section-main .small-decorative {
+    margin-bottom: 10px;
+}
+
+.hero-section-main .small-decorative img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    box-shadow: none;
+    margin: 0 auto;
+}
+
+.hero-section-main .balloon-decorative img {
+    max-width: 300px;
+    height: auto;
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   Hero Section Simple Pattern (New - Clean Version)
+   ========================================================================== */
+
+.hero-section-simple {
+    background: var(--brand-white) !important;
+    padding: 60px 20px !important;
+}
+
+.hero-section-simple h1,
+.hero-section-simple h2 {
+    font-family: var(--font-display) !important;
+    font-weight: var(--font-weight-normal) !important;
+    color: var(--brand-gray-dark) !important;
+    text-align: center !important;
+    margin-top: 0 !important;
+}
+
+.hero-section-simple h1 {
+    font-size: var(--font-size-h1) !important;
+    margin-bottom: 20px !important;
+}
+
+.hero-section-simple h2 {
+    font-size: var(--font-size-h2) !important;
+    margin-bottom: 20px !important;
+}
+
+.hero-section-simple .wp-block-buttons {
+    margin-bottom: 40px !important;
+}
+
+.hero-section-simple .wp-block-button__link {
+    background: var(--brand-orange) !important;
+    color: var(--brand-white) !important;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-semibold);
+    padding: 12px 25px;
+    border-radius: var(--radius-base);
+    text-decoration: none;
+    transition: background var(--transition-fast);
+    display: inline-block;
+}
+
+.hero-section-simple .wp-block-button__link:hover {
+    background: var(--brand-dark) !important;
+}
+
+.hero-section-simple .hero-main-image {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.hero-section-simple .hero-main-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+/* ==========================================================================
+   Hero Section Background Image Pattern (Elementor Match)
+   ========================================================================== */
+
+.hero-section-bg {
+    position: relative;
+    min-height: 75vh !important;
+    background-position: center right !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+}
+
+/* Cover block background overlay */
+.hero-section-bg .wp-block-cover__background {
+    background-color: #FAFAFA !important;
+    opacity: 0.2 !important;
+}
+
+/* Inner content container */
+.hero-section-bg .wp-block-cover__inner-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 2;
+}
+
+/* H1 - Radio Canada Bold Uppercase */
+.hero-section-bg h1 {
+    font-family: 'Radio Canada', var(--font-primary), sans-serif !important;
+    font-size: 48px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    color: #ffffff !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    text-shadow: 0 0 19px rgba(0, 0, 0, 0.5) !important;
+    line-height: 1.2;
+}
+
+/* H2 - Quicksand/REM Italic Lowercase */
+.hero-section-bg h2 {
+    font-family: 'Quicksand', var(--font-primary), sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 500 !important;
+    font-style: italic !important;
+    text-transform: lowercase !important;
+    letter-spacing: 2.5px !important;
+    color: #ffffff !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) !important;
+    line-height: 1.3;
+}
+
+/* Divider - White zigzag pattern */
+.hero-section-bg .hero-divider {
+    border-color: #ffffff !important;
+    max-width: 40px;
+    margin: 20px auto !important;
+    height: 2px;
+}
+
+/* Button - Teal with orange border */
+.hero-section-bg .wp-block-button__link {
+    background: var(--brand-green) !important;
+    color: #ffffff !important;
+    font-family: 'Lato', var(--font-primary), sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.8px !important;
+    padding: 15px 45px !important;
+    border: 2px solid #D86A01 !important;
+    border-radius: 30px !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.hero-section-bg .wp-block-button__link:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+    transform: translateY(2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section-bg {
+        min-height: 60vh !important;
+        padding: 50px 20px !important;
+    }
+    
+    .hero-section-bg h1 {
+        font-size: 42px !important;
+    }
+    
+    .hero-section-bg h2 {
+        font-size: 22px !important;
+    }
+    
+    .hero-section-bg .wp-block-cover__inner-container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section-bg {
+        padding: 40px 10px !important;
+    }
+    
+    .hero-section-bg h1 {
+        font-size: 36px !important;
+        letter-spacing: 2px !important;
+    }
+    
+    .hero-section-bg h2 {
+        font-size: 18px !important;
+        letter-spacing: 1.5px !important;
+    }
+    
+    .hero-section-bg .wp-block-button__link {
+        font-size: 12px !important;
+        padding: 12px 30px !important;
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .delivery-banner p {
+        font-size: 18px !important;
+    }
+    
+    .hero-section-main {
+        padding: 40px 20px !important;
+    }
+    
+    .hero-section-main h1 {
+        font-size: calc(var(--font-size-h1) * 0.8) !important;
+    }
+    
+    .hero-section-main h2 {
+        font-size: calc(var(--font-size-h2) * 0.85) !important;
+    }
+    
+    .hero-section-main .wp-block-columns {
+        flex-direction: column;
+    }
+    
+    .hero-section-main .small-decorative {
+        display: inline-block;
+        margin: 5px;
+    }
+    
+    .hero-section-main .small-decorative img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .hero-section-main .balloon-decorative img {
+        max-width: 200px;
+    }
+    
+    /* Hero Simple Responsive */
+    .hero-section-simple {
+        padding: 40px 20px !important;
+    }
+    
+    .hero-section-simple h1 {
+        font-size: calc(var(--font-size-h1) * 0.8) !important;
+    }
+    
+    .hero-section-simple h2 {
+        font-size: calc(var(--font-size-h2) * 0.85) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .delivery-banner p {
+        font-size: 16px !important;
+    }
+    
+    .hero-section-main h1 {
+        font-size: calc(var(--font-size-h1) * 0.7) !important;
+    }
+    
+    .hero-section-main h2 {
+        font-size: calc(var(--font-size-h2) * 0.75) !important;
+    }
+    
+    .hero-section-main .small-decorative img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .hero-section-main .balloon-decorative img {
+        max-width: 150px;
+    }
+    
+    /* Hero Simple Responsive */
+    .hero-section-simple h1 {
+        font-size: calc(var(--font-size-h1) * 0.7) !important;
+    }
+    
+    .hero-section-simple h2 {
+        font-size: calc(var(--font-size-h2) * 0.75) !important;
+    }
+    
+    .hero-section-simple .wp-block-button__link {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+/* ==========================================================================
+   Motto Section Pattern
+   ========================================================================== */
+
+.motto-section {
+    position: relative;
+    background: #F5B8C7 !important;
+    margin: 0 !important;
+}
+
+/* Pink overlay */
+.motto-section .wp-block-cover__background {
+    background-color: #D1355B !important;
+    opacity: 0.53 !important;
+}
+
+.motto-section h2 {
+    font-family: var(--font-display) !important;
+    font-size: 42px !important;
+    font-weight: 400 !important;
+    color: #FFFFFF !important;
+    text-align: center !important;
+    margin: 0 !important;
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 1024px) {
+    .motto-section {
+        padding: 50px 20px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .motto-section {
+        padding: 50px 20px !important;
+    }
+    
+    .motto-section h2 {
+        font-size: 36px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .motto-section {
+        padding: 10px 20px !important;
+    }
+    
+    .motto-section h2 {
+        font-size: 28px !important;
+    }
+}
+
+/* ==========================================================================
+   Why Barefoot Section Pattern
+   ========================================================================== */
+
+.why-barefoot-section {
+    position: relative;
+    background: #EBF6FF !important;
+    margin: 0 !important;
+}
+
+/* Orange overlay */
+.why-barefoot-section .wp-block-cover__background {
+    background-color: #FF7C00 !important;
+    opacity: 0.5 !important;
+}
+
+.why-barefoot-section .wp-block-cover__inner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 2;
+}
+
+.why-barefoot-section h2 {
+    font-family: var(--font-primary) !important;
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+    background-color: #FF7C00 !important;
+    text-align: center !important;
+    display: inline-block !important;
+    margin: 0 auto 40px !important;
+    padding: 20px 40px !important;
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .why-barefoot-section {
+        padding: 60px 20px 20px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .why-barefoot-section {
+        padding: 60px 20px 20px !important;
+    }
+    
+    .why-barefoot-section h2 {
+        font-size: 26px !important;
+        padding: 15px 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-barefoot-section {
+        padding: 60px 20px 20px !important;
+    }
+    
+    .why-barefoot-section h2 {
+        font-size: 28px !important;
+        padding: 12px 25px !important;
+    }
+}
+
+/* Feature Cards */
+.why-barefoot-section .wp-block-columns {
+    margin-bottom: 0 !important;
+}
+
+.why-barefoot-section .wp-block-column {
+    background: #ffffff !important;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-barefoot-section .wp-block-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.why-barefoot-section .wp-block-column h3 {
+    font-family: var(--font-primary) !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+    margin-bottom: 15px !important;
+    text-transform: uppercase;
+}
+
+.why-barefoot-section .wp-block-column p {
+    font-family: var(--font-primary) !important;
+    font-size: 16px !important;
+    color: #333333 !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+}
+
+/* Responsive card layout */
+@media (max-width: 1024px) {
+    .why-barefoot-section .wp-block-column {
+        min-height: 240px;
+    }
+    
+    .why-barefoot-section .wp-block-column h3 {
+        font-size: 22px !important;
+    }
+    
+    .why-barefoot-section .wp-block-column p {
+        font-size: 15px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .why-barefoot-section .wp-block-columns {
+        flex-direction: column !important;
+    }
+    
+    .why-barefoot-section .wp-block-column {
+        min-height: auto;
+        margin-bottom: 20px;
+    }
+    
+    .why-barefoot-section .wp-block-column h3 {
+        font-size: 20px !important;
+    }
+    
+    .why-barefoot-section .wp-block-column p {
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-barefoot-section .wp-block-column {
+        padding: 20px !important;
+    }
+    
+    .why-barefoot-section .wp-block-column h3 {
+        font-size: 18px !important;
+    }
+}
