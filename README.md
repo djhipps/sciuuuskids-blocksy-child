@@ -6,6 +6,8 @@ A code-based implementation of header and footer for the SciuuuS Kids WordPress 
 
 - ✅ **Code-based header** - No Elementor dependency
 - ✅ **Code-based footer** - Fully customizable
+- ✅ **Content styling** - Beautiful typography for pages and posts ✨ NEW
+- ✅ **CSS Variables** - Centralized design system with 146+ variables
 - ✅ **Responsive design** - Mobile-first approach
 - ✅ **WooCommerce integration** - Cart, account, search
 - ✅ **Customizer settings** - Easy configuration
@@ -13,6 +15,26 @@ A code-based implementation of header and footer for the SciuuuS Kids WordPress 
 - ✅ **Social media links** - Configurable via Customizer
 - ✅ **Accessibility ready** - ARIA labels, keyboard navigation
 - ✅ **Performance optimized** - Minimal dependencies
+
+## Recent Updates (v1.2.0)
+
+### Content Styling System
+Professional typography for all WordPress pages and posts:
+- **Page Titles**: Gochi Hand font, 42px
+- **Paragraphs**: Quicksand font, 18px, 1.8 line-height
+- **Headings**: Complete H1-H6 hierarchy
+- **Rich Elements**: Blockquotes, lists, tables, code blocks, images
+- **WordPress Blocks**: Full Gutenberg support
+- **Responsive**: Optimized for mobile, tablet, desktop
+
+### CSS Variables System
+146 custom properties for easy customization:
+- Brand colors and typography
+- Spacing and layout dimensions
+- Effects (shadows, transitions)
+- Complete design token system
+
+See `CONTENT-STYLING-GUIDE.md` for full documentation.
 
 ## Installation
 
@@ -86,19 +108,23 @@ docker cp blocksy-child/ <container-name>:/var/www/html/wp-content/themes/
 
 ```
 blocksy-child/
-├── style.css                      # Main stylesheet
-├── functions.php                  # Theme functions
+├── style.css                      # Main stylesheet with CSS variables (v1.2.0)
+├── functions.php                  # Theme functions (v1.2.0)
 ├── inc/
 │   ├── header-custom.php         # Header functionality
 │   ├── footer-custom.php         # Footer functionality
 │   └── customizer.php            # Customizer settings
 ├── assets/
 │   ├── css/
-│   │   ├── header-custom.css     # Header styles
-│   │   └── footer-custom.css     # Footer styles
+│   │   ├── header-custom.css     # Header styles (v1.2.0)
+│   │   ├── footer-custom.css     # Footer styles (v1.1.0)
+│   │   └── content-custom.css    # Content/page styles (v1.0.0) ✨ NEW
 │   └── js/
 │       └── custom.js             # Custom JavaScript
-└── README.md                     # This file
+├── README.md                     # Theme overview (this file)
+├── REFACTORING-SUMMARY.md        # CSS variables documentation
+├── CONTENT-STYLING-GUIDE.md      # Content styling documentation ✨ NEW
+└── Other documentation files
 ```
 
 ## Customization

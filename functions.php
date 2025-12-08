@@ -4,7 +4,7 @@
  * SciuuuS Kids Customizations
  * 
  * @package Blocksy_Child_SciuuusKids
- * @version 1.1.3
+ * @version 1.2.0
  */
 
 // Prevent direct access
@@ -45,7 +45,7 @@ function blocksy_child_enqueue_styles() {
         'custom-header',
         get_stylesheet_directory_uri() . '/assets/css/header-custom.css',
         array('blocksy-style', 'google-fonts-quicksand'),
-        '1.1.8'  // BUMP THIS VERSION
+        '1.2.0'
     );
     
     // Custom footer CSS
@@ -53,7 +53,15 @@ function blocksy_child_enqueue_styles() {
         'custom-footer',
         get_stylesheet_directory_uri() . '/assets/css/footer-custom.css',
         array('blocksy-style'),
-        '1.0.1'
+        '1.1.0'
+    );
+    
+    // Custom content CSS (pages, posts, WooCommerce)
+    wp_enqueue_style(
+        'custom-content',
+        get_stylesheet_directory_uri() . '/assets/css/content-custom.css',
+        array('blocksy-style', 'google-fonts-quicksand'),
+        '1.0.0'
     );
     
     // Custom JavaScript
@@ -61,7 +69,7 @@ function blocksy_child_enqueue_styles() {
         'custom-scripts',
         get_stylesheet_directory_uri() . '/assets/js/custom.js',
         array('jquery'),
-        '1.0.3',  // BUMP THIS VERSION
+        '1.0.3',
         true
     );
 }

@@ -1,0 +1,574 @@
+/**
+ * Custom Content Styles for SciuuuS Kids
+ * WordPress Pages, Posts, and WooCommerce Content
+ * 
+ * @package Blocksy_Child_SciuuusKids
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   Main Content Container
+   ========================================================================== */
+
+.site-main {
+    background: var(--brand-white) !important;
+}
+
+.ct-container-full {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    background: var(--brand-white) !important;
+}
+
+/* ==========================================================================
+   Article Container
+   ========================================================================== */
+
+article.page,
+article.post,
+article.single {
+    background: var(--brand-white) !important;
+}
+
+.entry-content {
+    background: var(--brand-white) !important;
+}
+
+/* ==========================================================================
+   Hero Section / Page Header
+   ========================================================================== */
+
+.hero-section {
+    text-align: center;
+    padding: var(--spacing-base) 0 var(--spacing-small) 0 !important;
+    margin-bottom: var(--spacing-small) !important;
+    background: var(--brand-white) !important;
+}
+
+.entry-header {
+    margin-bottom: 0 !important;
+    text-align: center !important;
+}
+
+/* Page Title - H1 */
+h1.page-title,
+h1.entry-title {
+    font-family: var(--font-display) !important;
+    font-size: var(--font-size-h1) !important;
+    font-style: normal !important;
+    font-weight: var(--font-weight-normal) !important;
+    line-height: var(--line-height-heading) !important;
+    color: var(--brand-gray-dark) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+/* ==========================================================================
+   Content Area
+   ========================================================================== */
+
+.entry-content {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-content-body);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-content-body);
+    color: var(--brand-gray-dark);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--content-spacing-medium) 0;
+}
+
+/* ==========================================================================
+   Headings
+   ========================================================================== */
+
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-heading);
+    color: var(--brand-gray-dark);
+    margin-top: var(--content-spacing-large);
+    margin-bottom: var(--content-spacing-medium);
+    clear: both;
+}
+
+.entry-content h1 {
+    font-size: var(--font-size-h1);
+}
+
+.entry-content h2 {
+    font-size: var(--font-size-h2);
+}
+
+.entry-content h3 {
+    font-size: var(--font-size-h3);
+}
+
+.entry-content h4 {
+    font-size: var(--font-size-h4);
+}
+
+.entry-content h5 {
+    font-size: var(--font-size-h5);
+}
+
+.entry-content h6 {
+    font-size: var(--font-size-h6);
+}
+
+/* First heading after page title */
+.entry-content > h2:first-child,
+.entry-content > h3:first-child {
+    margin-top: 0;
+}
+
+/* ==========================================================================
+   Paragraphs
+   ========================================================================== */
+
+.entry-content p {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-content-body);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-content-body);
+    color: var(--brand-gray-dark);
+    margin-bottom: var(--content-spacing-medium);
+}
+
+.entry-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Lead paragraph */
+.entry-content p.lead,
+.entry-content > p:first-of-type {
+    font-size: calc(var(--font-size-content-body) * 1.1);
+    font-weight: var(--font-weight-medium);
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+.entry-content a {
+    color: var(--brand-orange);
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+}
+
+.entry-content a:hover {
+    color: var(--brand-dark);
+    text-decoration: none;
+}
+
+.entry-content a:focus {
+    outline: 2px solid var(--brand-orange);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+.entry-content ul,
+.entry-content ol {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-content-body);
+    line-height: var(--line-height-content-body);
+    margin: 0 0 var(--content-spacing-medium) 0;
+    padding-left: 2rem;
+}
+
+.entry-content ul {
+    list-style-type: disc;
+}
+
+.entry-content ol {
+    list-style-type: decimal;
+}
+
+.entry-content li {
+    margin-bottom: var(--content-spacing-small);
+}
+
+.entry-content li:last-child {
+    margin-bottom: 0;
+}
+
+/* Nested lists */
+.entry-content ul ul,
+.entry-content ol ol,
+.entry-content ul ol,
+.entry-content ol ul {
+    margin-top: var(--content-spacing-small);
+    margin-bottom: var(--content-spacing-small);
+}
+
+.entry-content ul ul {
+    list-style-type: circle;
+}
+
+.entry-content ul ul ul {
+    list-style-type: square;
+}
+
+/* ==========================================================================
+   Blockquotes
+   ========================================================================== */
+
+.entry-content blockquote {
+    font-family: var(--font-display);
+    font-size: calc(var(--font-size-content-body) * 1.2);
+    font-style: italic;
+    line-height: var(--line-height-relaxed);
+    color: var(--brand-gray-medium);
+    margin: var(--content-spacing-large) 0;
+    padding: var(--content-spacing-medium) var(--content-spacing-large);
+    border-left: 4px solid var(--brand-orange);
+    background: rgba(252, 125, 6, 0.05);
+}
+
+.entry-content blockquote p {
+    font-family: var(--font-display);
+    font-size: inherit;
+    margin-bottom: var(--content-spacing-small);
+}
+
+.entry-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.entry-content blockquote cite {
+    display: block;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-style: normal;
+    color: var(--brand-gray-dark);
+    margin-top: var(--content-spacing-small);
+}
+
+.entry-content blockquote cite::before {
+    content: '— ';
+}
+
+/* ==========================================================================
+   Images
+   ========================================================================== */
+
+.entry-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: var(--content-spacing-large) auto;
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-light);
+}
+
+.entry-content figure {
+    margin: var(--content-spacing-large) 0;
+    text-align: center;
+}
+
+.entry-content figure img {
+    margin-bottom: var(--content-spacing-small);
+}
+
+.entry-content figcaption {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-small);
+    font-style: italic;
+    color: var(--brand-gray-medium);
+    text-align: center;
+}
+
+/* Image alignment */
+.entry-content .alignleft {
+    float: left;
+    margin: 0 var(--content-spacing-large) var(--content-spacing-medium) 0;
+}
+
+.entry-content .alignright {
+    float: right;
+    margin: 0 0 var(--content-spacing-medium) var(--content-spacing-large);
+}
+
+.entry-content .aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.entry-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--content-spacing-large) 0;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+}
+
+.entry-content table th {
+    background: var(--brand-orange);
+    color: var(--brand-white);
+    font-weight: var(--font-weight-semibold);
+    text-align: left;
+    padding: var(--padding-medium);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.entry-content table td {
+    padding: var(--padding-medium);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.entry-content table tr:nth-child(even) {
+    background: rgba(252, 125, 6, 0.05);
+}
+
+.entry-content table tr:hover {
+    background: rgba(252, 125, 6, 0.1);
+}
+
+/* ==========================================================================
+   Code Blocks
+   ========================================================================== */
+
+.entry-content code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    background: var(--brand-gray-light);
+    padding: 2px 6px;
+    border-radius: var(--radius-small);
+    color: var(--brand-dark);
+}
+
+.entry-content pre {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    background: var(--brand-gray-light);
+    padding: var(--content-spacing-medium);
+    border-radius: var(--radius-base);
+    overflow-x: auto;
+    margin: var(--content-spacing-medium) 0;
+    border-left: 4px solid var(--brand-orange);
+}
+
+.entry-content pre code {
+    background: none;
+    padding: 0;
+}
+
+/* ==========================================================================
+   Horizontal Rule
+   ========================================================================== */
+
+.entry-content hr {
+    border: none;
+    border-top: 2px solid rgba(252, 125, 6, 0.3);
+    margin: var(--content-spacing-large) auto;
+    max-width: 200px;
+}
+
+/* ==========================================================================
+   WordPress Core Classes
+   ========================================================================== */
+
+/* Screen reader text */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: var(--brand-gray-light);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-focus);
+    clip: auto !important;
+    clip-path: none;
+    color: var(--brand-accent-blue);
+    display: block;
+    font-size: var(--font-size-small);
+    font-weight: bold;
+    height: auto;
+    left: var(--padding-xs);
+    line-height: normal;
+    padding: var(--spacing-medium) 23px 14px;
+    text-decoration: none;
+    top: var(--padding-xs);
+    width: auto;
+    z-index: var(--z-index-screen-reader);
+}
+
+/* ==========================================================================
+   WordPress Blocks Support
+   ========================================================================== */
+
+/* Buttons */
+.entry-content .wp-block-button {
+    margin: var(--content-spacing-medium) 0;
+}
+
+.entry-content .wp-block-button__link {
+    background: var(--brand-orange);
+    color: var(--brand-white);
+    padding: var(--padding-medium) var(--content-spacing-large);
+    border-radius: var(--radius-base);
+    text-decoration: none;
+    display: inline-block;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-semibold);
+    transition: background var(--transition-fast);
+}
+
+.entry-content .wp-block-button__link:hover {
+    background: var(--brand-dark);
+    color: var(--brand-white);
+}
+
+/* Columns */
+.entry-content .wp-block-columns {
+    margin-bottom: var(--content-spacing-large);
+}
+
+/* Cover block */
+.entry-content .wp-block-cover {
+    margin: var(--content-spacing-large) 0;
+    border-radius: var(--radius-base);
+}
+
+/* Gallery */
+.entry-content .wp-block-gallery {
+    margin: var(--content-spacing-large) 0;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .ct-container-full {
+        padding: 0 var(--spacing-medium);
+    }
+    
+    .hero-section {
+        padding: var(--content-spacing-medium) 0;
+        margin-bottom: var(--content-spacing-medium);
+    }
+    
+    h1.page-title,
+    h1.entry-title {
+        font-size: calc(var(--font-size-h1) * 0.8) !important;
+    }
+    
+    .entry-content {
+        padding: var(--content-spacing-small) 0;
+    }
+    
+    .entry-content h1 {
+        font-size: calc(var(--font-size-h1) * 0.8);
+    }
+    
+    .entry-content h2 {
+        font-size: calc(var(--font-size-h2) * 0.85);
+    }
+    
+    .entry-content h3 {
+        font-size: calc(var(--font-size-h3) * 0.85);
+    }
+    
+    .entry-content h4 {
+        font-size: var(--font-size-h4);
+    }
+    
+    .entry-content p,
+    .entry-content ul,
+    .entry-content ol {
+        font-size: var(--font-size-base);
+    }
+    
+    .entry-content blockquote {
+        padding: var(--content-spacing-medium);
+        margin: var(--content-spacing-medium) 0;
+        font-size: var(--font-size-medium);
+    }
+    
+    .entry-content .alignleft,
+    .entry-content .alignright {
+        float: none;
+        display: block;
+        margin: var(--content-spacing-medium) auto;
+    }
+    
+    .entry-content table {
+        font-size: var(--font-size-small);
+    }
+    
+    .entry-content table th,
+    .entry-content table td {
+        padding: var(--padding-xs);
+    }
+}
+
+@media (max-width: 480px) {
+    h1.page-title,
+    h1.entry-title {
+        font-size: calc(var(--font-size-h1) * 0.7) !important;
+    }
+    
+    .entry-content h1 {
+        font-size: calc(var(--font-size-h1) * 0.7);
+    }
+    
+    .entry-content h2 {
+        font-size: calc(var(--font-size-h2) * 0.75);
+    }
+    
+    .entry-content h3 {
+        font-size: var(--font-size-h4);
+    }
+    
+    .entry-content blockquote {
+        padding: var(--content-spacing-small);
+        font-size: var(--font-size-base);
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .entry-content {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+    }
+    
+    .entry-content a {
+        color: #000;
+        text-decoration: underline;
+    }
+    
+    .entry-content a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+    }
+}

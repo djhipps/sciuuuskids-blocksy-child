@@ -5,7 +5,7 @@ Description: Custom child theme for SciuuuS Kids barefoot shoes. Code-based head
 Author: Damian
 Author URI: https://sciuuuskids.it
 Template: blocksy
-Version: 1.1.0
+Version: 1.2.0
 Text Domain: blocksy-child
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -55,6 +55,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     --font-size-large: 24px;
     --font-size-xlarge: 28px;
     --font-size-xxlarge: 32px;
+    
+    /* Content Font Sizes */
+    --font-size-content-body: 18px;
+    --font-size-h1: 42px;
+    --font-size-h2: 36px;
+    --font-size-h3: 30px;
+    --font-size-h4: 24px;
+    --font-size-h5: 20px;
+    --font-size-h6: 18px;
     
     /* Font Weights */
     --font-weight-light: 300;
@@ -151,6 +160,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     --line-height-snug: 1.2;
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.6;
+    --line-height-loose: 1.8;
+    
+    /* Content Line Heights */
+    --line-height-content-body: 1.8;
+    --line-height-heading: 1.3;
+    
+    /* Content Spacing */
+    --content-spacing-small: 1rem;
+    --content-spacing-medium: 1.5rem;
+    --content-spacing-large: 2rem;
+    --content-spacing-xlarge: 3rem;
 }
 
 /* ==========================================================================
@@ -187,4 +207,21 @@ body.using-custom-footer .ct-footer {
     position: absolute;
     width: 1px;
     word-wrap: normal !important;
+}
+
+
+/* ==========================================================================
+   Force White Backgrounds
+   ========================================================================== */
+
+body,
+#main,
+.site-main,
+.ct-container,
+.ct-container-full,
+article,
+.entry-content,
+.hero-section {
+    background: var(--brand-white) !important;
+    background-color: var(--brand-white) !important;
 }
