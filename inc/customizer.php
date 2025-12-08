@@ -106,7 +106,7 @@ function sciuuuskids_customize_register($wp_customize) {
     
     // Sticky Header
     $wp_customize->add_setting('sciuuuskids_sticky_header', array(
-        'default'           => true,
+        'default'           => false,
         'sanitize_callback' => 'wp_validate_boolean',
         'transport'         => 'refresh',
     ));

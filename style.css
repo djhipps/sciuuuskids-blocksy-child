@@ -186,6 +186,11 @@ body.using-custom-footer .ct-footer {
     display: none !important;
 }
 
+/* Force non-sticky header (overrides customizer setting) */
+.sciuuuskids-custom-header {
+    position: relative !important;
+}
+
 /* ==========================================================================
    Utility Classes
    ========================================================================== */

@@ -64,6 +64,16 @@ function blocksy_child_enqueue_styles() {
         '1.0.0'
     );
     
+    // Load on specific pages by slug
+    if ( is_shop() || is_product_category() || is_product_tag() || is_page( array( 'scarpe-bebe', 'scarpe-bambini', 'outlet' ) ) ) {
+        wp_enqueue_style(
+            'woocommerce-archive',
+            get_stylesheet_directory_uri() . '/assets/css/woocommerce-archive.css',
+            array('blocksy-style', 'google-fonts-quicksand'),
+            '1.0.1'
+        );
+    }
+    
     // Custom JavaScript
     wp_enqueue_script(
         'custom-scripts',
@@ -188,3 +198,142 @@ function sciuuuskids_excerpt_more($more) {
     return '...';
 }
 add_filter('excerpt_more', 'sciuuuskids_excerpt_more');
+
+
+/**
+ * Custom Product Page Elements via Hooks
+ */
+
+// Before product summary (right column)
+add_action( 'blocksy:woocommerce:product:before', function() {
+    echo '<div class="custom-badge">Barefoot Shoes</div>';
+});
+
+// After product title
+add_action( 'woocommerce_single_product_summary', function() {
+    echo '<div class="custom-subtitle">Scarpine per bambini liberi</div>';
+}, 6 ); // Priority 6 = after title (5)
+
+// After short description
+add_action( 'woocommerce_single_product_summary', function() {
+    echo '<div class="size-guide-link">
+        <a href="#size-guide">📏 Guida alle taglie</a>
+    </div>';
+}, 21 ); // Priority 21 = after excerpt (20)
+
+// After add to cart button
+add_action( 'woocommerce_single_product_summary', function() {
+    echo '<div class="custom-benefits">
+        ✓ Spedizione gratuita<br>
+        ✓ Reso entro 30 giorni<br>
+        ✓ Garanzia 2 anni
+    </div>';
+}, 31 ); // Priority 31 = after add to cart (30)
+
+// After product tabs
+add_action( 'woocommerce_after_single_product_summary', function() {
+    echo '<div class="custom-trust-badges">
+        <img src="..." alt="Sicuro">
+        <img src="..." alt="Bio">
+    </div>';
+}, 15 );
+
+// Before related products
+add_action( 'woocommerce_after_single_product_summary', function() {
+    echo '<h2>Potrebbero interessarti anche</h2>';
+}, 19 ); // Priority 19 = just before related (20)
+
+/**
+ * Custom Product Page Elements
+ * Add to functions.php
+ */
+
+// 1. Size guide button after short description
+add_action( 'woocommerce_single_product_summary', function() {
+    ?>
+    <div class="custom-size-guide">
+        <a href="#" class="size-guide-toggle">
+            📏 Guida alle taglie
+        </a>
+        <div class="size-guide-popup" style="display:none;">
+            <h3>Guida alle Taglie</h3>
+            <table>
+                <tr>
+                    <th>Età</th>
+                    <th>EU</th>
+                    <th>CM</th>
+                </tr>
+                <tr>
+                    <td>1-2 anni</td>
+                    <td>20-22</td>
+                    <td>12-13.5</td>
+                </tr>
+                <!-- Add more rows -->
+            </table>
+        </div>
+    </div>
+    <?php
+}, 21 );
+
+// 2. Trust badges after add to cart
+add_action( 'woocommerce_single_product_summary', function() {
+    ?>
+    <div class="trust-badges">
+        <div class="badge">
+            <span class="icon">🚚</span>
+            <span class="text">Spedizione gratuita oltre 50€</span>
+        </div>
+        <div class="badge">
+            <span class="icon">↩️</span>
+            <span class="text">Reso gratuito entro 30 giorni</span>
+        </div>
+        <div class="badge">
+            <span class="icon">✓</span>
+            <span class="text">Garanzia 2 anni</span>
+        </div>
+    </div>
+    <?php
+}, 31 );
+
+// 3. Materials info as custom tab
+add_filter( 'woocommerce_product_tabs', function( $tabs ) {
+    $tabs['materials'] = [
+        'title'    => 'Materiali',
+        'priority' => 25,
+        'callback' => function() {
+            echo '<h2>Materiali Ecologici</h2>';
+            echo '<p>Le nostre scarpe sono realizzate con materiali naturali e sostenibili...</p>';
+        }
+    ];
+    return $tabs;
+});
+
+/**
+ * Load modular WooCommerce customization files
+ */
+// Shop/Archive page hooks
+if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/shop-hooks.php' ) ) {
+    require_once get_stylesheet_directory() . '/inc/woocommerce/shop-hooks.php';
+}
+
+// Single product page hooks
+if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/product-hooks.php' ) ) {
+    require_once get_stylesheet_directory() . '/inc/woocommerce/product-hooks.php';
+}
+
+
+// Set custom WooCommerce image sizes
+add_filter( 'woocommerce_get_image_size_thumbnail', function( $size ) {
+    return array(
+        'width'  => 360,
+        'height' => 270,
+        'crop'   => 1,
+    );
+});
+
+// Set WooCommerce catalog image size
+add_action( 'after_setup_theme', function() {
+    update_option( 'woocommerce_thumbnail_image_width', 360 );
+    update_option( 'woocommerce_thumbnail_image_height', 270 );
+    update_option( 'woocommerce_thumbnail_cropping', '1:1' );
+});

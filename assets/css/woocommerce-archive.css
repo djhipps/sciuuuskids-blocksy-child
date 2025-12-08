@@ -1,0 +1,280 @@
+/**
+ * WooCommerce Product Collection Blocks - FINAL FIX
+ * Handles nested card structure properly
+ * SciuuuS Kids
+ */
+
+/* ==========================================================================
+   Category Header
+   ========================================================================== */
+
+.hero-section h1.page-title {
+    font-family: var(--font-display, 'Gochi Hand') !important;
+    color: var(--brand-black, #000) !important;
+    font-size: var(--font-size-h1, 42px) !important;
+    text-align: center !important;
+    margin-bottom: var(--spacing-base, 20px) !important;
+}
+
+/* ==========================================================================
+   Product Collection Grid
+   ========================================================================== */
+
+.wc-block-product-template,
+ul.wc-block-product-template {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 25px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 30px auto !important;
+}
+
+/* ==========================================================================
+   Product Card - OUTER CONTAINER ONLY
+   ========================================================================== */
+
+.wc-block-product-template li.wc-block-product,
+li.wc-block-product {
+    background: var(--brand-white, #fff) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+}
+
+.wc-block-product:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Remove any nested backgrounds/borders */
+.wc-block-product > * {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
+   Product Image
+   ========================================================================== */
+
+.wc-block-components-product-image {
+    position: relative !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.wc-block-components-product-image a {
+    display: block !important;
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.wc-block-components-product-image img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4/3 !important;
+    object-fit: cover !important;
+    display: block !important;
+    transition: transform 0.8s ease !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.wc-block-product:hover .wc-block-components-product-image img {
+    transform: scale(1.05) !important;
+}
+
+/* ==========================================================================
+   Product Title
+   ========================================================================== */
+
+.wc-block-product h2.wp-block-post-title {
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin: 20px 20px 10px !important;
+    padding: 0 !important;
+    color: var(--brand-black, #000) !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    background: transparent !important;
+}
+
+.wc-block-product h2.wp-block-post-title a {
+    color: var(--brand-black, #000) !important;
+    text-decoration: none !important;
+}
+
+.wc-block-product h2.wp-block-post-title a:hover {
+    color: var(--brand-orange, #FC7D06) !important;
+}
+
+/* ==========================================================================
+   Product Price
+   ========================================================================== */
+
+.wc-block-product .wp-block-woocommerce-product-price {
+    margin: 0 20px 15px !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.wc-block-product .wc-block-components-product-price {
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: var(--brand-black, #000) !important;
+    text-align: center !important;
+}
+
+.wc-block-product .wc-block-components-product-price .woocommerce-Price-amount {
+    font-size: 28px !important;
+}
+
+/* Hide price range screen reader text */
+.wc-block-product .wc-block-components-product-price .screen-reader-text {
+    position: absolute !important;
+    left: -10000px !important;
+}
+
+/* ==========================================================================
+   Add to Cart Button
+   ========================================================================== */
+
+.wc-block-product .wc-block-components-product-button {
+    margin: 0 20px 20px !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.wc-block-product .wp-block-button__link,
+.wc-block-product .wc-block-components-product-button__button {
+    display: block !important;
+    width: 100% !important;
+    background-color: var(--brand-orange, #FC7D06) !important;
+    color: var(--brand-white, #fff) !important;
+    padding: 14px 20px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 4px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    transition: background-color 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+}
+
+.wc-block-product .wp-block-button__link:hover,
+.wc-block-product .wc-block-components-product-button__button:hover {
+    background-color: #e06d05 !important;
+}
+
+/* ==========================================================================
+   Fix Any Inline Styles
+   ========================================================================== */
+
+/* Override any margin/padding from blocks */
+.wc-block-product [style*="margin"] {
+    margin: 0 !important;
+}
+
+.wc-block-product h2[style*="margin-top"] {
+    margin-top: 20px !important;
+}
+
+.wc-block-product h2[style*="margin-bottom"] {
+    margin-bottom: 10px !important;
+}
+
+.wc-block-product h2[style*="line-height"] {
+    line-height: 1.4 !important;
+}
+
+/* ==========================================================================
+   Ensure Consistent Heights
+   ========================================================================== */
+
+.wc-block-product {
+    min-height: 450px !important;
+    align-items: stretch !important;
+}
+
+/* Push button to bottom if needed */
+.wc-block-product .wc-block-components-product-button {
+    margin-top: auto !important;
+}
+
+/* ==========================================================================
+   Tablet Responsive (2 columns)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .wc-block-product-template,
+    ul.wc-block-product-template {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .hero-section h1.page-title {
+        font-size: 36px !important;
+    }
+}
+
+/* ==========================================================================
+   Mobile Responsive (1 column)
+   ========================================================================== */
+
+@media (max-width: 640px) {
+    .wc-block-product-template,
+    ul.wc-block-product-template {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        margin: 20px auto !important;
+    }
+    
+    .hero-section h1.page-title {
+        font-size: 30px !important;
+    }
+    
+    .wc-block-product h2.wp-block-post-title {
+        font-size: 16px !important;
+        margin: 15px 15px 8px !important;
+    }
+    
+    .wc-block-product .wc-block-components-product-price {
+        font-size: 24px !important;
+        margin: 0 15px 12px !important;
+    }
+    
+    .wc-block-product .wc-block-components-product-button {
+        margin: 0 15px 15px !important;
+    }
+}
+
+/* ==========================================================================
+   Remove All Nested Styling
+   ========================================================================== */
+
+/* Ensure ONLY the outer li has the card styling */
+.wc-block-product * {
+    box-shadow: none !important;
+}
+
+.wc-block-product {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.wc-block-product:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
+}

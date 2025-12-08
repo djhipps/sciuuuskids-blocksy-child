@@ -21,6 +21,11 @@
     background: var(--brand-white) !important;
 }
 
+/* Reduce top padding from default 60px to 20px */
+.ct-container-full {
+    padding-top: 20px !important;
+}
+
 /* ==========================================================================
    Article Container
    ========================================================================== */
@@ -41,8 +46,8 @@ article.single {
 
 .hero-section {
     text-align: center;
-    padding: var(--spacing-base) 0 var(--spacing-small) 0 !important;
-    margin-bottom: var(--spacing-small) !important;
+    padding: var(--spacing-base) 0 0 0 !important;  /* Removed bottom padding */
+    margin-bottom: 0 !important;  /* Set to 0 */
     background: var(--brand-white) !important;
 }
 
@@ -63,6 +68,13 @@ h1.entry-title {
     margin: 0 auto !important;
     padding: 0 !important;
     text-align: center !important;
+}
+
+/* Override WooCommerce specific margin-bottom */
+.entry-header .page-title,
+.hero-section h1.page-title,
+[data-prefix="single_page"] .entry-header .page-title {
+    margin-bottom: 0 !important;
 }
 
 /* ==========================================================================
