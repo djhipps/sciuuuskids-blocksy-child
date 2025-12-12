@@ -10,8 +10,8 @@ return array(
     'title'       => __('About Story Section', 'blocksy-child'),
     'description' => __('Light blue section with founder story - text on left, image on right', 'blocksy-child'),
     'categories'  => array('sciuuuskids-homepage'),
-    'content'     => '<!-- wp:cover {"overlayColor":"custom-blue-bg","customOverlayColor":"#ebf6ff","dimRatio":0,"align":"full","className":"about-story-section","style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"40px","right":"40px"}}}} -->
-<div class="wp-block-cover alignfull about-story-section" style="padding-top:80px;padding-right:40px;padding-bottom:80px;padding-left:40px"><span aria-hidden="true" class="wp-block-cover__background has-custom-blue-bg-background-color has-background-dim-0 has-background-dim" style="background-color:#ebf6ff"></span><div class="wp-block-cover__inner-container">
+    'content'     => '<!-- wp:cover {"overlayColor":"custom-green-bg","customOverlayColor":"#009285","dimRatio":0,"align":"full","className":"about-story-section","style":{"spacing":{"padding":{"top":"80px","bottom":"80px","left":"40px","right":"40px"}}}} -->
+<div class="wp-block-cover alignfull about-story-section" style="padding-top:80px;padding-right:40px;padding-bottom:80px;padding-left:40px"><span aria-hidden="true" class="wp-block-cover__background has-custom-green-bg-background-color has-background-dim-0 has-background-dim" style="background-color:#009285"></span><div class="wp-block-cover__inner-container">
 
     <!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"top":"60px","left":"60px"}}}} -->
     <div class="wp-block-columns are-vertically-aligned-center">
@@ -54,7 +54,7 @@ return array(
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
 
             <!-- wp:image {"id":1234,"sizeSlug":"large","linkDestination":"none","className":"story-image","style":{"border":{"radius":"20px"}}} -->
-            <figure class="wp-block-image size-large has-custom-border story-image"><img src="' . $theme_uri . '/assets/images/about-story.jpg" alt="Madre e bambino" style="border-radius:20px"/></figure>
+            <figure class="wp-block-image size-large has-custom-border story-image"><img src="' . $theme_uri . '/assets/images/home-page-pic-lira.webp" alt="Madre e bambino" style="border-radius:20px"/></figure>
             <!-- /wp:image -->
 
         </div>
