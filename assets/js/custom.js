@@ -9,6 +9,20 @@
     'use strict';
 
     /**
+     * Perche Barefoot Image Handler
+     */
+    function initPercheBarefoot() {
+        const percheCards = document.querySelectorAll('.perche-card[data-image]');
+        
+        percheCards.forEach(function(card) {
+            const imageUrl = card.getAttribute('data-image');
+            if (imageUrl) {
+                card.style.setProperty('--perche-image', 'url(' + imageUrl + ')');
+            }
+        });
+    }
+
+    /**
      * Document Ready
      */
     $(document).ready(function() {
@@ -19,10 +33,11 @@
         initStickyHeader();
         initSmoothScroll();
         initDropdownMenus();
+        initPercheBarefoot();
         
     });
 
-/**
+    /**
      * Mobile Menu Toggle
      */
     function initMobileMenu() {

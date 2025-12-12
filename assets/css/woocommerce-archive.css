@@ -17,6 +17,29 @@
 }
 
 /* ==========================================================================
+   Fix Container Widths - Override Inline Styles
+   ========================================================================== */
+
+/* Widen the product collection container */
+.wp-block-woocommerce-product-collection {
+    max-width: 1400px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+/* Override inline width styles */
+.wp-block-woocommerce-product-collection[style*="width"] {
+    width: 100% !important;
+    max-width: 1400px !important;
+}
+
+.wc-block-product-template[style*="width"] {
+    width: 100% !important;
+    max-width: 1200px !important;
+}
+
+/* ==========================================================================
    Product Collection Grid
    ========================================================================== */
 
@@ -28,6 +51,8 @@ ul.wc-block-product-template {
     list-style: none !important;
     padding: 0 !important;
     margin: 30px auto !important;
+    max-width: 1200px !important;
+    width: 100% !important;
 }
 
 /* ==========================================================================
@@ -277,4 +302,9 @@ li.wc-block-product {
 
 .wc-block-product:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+
+.wp-block-woocommerce-product-collection[style*="width"] {
+    width: 100% !important;
 }

@@ -433,14 +433,20 @@
 
 .motto-section {
     position: relative;
-    background: #F5B8C7 !important;
+    background: #F5C6D5 !important;
     margin: 0 !important;
+    min-height: 275px !important;
+    max-height: 275px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 20px !important;
 }
 
 /* Pink overlay */
 .motto-section .wp-block-cover__background {
     background-color: #D1355B !important;
-    opacity: 0.53 !important;
+    opacity: 0.2 !important;
 }
 
 .motto-section h2 {
@@ -457,13 +463,15 @@
 /* Responsive padding adjustments */
 @media (max-width: 1024px) {
     .motto-section {
-        padding: 50px 20px !important;
+        min-height: 200px !important;
+        max-height: 200px !important;
     }
 }
 
 @media (max-width: 768px) {
     .motto-section {
-        padding: 50px 20px !important;
+        min-height: 180px !important;
+        max-height: 180px !important;
     }
     
     .motto-section h2 {
@@ -473,7 +481,9 @@
 
 @media (max-width: 480px) {
     .motto-section {
-        padding: 10px 20px !important;
+        min-height: 150px !important;
+        max-height: 150px !important;
+        padding: 0 15px !important;
     }
     
     .motto-section h2 {
@@ -500,6 +510,7 @@
 .why-barefoot-section .wp-block-cover__inner-container {
     max-width: 1200px;
     margin: 0 auto;
+    text-align: center;
     width: 100%;
     z-index: 2;
 }
@@ -509,7 +520,6 @@
     font-size: 42px !important;
     font-weight: 700 !important;
     color: #000000 !important;
-    background-color: #FF7C00 !important;
     text-align: center !important;
     display: inline-block !important;
     margin: 0 auto 40px !important;
@@ -554,16 +564,37 @@
 
 .why-barefoot-section .wp-block-column {
     background: #ffffff !important;
-    min-height: 280px;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Remove box shadow completely */
 .why-barefoot-section .wp-block-column:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: none !important;
+}
+
+/* Background image positioning - using ::before pseudo-element */
+.why-barefoot-section .perche-card::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10;
+}
+
+/* Individual card images using data attributes */
+.why-barefoot-section .perche-card[data-image]::before {
+    background-image: var(--perche-image);
 }
 
 .why-barefoot-section .wp-block-column h3 {
@@ -571,6 +602,7 @@
     font-size: 24px !important;
     font-weight: 700 !important;
     color: #000000 !important;
+    margin-top: 0 !important;
     margin-bottom: 15px !important;
     text-transform: uppercase;
 }
@@ -585,8 +617,14 @@
 
 /* Responsive card layout */
 @media (max-width: 1024px) {
-    .why-barefoot-section .wp-block-column {
-        min-height: 240px;
+    .why-barefoot-section .perche-card::before {
+        width: 100px;
+        height: 100px;
+        top: -50px;
+    }
+    
+    .why-barefoot-section .perche-card {
+        padding-top: 120px !important;
     }
     
     .why-barefoot-section .wp-block-column h3 {
@@ -604,8 +642,17 @@
     }
     
     .why-barefoot-section .wp-block-column {
-        min-height: auto;
-        margin-bottom: 20px;
+        margin-bottom: 80px !important;
+    }
+    
+    .why-barefoot-section .perche-card::before {
+        width: 90px;
+        height: 90px;
+        top: -45px;
+    }
+    
+    .why-barefoot-section .perche-card {
+        padding-top: 100px !important;
     }
     
     .why-barefoot-section .wp-block-column h3 {
@@ -618,8 +665,14 @@
 }
 
 @media (max-width: 480px) {
-    .why-barefoot-section .wp-block-column {
-        padding: 20px !important;
+    .why-barefoot-section .perche-card {
+        padding: 90px 20px 20px !important;
+    }
+    
+    .why-barefoot-section .perche-card::before {
+        width: 80px;
+        height: 80px;
+        top: -40px;
     }
     
     .why-barefoot-section .wp-block-column h3 {

@@ -375,3 +375,47 @@ function sciuuuskids_register_block_patterns() {
     }
 }
 add_action('init', 'sciuuuskids_register_block_patterns');
+
+
+// Register custom colors for patterns
+function blocksy_child_register_custom_colors() {
+    add_theme_support('editor-color-palette', array(
+        array(
+            'name'  => 'Dark Background',
+            'slug'  => 'custom-dark',
+            'color' => '#1B252F',
+        ),
+        array(
+            'name'  => 'Gray Text',
+            'slug'  => 'custom-gray',
+            'color' => '#CFCFCF',
+        ),
+    ));
+}
+add_action('after_setup_theme', 'blocksy_child_register_custom_colors');
+
+
+/**
+ * Register block patterns
+ */
+function blocksy_child_register_patterns() {
+    // Register pattern category
+    register_block_pattern_category(
+        'sciuuuskids',
+        array(
+            'label' => __('SciuuusKids Patterns', 'blocksy-child')
+        )
+    );
+
+    // Register the product features pattern
+    register_block_pattern(
+        'blocksy-child/product-features',
+        array(
+            'title'       => __('Product Features Section', 'blocksy-child'),
+            'description' => __('Barefoot shoe features with icons - Comfort, Flexibility, Breathable, Quality', 'blocksy-child'),
+            'content'     => file_get_contents(get_stylesheet_directory() . '/patterns/product-features.php'),
+            'categories'  => array('sciuuuskids', 'featured'),
+        )
+    );
+}
+add_action('init', 'blocksy_child_register_patterns');

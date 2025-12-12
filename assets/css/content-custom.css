@@ -93,9 +93,21 @@ h1.entry-title {
     font-weight: var(--font-weight-normal);
     line-height: var(--line-height-content-body);
     color: var(--brand-gray-dark);
-    max-width: 800px;
+    /* max-width: 800px; */
     margin: 0 auto;
     padding: var(--content-spacing-medium) 0;
+}
+
+/* Apply 800px max-width ONLY to specific page types */
+.page:not(.home):not(.woocommerce-page) .entry-content,
+.single-post .entry-content,
+.archive:not(.woocommerce) .entry-content {
+    /* max-width: 800px; */
+}
+
+/* Apply 800px ONLY to pages that need it */
+.page-id-796 .entry-content{
+    max-width: none;
 }
 
 /* ==========================================================================
