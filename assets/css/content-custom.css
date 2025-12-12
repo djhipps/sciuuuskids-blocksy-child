@@ -24,6 +24,7 @@
 /* Remove top padding from entry-content to be flush with header */
 .entry-content.is-layout-constrained {
     padding-top: 0 !important;
+    padding-bottom: 0px !important;
 }
 
 /* Also ensure no top padding on entry-content in general */
