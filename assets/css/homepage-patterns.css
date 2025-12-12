@@ -524,6 +524,7 @@
     display: inline-block !important;
     margin: 0 auto 40px !important;
     padding: 20px 40px !important;
+    background-color: #EBF6FF !important;
     position: relative;
     z-index: 2;
 }
@@ -581,11 +582,11 @@
 .why-barefoot-section .perche-card::before {
     content: '';
     position: absolute;
-    top: -60px;
+    top: -80px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -618,19 +619,19 @@
 /* Responsive card layout */
 @media (max-width: 1024px) {
     .why-barefoot-section .perche-card::before {
-        width: 100px;
-        height: 100px;
-        top: -50px;
+        width: 130px;
+        height: 130px;
+        top: -65px;
     }
-    
+
     .why-barefoot-section .perche-card {
         padding-top: 120px !important;
     }
-    
+
     .why-barefoot-section .wp-block-column h3 {
         font-size: 22px !important;
     }
-    
+
     .why-barefoot-section .wp-block-column p {
         font-size: 15px !important;
     }
@@ -640,25 +641,25 @@
     .why-barefoot-section .wp-block-columns {
         flex-direction: column !important;
     }
-    
+
     .why-barefoot-section .wp-block-column {
         margin-bottom: 80px !important;
     }
-    
+
     .why-barefoot-section .perche-card::before {
-        width: 90px;
-        height: 90px;
-        top: -45px;
+        width: 120px;
+        height: 120px;
+        top: -60px;
     }
-    
+
     .why-barefoot-section .perche-card {
         padding-top: 100px !important;
     }
-    
+
     .why-barefoot-section .wp-block-column h3 {
         font-size: 20px !important;
     }
-    
+
     .why-barefoot-section .wp-block-column p {
         font-size: 14px !important;
     }
@@ -668,14 +669,120 @@
     .why-barefoot-section .perche-card {
         padding: 90px 20px 20px !important;
     }
-    
+
     .why-barefoot-section .perche-card::before {
-        width: 80px;
-        height: 80px;
-        top: -40px;
+        width: 100px;
+        height: 100px;
+        top: -50px;
     }
-    
+
     .why-barefoot-section .wp-block-column h3 {
         font-size: 18px !important;
+    }
+}
+
+/* ==========================================================================
+   About Story Section Pattern
+   ========================================================================== */
+
+.about-story-section {
+    position: relative;
+    background: #EBF6FF !important;
+    margin: 0 !important;
+}
+
+.about-story-section .wp-block-cover__background {
+    opacity: 1 !important;
+}
+
+.about-story-section .wp-block-cover__inner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 2;
+}
+
+.about-story-section h2 {
+    font-family: var(--font-primary) !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: #000000 !important;
+    margin-bottom: 30px !important;
+    line-height: 1.3 !important;
+}
+
+.about-story-section p {
+    font-family: var(--font-primary) !important;
+    font-size: 18px !important;
+    line-height: 1.8 !important;
+    color: #333333 !important;
+    margin-bottom: 15px !important;
+    text-align: justify !important;
+}
+
+.about-story-section .story-image img {
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .about-story-section {
+        padding: 60px 30px !important;
+    }
+
+    .about-story-section h2 {
+        font-size: 30px !important;
+    }
+
+    .about-story-section p {
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-story-section {
+        padding: 50px 20px !important;
+    }
+
+    .about-story-section .wp-block-columns {
+        flex-direction: column !important;
+    }
+
+    .about-story-section .wp-block-column {
+        flex-basis: 100% !important;
+        width: 100% !important;
+    }
+
+    .about-story-section h2 {
+        font-size: 26px !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+
+    .about-story-section p {
+        font-size: 16px !important;
+    }
+
+    .about-story-section .story-image {
+        margin-top: 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-story-section {
+        padding: 40px 15px !important;
+    }
+
+    .about-story-section h2 {
+        font-size: 22px !important;
+    }
+
+    .about-story-section p {
+        font-size: 15px !important;
     }
 }
