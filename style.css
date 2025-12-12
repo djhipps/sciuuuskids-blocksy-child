@@ -281,3 +281,40 @@ article,
     background: var(--brand-white) !important;
     background-color: var(--brand-white) !important;
 }
+
+/* ==========================================================================
+   WooCommerce Checkout / Payment Page
+   ========================================================================== */
+
+/* Center billing and shipping columns on checkout page */
+.woocommerce-checkout .col2-set {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.woocommerce-checkout .col-1,
+.woocommerce-checkout .col-2 {
+    flex: 1;
+    max-width: 500px;
+}
+
+/* Mobile fixes for checkout page */
+@media (max-width: 768px) {
+    /* Set column title padding to 0px on mobile */
+    .woocommerce-column__title {
+        padding: 0px !important;
+    }
+
+    /* Stack columns vertically on mobile */
+    .woocommerce-checkout .col2-set {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .woocommerce-checkout .col-1,
+    .woocommerce-checkout .col-2 {
+        max-width: 100%;
+        width: 100%;
+    }
+}
