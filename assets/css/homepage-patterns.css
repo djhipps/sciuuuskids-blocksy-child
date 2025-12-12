@@ -981,3 +981,76 @@
         margin: 0 15px 15px !important;
     }
 }
+
+/* ==========================================================================
+   Product Features Section Pattern (RARO CADE CHI BEN CAMMINA)
+   ========================================================================== */
+
+/* Full width container with dark background */
+.has-custom-dark-background-color.alignfull,
+.wp-block-group.alignfull.has-custom-dark-background-color {
+    background-color: #1B252F !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    padding: 0 !important;
+}
+
+/* Ensure entry-content doesn't constrain */
+.entry-content .has-custom-dark-background-color.alignfull,
+.entry-content .wp-block-group.alignfull.has-custom-dark-background-color {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+}
+
+/* Beach boy cover image section */
+.has-custom-dark-background-color .wp-block-cover.is-light {
+    min-height: 100vh !important;
+}
+
+.has-custom-dark-background-color .wp-block-cover__image-background {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Ensure columns are full height */
+.has-custom-dark-background-color .wp-block-columns {
+    margin: 0 !important;
+}
+
+.has-custom-dark-background-color .wp-block-column {
+    margin: 0 !important;
+}
+
+/* Product features icons section */
+.has-custom-dark-background-color .wp-block-columns .wp-block-column:nth-child(2) {
+    background-color: #1B252F !important;
+}
+
+/* Ensure images display properly */
+.has-custom-dark-background-color .wp-block-image img {
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 782px) {
+    .has-custom-dark-background-color .wp-block-columns {
+        flex-direction: column !important;
+    }
+
+    .has-custom-dark-background-color .wp-block-cover.is-light {
+        min-height: 50vh !important;
+    }
+
+    .has-custom-dark-background-color .wp-block-column {
+        flex-basis: 100% !important;
+        width: 100% !important;
+    }
+}

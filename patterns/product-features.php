@@ -7,8 +7,8 @@
  */
 ?>
 
-<!-- wp:group {"style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"custom-dark","layout":{"type":"constrained","contentSize":"100%"}} -->
-<div class="wp-block-group has-custom-dark-background-color has-background" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"custom-dark","layout":{"type":"full"}} -->
+<div class="wp-block-group alignfull has-custom-dark-background-color has-background" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
 
     <!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"blockGap":{"top":"0","left":"0"}}}} -->
     <div class="wp-block-columns are-vertically-aligned-center" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
@@ -39,7 +39,7 @@
                     <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 
                         <!-- wp:image {"width":"80px","sizeSlug":"full","align":"center"} -->
-                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="https://sciuuuskids.it/wp-content/uploads/2024/02/slide3.png" alt="comfort icon" style="width:80px"/></figure>
+                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide1.png" alt="comfort icon" style="width:80px"/></figure>
                         <!-- /wp:image -->
 
                         <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"16px","fontWeight":"800","textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"white","fontFamily":"archivo"} -->
@@ -60,7 +60,7 @@
                     <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 
                         <!-- wp:image {"width":"80px","sizeSlug":"full","align":"center"} -->
-                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="https://sciuuuskids.it/wp-content/uploads/2024/02/slide2.png" alt="flexibility icon" style="width:80px"/></figure>
+                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide2.png" alt="flexibility icon" style="width:80px"/></figure>
                         <!-- /wp:image -->
 
                         <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"16px","fontWeight":"800","textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"white","fontFamily":"archivo"} -->
@@ -81,7 +81,7 @@
                     <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 
                         <!-- wp:image {"width":"80px","sizeSlug":"full","align":"center"} -->
-                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="https://sciuuuskids.it/wp-content/uploads/2024/02/slide1.png" alt="breathable icon" style="width:80px"/></figure>
+                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide3.png" alt="breathable icon" style="width:80px"/></figure>
                         <!-- /wp:image -->
 
                         <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"16px","fontWeight":"800","textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"white","fontFamily":"archivo"} -->
@@ -102,7 +102,7 @@
                     <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 
                         <!-- wp:image {"width":"80px","sizeSlug":"full","align":"center"} -->
-                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="https://sciuuuskids.it/wp-content/uploads/2024/02/slide4.png" alt="quality icon" style="width:80px"/></figure>
+                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide4.png" alt="quality icon" style="width:80px"/></figure>
                         <!-- /wp:image -->
 
                         <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"16px","fontWeight":"800","textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"white","fontFamily":"archivo"} -->
