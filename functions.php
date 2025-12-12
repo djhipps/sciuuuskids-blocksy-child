@@ -419,3 +419,13 @@ function blocksy_child_register_patterns() {
     );
 }
 add_action('init', 'blocksy_child_register_patterns');
+
+/**
+ * Add "Return to Shopping" link on order received page
+ */
+function sciuuuskids_add_return_to_shop_link() {
+    echo '<div class="woocommerce-order-return-to-shop">';
+    echo '<a href="' . esc_url( home_url('/') ) . '" class="button">' . __('Torna allo shopping', 'blocksy-child') . '</a>';
+    echo '</div>';
+}
+add_action('woocommerce_thankyou', 'sciuuuskids_add_return_to_shop_link', 20);

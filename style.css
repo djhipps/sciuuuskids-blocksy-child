@@ -281,3 +281,120 @@ article,
     background: var(--brand-white) !important;
     background-color: var(--brand-white) !important;
 }
+
+/* ==========================================================================
+   WooCommerce Checkout - Order Received Page
+   ========================================================================== */
+
+/* Remove bullets from all list items in tables */
+.woocommerce-order-details ul li,
+.woocommerce-table--order-details ul li,
+.woocommerce-customer-details ul li,
+.woocommerce-order-overview li {
+    list-style: none !important;
+    list-style-type: none !important;
+}
+
+.woocommerce-order-details ul,
+.woocommerce-table--order-details ul,
+.woocommerce-customer-details ul,
+.woocommerce-order-overview {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+/* Fix padding in Dettagli ordine (Order Details) section */
+.woocommerce-order-details,
+.woocommerce-table--order-details {
+    padding: 20px !important;
+}
+
+.woocommerce-table--order-details td,
+.woocommerce-table--order-details th {
+    padding: 12px 15px !important;
+}
+
+/* Product items in order details - ensure proper padding */
+.woocommerce-table--order-details .product-name,
+.woocommerce-table--order-details .product-total {
+    padding: 15px !important;
+}
+
+/* Size info in product details */
+.woocommerce-table--order-details .product-name ul {
+    margin: 10px 0 0 0 !important;
+    padding: 0 !important;
+}
+
+.woocommerce-table--order-details .product-name ul li {
+    padding: 5px 0 !important;
+    margin: 0 !important;
+}
+
+/* Align the bottom of the 2 Indirizzo (Address) tables */
+.woocommerce-customer-details {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    align-items: stretch !important;
+}
+
+.woocommerce-customer-details .woocommerce-column {
+    flex: 1 !important;
+    min-width: 300px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.woocommerce-customer-details address {
+    flex-grow: 1 !important;
+    padding: 20px !important;
+    margin: 0 !important;
+}
+
+/* Ensure both address blocks have equal height */
+.woocommerce-customer-details .woocommerce-column--billing-address,
+.woocommerce-customer-details .woocommerce-column--shipping-address {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Return to shopping link */
+.woocommerce-order-received .woocommerce-order {
+    position: relative !important;
+}
+
+.woocommerce-order-received .return-to-shop,
+.woocommerce-order-received .woocommerce-order-return-to-shop {
+    margin-top: 30px !important;
+    padding: 20px 0 !important;
+    text-align: center !important;
+}
+
+.woocommerce-order-received .return-to-shop a,
+.woocommerce-order-received .woocommerce-order-return-to-shop a {
+    display: inline-block !important;
+    padding: 14px 30px !important;
+    background-color: var(--brand-orange, #FC7D06) !important;
+    color: var(--brand-white, #fff) !important;
+    text-decoration: none !important;
+    border-radius: 4px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.woocommerce-order-received .return-to-shop a:hover,
+.woocommerce-order-received .woocommerce-order-return-to-shop a:hover {
+    background-color: #e06d05 !important;
+}
+
+/* Responsive adjustments for addresses */
+@media (max-width: 768px) {
+    .woocommerce-customer-details .woocommerce-column {
+        min-width: 100% !important;
+    }
+}
