@@ -20,39 +20,51 @@ return array(
     <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"30px","left":"30px"},"margin":{"top":"0","bottom":"30px"}}}} -->
     <div class="wp-block-columns" style="margin-top:0;margin-bottom:30px">
         
-        <!-- wp:column {"style":{"border":{"width":"3px","color":"#009285","radius":"20px"},"spacing":{"padding":{"top":"140px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
-        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#009285;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:140px;padding-right:30px;padding-bottom:30px;padding-left:30px" data-image="' . $theme_uri . '/assets/images/perche-images/perche-1.png">
-            
-            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"0"}}}} -->
-            <h3 class="wp-block-heading has-text-align-center" style="margin-top:0;font-size:24px;font-weight:700">PUNTA LARGA</h3>
+        <!-- wp:column {"style":{"border":{"width":"3px","color":"#009285","radius":"20px"},"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
+        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#009285;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px">
+
+            <!-- wp:image {"align":"center","sizeSlug":"full","linkDestination":"none","className":"perche-card-image"} -->
+            <figure class="wp-block-image aligncenter size-full perche-card-image"><img src="' . $theme_uri . '/assets/images/perche-images/perche-1.png" alt="Punta larga" /></figure>
+            <!-- /wp:image -->
+
+            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"20px"}}}} -->
+            <h3 class="wp-block-heading has-text-align-center" style="margin-top:20px;font-size:24px;font-weight:700">PUNTA LARGA</h3>
             <!-- /wp:heading -->
-            
+
             <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"16px"}}} -->
             <p class="has-text-align-center" style="font-size:16px">Punto rotondo e largo per non stringere le dita dei nostri piccoli. Le dita possono così muoversi liberamente e rafforzano la stabilità delle ginocchia e di tutto il corpo.</p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:column -->
         
-        <!-- wp:column {"style":{"border":{"width":"3px","color":"#FC7D06","radius":"20px"},"spacing":{"padding":{"top":"140px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
-        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#FC7D06;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:140px;padding-right:30px;padding-bottom:30px;padding-left:30px" data-image="' . $theme_uri . '/assets/images/perche-images/perche-2.png">
-            
-            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"0"}}}} -->
-            <h3 class="wp-block-heading has-text-align-center" style="margin-top:0;font-size:24px;font-weight:700">SUOLA SOTTILE</h3>
+        <!-- wp:column {"style":{"border":{"width":"3px","color":"#FC7D06","radius":"20px"},"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
+        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#FC7D06;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px">
+
+            <!-- wp:image {"align":"center","sizeSlug":"full","linkDestination":"none","className":"perche-card-image"} -->
+            <figure class="wp-block-image aligncenter size-full perche-card-image"><img src="' . $theme_uri . '/assets/images/perche-images/perche-2.png" alt="Suola sottile" /></figure>
+            <!-- /wp:image -->
+
+            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"20px"}}}} -->
+            <h3 class="wp-block-heading has-text-align-center" style="margin-top:20px;font-size:24px;font-weight:700">SUOLA SOTTILE</h3>
             <!-- /wp:heading -->
-            
+
             <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"16px"}}} -->
             <p class="has-text-align-center" style="font-size:16px">La suola sottile, spessa tra i 3mm e i 5mm, consente di avere un contatto quasi diretto con il suolo. Si ricevono così tutte le informazioni dal terreno, si asseconda una camminata più cosciente e stabile.</p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:column -->
         
-        <!-- wp:column {"style":{"border":{"width":"3px","color":"#009285","radius":"20px"},"spacing":{"padding":{"top":"140px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
-        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#009285;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:140px;padding-right:30px;padding-bottom:30px;padding-left:30px" data-image="' . $theme_uri . '/assets/images/perche-images/perche-3.png">
-            
-            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"0"}}}} -->
-            <h3 class="wp-block-heading has-text-align-center" style="margin-top:0;font-size:24px;font-weight:700">FLESSIBILITÀ</h3>
+        <!-- wp:column {"style":{"border":{"width":"3px","color":"#009285","radius":"20px"},"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
+        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#009285;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px">
+
+            <!-- wp:image {"align":"center","sizeSlug":"full","linkDestination":"none","className":"perche-card-image"} -->
+            <figure class="wp-block-image aligncenter size-full perche-card-image"><img src="' . $theme_uri . '/assets/images/perche-images/perche-3.png" alt="Flessibilità" /></figure>
+            <!-- /wp:image -->
+
+            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"20px"}}}} -->
+            <h3 class="wp-block-heading has-text-align-center" style="margin-top:20px;font-size:24px;font-weight:700">FLESSIBILITÀ</h3>
             <!-- /wp:heading -->
-            
+
             <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"16px"}}} -->
             <p class="has-text-align-center" style="font-size:16px">La flessibilità lascia una totale libertà di movimento. I piedi si sviluppano e si fortificano in modo naturale.</p>
             <!-- /wp:paragraph -->
@@ -65,39 +77,51 @@ return array(
     <!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"30px","left":"30px"},"margin":{"top":"0"}}}} -->
     <div class="wp-block-columns" style="margin-top:0">
         
-        <!-- wp:column {"style":{"border":{"width":"3px","color":"#FC7D06","radius":"20px"},"spacing":{"padding":{"top":"140px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
-        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#FC7D06;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:140px;padding-right:30px;padding-bottom:30px;padding-left:30px" data-image="' . $theme_uri . '/assets/images/perche-images/perche-4.png">
-            
-            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"0"}}}} -->
-            <h3 class="wp-block-heading has-text-align-center" style="margin-top:0;font-size:24px;font-weight:700">LEGGEREZZA</h3>
+        <!-- wp:column {"style":{"border":{"width":"3px","color":"#FC7D06","radius":"20px"},"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
+        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#FC7D06;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px">
+
+            <!-- wp:image {"align":"center","sizeSlug":"full","linkDestination":"none","className":"perche-card-image"} -->
+            <figure class="wp-block-image aligncenter size-full perche-card-image"><img src="' . $theme_uri . '/assets/images/perche-images/perche-4.png" alt="Leggerezza" /></figure>
+            <!-- /wp:image -->
+
+            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"20px"}}}} -->
+            <h3 class="wp-block-heading has-text-align-center" style="margin-top:20px;font-size:24px;font-weight:700">LEGGEREZZA</h3>
             <!-- /wp:heading -->
-            
+
             <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"16px"}}} -->
             <p class="has-text-align-center" style="font-size:16px">Il peso leggero delle scarpe barefoot permette movimenti naturali e liberi.</p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:column -->
         
-        <!-- wp:column {"style":{"border":{"width":"3px","color":"#009285","radius":"20px"},"spacing":{"padding":{"top":"140px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
-        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#009285;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:140px;padding-right:30px;padding-bottom:30px;padding-left:30px" data-image="' . $theme_uri . '/assets/images/perche-images/perche-5.png">
-            
-            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"0"}}}} -->
-            <h3 class="wp-block-heading has-text-align-center" style="margin-top:0;font-size:24px;font-weight:700">SUOLA PIATTA</h3>
+        <!-- wp:column {"style":{"border":{"width":"3px","color":"#009285","radius":"20px"},"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
+        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#009285;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px">
+
+            <!-- wp:image {"align":"center","sizeSlug":"full","linkDestination":"none","className":"perche-card-image"} -->
+            <figure class="wp-block-image aligncenter size-full perche-card-image"><img src="' . $theme_uri . '/assets/images/perche-images/perche-5.png" alt="Suola piatta" /></figure>
+            <!-- /wp:image -->
+
+            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"20px"}}}} -->
+            <h3 class="wp-block-heading has-text-align-center" style="margin-top:20px;font-size:24px;font-weight:700">SUOLA PIATTA</h3>
             <!-- /wp:heading -->
-            
+
             <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"16px"}}} -->
             <p class="has-text-align-center" style="font-size:16px">La suola piatta garantisce una postura corretta e naturale dalla testa ai piedi.</p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:column -->
         
-        <!-- wp:column {"style":{"border":{"width":"3px","color":"#FC7D06","radius":"20px"},"spacing":{"padding":{"top":"140px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
-        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#FC7D06;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:140px;padding-right:30px;padding-bottom:30px;padding-left:30px" data-image="' . $theme_uri . '/assets/images/perche-images/perche-6.png">
-            
-            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"0"}}}} -->
-            <h3 class="wp-block-heading has-text-align-center" style="margin-top:0;font-size:24px;font-weight:700">FORMA NATURALE DEL PIEDE</h3>
+        <!-- wp:column {"style":{"border":{"width":"3px","color":"#FC7D06","radius":"20px"},"spacing":{"padding":{"top":"30px","right":"30px","bottom":"30px","left":"30px"}},"color":{"background":"#ffffff"}}} -->
+        <div class="wp-block-column has-border-color has-background perche-card" style="border-color:#FC7D06;border-width:3px;border-radius:20px;background-color:#ffffff;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px">
+
+            <!-- wp:image {"align":"center","sizeSlug":"full","linkDestination":"none","className":"perche-card-image"} -->
+            <figure class="wp-block-image aligncenter size-full perche-card-image"><img src="' . $theme_uri . '/assets/images/perche-images/perche-6.png" alt="Forma naturale del piede" /></figure>
+            <!-- /wp:image -->
+
+            <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"24px","fontWeight":"700"},"spacing":{"margin":{"top":"20px"}}}} -->
+            <h3 class="wp-block-heading has-text-align-center" style="margin-top:20px;font-size:24px;font-weight:700">FORMA NATURALE DEL PIEDE</h3>
             <!-- /wp:heading -->
-            
+
             <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"16px"}}} -->
             <p class="has-text-align-center" style="font-size:16px">La forma anatomica rispetta la struttura naturale del piede in crescita.</p>
             <!-- /wp:paragraph -->
