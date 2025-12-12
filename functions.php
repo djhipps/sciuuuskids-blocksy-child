@@ -407,13 +407,17 @@ function blocksy_child_register_patterns() {
         )
     );
 
-    // Register the product features pattern
+    // Register the product features pattern with PHP execution
+    ob_start();
+    include get_stylesheet_directory() . '/patterns/product-features.php';
+    $pattern_content = ob_get_clean();
+
     register_block_pattern(
         'blocksy-child/product-features',
         array(
             'title'       => __('Product Features Section', 'blocksy-child'),
             'description' => __('Barefoot shoe features with icons - Comfort, Flexibility, Breathable, Quality', 'blocksy-child'),
-            'content'     => file_get_contents(get_stylesheet_directory() . '/patterns/product-features.php'),
+            'content'     => $pattern_content,
             'categories'  => array('sciuuuskids', 'featured'),
         )
     );
