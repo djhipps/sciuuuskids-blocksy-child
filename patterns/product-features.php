@@ -38,16 +38,16 @@
                     <!-- wp:group {"style":{"spacing":{"padding":{"top":"var(--wp--preset--spacing--20)","bottom":"var(--wp--preset--spacing--20)"}}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
                     <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 
-                        <!-- wp:image {"width":"80px","sizeSlug":"full","align":"center"} -->
-                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide1.png" alt="comfort icon" style="width:80px"/></figure>
+                        <!-- wp:image {"width":"120px","sizeSlug":"full","align":"center"} -->
+                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide1.png" alt="comfort icon" style="width:120px"/></figure>
                         <!-- /wp:image -->
 
                         <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"16px","fontWeight":"800","textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"white","fontFamily":"archivo"} -->
                         <h3 class="wp-block-heading has-text-align-center has-white-color has-text-color has-archivo-font-family" style="font-size:16px;font-weight:800;letter-spacing:1px;text-transform:uppercase">COMFORT</h3>
                         <!-- /wp:heading -->
 
-                        <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"14px","lineHeight":"1.4"}},"textColor":"custom-gray","fontFamily":"montserrat"} -->
-                        <p class="has-text-align-center has-custom-gray-color has-text-color has-montserrat-font-family" style="font-size:14px;line-height:1.4">Assenza di cuciture interne, per dare il massimo comfort</p>
+                        <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"14px","lineHeight":"1.4"}},"textColor":"custom-gray","fontFamily":"archivo"} -->
+                        <p class="has-text-align-center has-custom-gray-color has-text-color has-archivo-font-family" style="font-size:14px;line-height:1.4">Assenza di cuciture interne, per dare il massimo comfort</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->
@@ -59,16 +59,16 @@
                     <!-- wp:group {"style":{"spacing":{"padding":{"top":"var(--wp--preset--spacing--20)","bottom":"var(--wp--preset--spacing--20)"}}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
                     <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 
-                        <!-- wp:image {"width":"80px","sizeSlug":"full","align":"center"} -->
-                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide2.png" alt="flexibility icon" style="width:80px"/></figure>
+                        <!-- wp:image {"width":"120px","sizeSlug":"full","align":"center"} -->
+                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide2.png" alt="flexibility icon" style="width:120px"/></figure>
                         <!-- /wp:image -->
 
                         <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"16px","fontWeight":"800","textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"white","fontFamily":"archivo"} -->
                         <h3 class="wp-block-heading has-text-align-center has-white-color has-text-color has-archivo-font-family" style="font-size:16px;font-weight:800;letter-spacing:1px;text-transform:uppercase">FLESSIBILITÀ</h3>
                         <!-- /wp:heading -->
 
-                        <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"14px","lineHeight":"1.4"}},"textColor":"custom-gray","fontFamily":"montserrat"} -->
-                        <p class="has-text-align-center has-custom-gray-color has-text-color has-montserrat-font-family" style="font-size:14px;line-height:1.4">Suola di 4-5mm molto flessibile, sottile ed estraibile</p>
+                        <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"14px","lineHeight":"1.4"}},"textColor":"custom-gray","fontFamily":"archivo"} -->
+                        <p class="has-text-align-center has-custom-gray-color has-text-color has-archivo-font-family" style="font-size:14px;line-height:1.4">Suola di 4-5mm molto flessibile, sottile ed estraibile</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->
@@ -80,16 +80,16 @@
                     <!-- wp:group {"style":{"spacing":{"padding":{"top":"var(--wp--preset--spacing--20)","bottom":"var(--wp--preset--spacing--20)"}}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
                     <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 
-                        <!-- wp:image {"width":"80px","sizeSlug":"full","align":"center"} -->
-                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide3.png" alt="breathable icon" style="width:80px"/></figure>
+                        <!-- wp:image {"width":"120px","sizeSlug":"full","align":"center"} -->
+                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide3.png" alt="breathable icon" style="width:120px"/></figure>
                         <!-- /wp:image -->
 
                         <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"16px","fontWeight":"800","textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"white","fontFamily":"archivo"} -->
                         <h3 class="wp-block-heading has-text-align-center has-white-color has-text-color has-archivo-font-family" style="font-size:16px;font-weight:800;letter-spacing:1px;text-transform:uppercase">TRASPIRANTE</h3>
                         <!-- /wp:heading -->
 
-                        <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"14px","lineHeight":"1.4"}},"textColor":"custom-gray","fontFamily":"montserrat"} -->
-                        <p class="has-text-align-center has-custom-gray-color has-text-color has-montserrat-font-family" style="font-size:14px;line-height:1.4">Fodera in pelle completamente traspirante</p>
+                        <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"14px","lineHeight":"1.4"}},"textColor":"custom-gray","fontFamily":"archivo"} -->
+                        <p class="has-text-align-center has-custom-gray-color has-text-color has-archivo-font-family" style="font-size:14px;line-height:1.4">Fodera in pelle completamente traspirante</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->
@@ -101,16 +101,16 @@
                     <!-- wp:group {"style":{"spacing":{"padding":{"top":"var(--wp--preset--spacing--20)","bottom":"var(--wp--preset--spacing--20)"}}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
                     <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 
-                        <!-- wp:image {"width":"80px","sizeSlug":"full","align":"center"} -->
-                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide4.png" alt="quality icon" style="width:80px"/></figure>
+                        <!-- wp:image {"width":"120px","sizeSlug":"full","align":"center"} -->
+                        <figure class="wp-block-image aligncenter size-full is-resized"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/shoe-slide/slide4.png" alt="quality icon" style="width:120px"/></figure>
                         <!-- /wp:image -->
 
                         <!-- wp:heading {"textAlign":"center","level":3,"style":{"typography":{"fontSize":"16px","fontWeight":"800","textTransform":"uppercase","letterSpacing":"1px"}},"textColor":"white","fontFamily":"archivo"} -->
                         <h3 class="wp-block-heading has-text-align-center has-white-color has-text-color has-archivo-font-family" style="font-size:16px;font-weight:800;letter-spacing:1px;text-transform:uppercase">QUALITÀ</h3>
                         <!-- /wp:heading -->
 
-                        <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"14px","lineHeight":"1.4"}},"textColor":"custom-gray","fontFamily":"montserrat"} -->
-                        <p class="has-text-align-center has-custom-gray-color has-text-color has-montserrat-font-family" style="font-size:14px;line-height:1.4">Cura in ogni dettaglio: confortevoli, resistenti, affidabili e durature</p>
+                        <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"14px","lineHeight":"1.4"}},"textColor":"custom-gray","fontFamily":"archivo"} -->
+                        <p class="has-text-align-center has-custom-gray-color has-text-color has-archivo-font-family" style="font-size:14px;line-height:1.4">Cura in ogni dettaglio: confortevoli, resistenti, affidabili e durature</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->
