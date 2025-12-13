@@ -1039,6 +1039,44 @@
     margin: 0 auto !important;
 }
 
+/* Force beach-boy cover image to be visible */
+.has-custom-dark-background-color .wp-block-cover__image-background {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Force cover overlay to be semi-transparent */
+.has-custom-dark-background-color .wp-block-cover__background {
+    opacity: 0 !important;
+}
+
+/* Ensure RARO CADE heading is visible */
+.has-custom-dark-background-color .wp-block-cover h2 {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #ffffff !important;
+}
+
+/* Force paragraph text to be visible with good contrast */
+.has-custom-dark-background-color p.has-custom-gray-color,
+.has-custom-dark-background-color .has-custom-gray-color {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #CFCFCF !important;
+}
+
+/* Ensure shoe images maintain aspect ratio */
+.has-custom-dark-background-color .wp-block-image img[style*="width:165px"] {
+    width: 165px !important;
+    height: 125px !important;
+    object-fit: contain !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 782px) {
     .has-custom-dark-background-color .wp-block-columns {
