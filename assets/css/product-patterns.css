@@ -1,0 +1,147 @@
+/**
+ * Product Patterns Styles
+ * Styles for product-related block patterns
+ *
+ * @package Blocksy_Child_SciuuusKids
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   Raro Cade Section
+   ========================================================================== */
+
+/* Section container - full width */
+.raro-cade-section {
+    max-width: none;
+    padding: 0;
+    margin-top: 80px !important;
+}
+
+/* Columns container - no gap, full width */
+.raro-cade-columns {
+    gap: 0;
+    min-height: 700px;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+}
+
+/* Override WordPress constraint */
+.is-layout-constrained > .raro-cade-columns {
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Left column - Image with text */
+.raro-cade-image-column {
+    background-image: url('../images/beach-boy.jpeg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+/* Heading in image column */
+.raro-cade-image-column h2 {
+    color: #ffffff ;
+    font-family: 'Archivo', sans-serif;
+    font-size: 65px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    line-height: 1;
+    text-align: center;
+    margin: 0;
+}
+
+/* Right column - Dark background with features */
+.raro-cade-content-column {
+    background-color: #1B252F;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 50px;
+}
+
+/* Shoe features grid */
+.shoe-features-grid {
+    gap: 40px;
+}
+
+/* Individual feature item */
+.feature-item {
+    text-align: center;
+}
+
+/* Feature images */
+.feature-image {
+    margin: 0 auto 20px;
+}
+
+.feature-image img {
+    width: 165px;
+    height: 125px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Feature titles */
+.feature-title {
+    color: #ffffff !important;
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+/* Feature text */
+.feature-text {
+    color: #fdf7f7 !important;
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .raro-cade-columns {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .raro-cade-image-column {
+        min-height: 400px;
+    }
+
+    .raro-cade-image-column h2 {
+        font-size: 42px;
+    }
+
+    .raro-cade-content-column {
+        min-height: auto;
+        padding: 40px 20px;
+    }
+
+    .shoe-features-grid {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .feature-image img {
+        width: 120px;
+        height: 90px;
+    }
+}
+

@@ -71,7 +71,15 @@ function blocksy_child_enqueue_styles() {
         array('blocksy-style', 'google-fonts-quicksand'),
         '1.0.1'
     );
-    
+
+    // Product patterns CSS
+    wp_enqueue_style(
+        'product-patterns',
+        get_stylesheet_directory_uri() . '/assets/css/product-patterns.css',
+        array('blocksy-style', 'google-fonts-quicksand'),
+        '1.0.0'
+    );
+
     // Load on specific pages by slug
     if ( is_shop() || is_product_category() || is_product_tag() || is_page( array( 'scarpe-bebe', 'scarpe-bambini', 'outlet' ) ) ) {
         wp_enqueue_style(
@@ -407,16 +415,16 @@ function blocksy_child_register_patterns() {
         )
     );
 
-    // Register the product features pattern with PHP execution
+    // Register the Raro Cade pattern with PHP execution
     ob_start();
-    include get_stylesheet_directory() . '/patterns/product-features.php';
+    include get_stylesheet_directory() . '/patterns/product/raro-cade.php';
     $pattern_content = ob_get_clean();
 
     register_block_pattern(
-        'blocksy-child/product-features',
+        'blocksy-child/raro-cade',
         array(
-            'title'       => __('Product Features Section', 'blocksy-child'),
-            'description' => __('Barefoot shoe features with icons - Comfort, Flexibility, Breathable, Quality', 'blocksy-child'),
+            'title'       => __('Raro Cade Section', 'blocksy-child'),
+            'description' => __('Two column section with beach boy image and product features', 'blocksy-child'),
             'content'     => $pattern_content,
             'categories'  => array('sciuuuskids', 'featured'),
         )
