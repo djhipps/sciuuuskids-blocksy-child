@@ -1070,6 +1070,21 @@
     color: #CFCFCF !important;
 }
 
+/* Fix for corrupted layout structure - force empty containers to have min-height */
+.has-custom-dark-background-color.is-layout-constrained:empty {
+    display: none !important;
+}
+
+/* Ensure proper full-width on the actual content container */
+.alignfull.has-custom-dark-background-color:not(.is-layout-constrained) {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    left: 50% !important;
+    right: 50% !important;
+}
+
 /* Ensure shoe images maintain aspect ratio */
 .has-custom-dark-background-color .wp-block-image img[style*="width:165px"] {
     width: 165px !important;
