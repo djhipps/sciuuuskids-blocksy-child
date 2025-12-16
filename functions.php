@@ -71,7 +71,15 @@ function blocksy_child_enqueue_styles() {
         array('blocksy-style', 'google-fonts-quicksand'),
         '1.0.1'
     );
-    
+
+    // Product patterns CSS
+    wp_enqueue_style(
+        'product-patterns',
+        get_stylesheet_directory_uri() . '/assets/css/product-patterns.css',
+        array('blocksy-style', 'google-fonts-quicksand'),
+        '1.0.0'
+    );
+
     // Load on specific pages by slug
     if ( is_shop() || is_product_category() || is_product_tag() || is_page( array( 'scarpe-bebe', 'scarpe-bambini', 'outlet' ) ) ) {
         wp_enqueue_style(
