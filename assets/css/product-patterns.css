@@ -217,7 +217,7 @@
 
 .wave-divider {
     border: none !important;
-    height: 25px;
+    height: 25px !important;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 25"><path d="M0,12.5 C5,0 10,0 15,12.5 C20,25 25,25 30,12.5 C35,0 40,0 45,12.5 C50,25 55,25 60,12.5" stroke="%23FC7D06" stroke-width="1" fill="none"/></svg>');
     background-repeat: repeat-x;
     background-position: center;
@@ -230,6 +230,7 @@
     right: 50%;
     margin-left: -50vw !important;
     margin-right: -50vw !important;
+    background-color: var(--brand-white) !important;
 }
 
 /* Override WordPress separator constraints */
