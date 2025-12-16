@@ -7,7 +7,7 @@
  */
 ?>
 
-<!-- wp:group {"align":"full","className":"raro-cade-section","layout":{"type":"constrained"}} -->
+<!-- wp:group {"align":"full","className":"raro-cade-section","layout":{"type":"default"}} -->
 <div class="wp-block-group alignfull raro-cade-section">
 
     <!-- wp:columns {"verticalAlignment":"stretch","className":"raro-cade-columns"} -->

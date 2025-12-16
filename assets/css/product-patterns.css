@@ -10,10 +10,26 @@
    Raro Cade Section
    ========================================================================== */
 
-/* Columns container - no gap */
+/* Section container - full width */
+.raro-cade-section {
+    max-width: none;
+    padding: 0;
+}
+
+/* Columns container - no gap, full width */
 .raro-cade-columns {
     gap: 0;
     min-height: 900px;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+}
+
+/* Override WordPress constraint */
+.is-layout-constrained > .raro-cade-columns {
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 /* Left column - Image with text */
