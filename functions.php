@@ -459,6 +459,21 @@ function blocksy_child_register_patterns() {
             'categories'  => array('sciuuuskids', 'featured'),
         )
     );
+
+    // Register the Season Description pattern with PHP execution
+    ob_start();
+    include get_stylesheet_directory() . '/patterns/product/season-description.php';
+    $pattern_content = ob_get_clean();
+
+    register_block_pattern(
+        'blocksy-child/season-description',
+        array(
+            'title'       => __('Season Description', 'blocksy-child'),
+            'description' => __('Simple seasonal product description with centered text', 'blocksy-child'),
+            'content'     => $pattern_content,
+            'categories'  => array('sciuuuskids', 'featured'),
+        )
+    );
 }
 add_action('init', 'blocksy_child_register_patterns');
 
