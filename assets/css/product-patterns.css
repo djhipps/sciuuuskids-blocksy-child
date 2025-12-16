@@ -58,10 +58,59 @@
     margin: 0;
 }
 
-/* Right column - Black block */
+/* Right column - Dark background with features */
 .raro-cade-content-column {
     background-color: #1B252F;
     min-height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 50px;
+}
+
+/* Shoe features grid */
+.shoe-features-grid {
+    gap: 40px;
+}
+
+/* Individual feature item */
+.feature-item {
+    text-align: center;
+}
+
+/* Feature images */
+.feature-image {
+    margin: 0 auto 20px;
+}
+
+.feature-image img {
+    width: 165px;
+    height: 125px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Feature titles */
+.feature-title {
+    color: #ffffff;
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+/* Feature text */
+.feature-text {
+    color: #CFCFCF;
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+    margin: 0;
 }
 
 /* Responsive */
@@ -80,7 +129,18 @@
     }
 
     .raro-cade-content-column {
-        min-height: 400px;
+        min-height: auto;
+        padding: 40px 20px;
+    }
+
+    .shoe-features-grid {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .feature-image img {
+        width: 120px;
+        height: 90px;
     }
 }
 
