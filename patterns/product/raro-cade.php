@@ -15,7 +15,9 @@
 
         <!-- wp:column {"verticalAlignment":"stretch","width":"50%","className":"raro-cade-image-column"} -->
         <div class="wp-block-column is-vertically-aligned-stretch raro-cade-image-column" style="flex-basis:50%">
-            <!-- This will be styled with background image via CSS -->
+            <!-- wp:heading {"textAlign":"center","level":2} -->
+            <h2 class="wp-block-heading has-text-align-center">RARO CADE<br>CHI BEN CAMMINA</h2>
+            <!-- /wp:heading -->
         </div>
         <!-- /wp:column -->
 

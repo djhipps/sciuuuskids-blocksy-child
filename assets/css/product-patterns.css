@@ -12,34 +12,52 @@
 
 /* Full width container */
 .raro-cade-section {
-    width: 100vw;
-    max-width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
-/* Columns container */
+/* Columns container - no gap */
 .raro-cade-columns {
-    display: flex;
-    flex-wrap: nowrap;
-    margin: 0;
-    padding: 0;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    margin: 0 !important;
+    padding: 0 !important;
     min-height: 900px;
+    gap: 0 !important;
 }
 
-/* Left column - Image */
+/* Left column - Image with text */
 .raro-cade-image-column {
     background-image: url('../images/beach-boy.jpeg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     min-height: 900px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 40px !important;
+}
+
+/* Heading in image column */
+.raro-cade-image-column h2 {
+    color: #ffffff !important;
+    font-family: 'Archivo', sans-serif !important;
+    font-size: 65px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    margin: 0 !important;
 }
 
 /* Right column - Black block */
@@ -57,6 +75,10 @@
 
     .raro-cade-image-column {
         min-height: 400px;
+    }
+
+    .raro-cade-image-column h2 {
+        font-size: 42px !important;
     }
 
     .raro-cade-content-column {
