@@ -14,6 +14,7 @@
 .raro-cade-section {
     max-width: none;
     padding: 0;
+    margin-top: 60px;
 }
 
 /* Columns container - no gap, full width */
@@ -105,7 +106,7 @@
 
 /* Feature text */
 .feature-text {
-    color: #CFCFCF;
+    color: #ffffff;
     font-family: 'Archivo', sans-serif;
     font-size: 14px;
     line-height: 1.4;
