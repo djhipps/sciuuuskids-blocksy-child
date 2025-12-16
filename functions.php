@@ -444,6 +444,21 @@ function blocksy_child_register_patterns() {
             'categories'  => array('sciuuuskids', 'featured'),
         )
     );
+
+    // Register the Wave Divider pattern with PHP execution
+    ob_start();
+    include get_stylesheet_directory() . '/patterns/product/wave-divider.php';
+    $pattern_content = ob_get_clean();
+
+    register_block_pattern(
+        'blocksy-child/wave-divider',
+        array(
+            'title'       => __('Wave Divider', 'blocksy-child'),
+            'description' => __('Orange wavy divider line', 'blocksy-child'),
+            'content'     => $pattern_content,
+            'categories'  => array('sciuuuskids', 'featured'),
+        )
+    );
 }
 add_action('init', 'blocksy_child_register_patterns');
 

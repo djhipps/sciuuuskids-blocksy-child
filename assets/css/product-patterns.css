@@ -210,3 +210,19 @@
     }
 }
 
+/* ==========================================================================
+   Wave Divider
+   ========================================================================== */
+
+.wave-divider {
+    border: none;
+    height: 25px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 25" preserveAspectRatio="none"><path d="M0,12.5 Q15,0 30,12.5 T60,12.5 T90,12.5 T120,12.5 T150,12.5 T180,12.5 T210,12.5 T240,12.5 T270,12.5 T300,12.5 T330,12.5 T360,12.5 T390,12.5 T420,12.5 T450,12.5 T480,12.5 T510,12.5 T540,12.5 T570,12.5 T600,12.5 T630,12.5 T660,12.5 T690,12.5 T720,12.5 T750,12.5 T780,12.5 T810,12.5 T840,12.5 T870,12.5 T900,12.5 T930,12.5 T960,12.5 T990,12.5 T1020,12.5 T1050,12.5 T1080,12.5 T1110,12.5 T1140,12.5 T1170,12.5 T1200,12.5" stroke="%23FC7D06" stroke-width="1" fill="none"/></svg>');
+    background-repeat: repeat-x;
+    background-position: center;
+    background-size: auto 25px;
+    margin: 60px 0;
+    width: 100%;
+    max-width: none;
+}
+
