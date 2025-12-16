@@ -15,6 +15,7 @@
     max-width: none;
     padding: 0;
     margin-top: 80px !important;
+    margin-bottom: 0px !important;
 }
 
 /* Columns container - no gap, full width */
@@ -142,6 +143,71 @@
     .feature-image img {
         width: 120px;
         height: 90px;
+    }
+}
+
+/* ==========================================================================
+   Social Media CTA Section
+   ========================================================================== */
+
+/* Section container - full width green background */
+.social-cta-section {
+    background-color: #009285;
+    padding: 80px 40px;
+    text-align: center;
+    max-width: none;
+    margin: 0;
+}
+
+/* Main title */
+.social-cta-title {
+    color: #ffffff !important;
+    font-family: 'Gochi Hand', cursive;
+    font-size: 70px !important;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0 0 20px 0;
+    text-transform: none;
+}
+
+/* Tagline */
+.social-cta-tagline {
+    color: #ffffff !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 25px !important;
+    font-weight: 500;
+    margin: 0 0 30px 0;
+}
+
+/* Button container */
+.social-cta-button .wp-block-button__link {
+    background-color: #FC7D06;
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 14px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.social-cta-button .wp-block-button__link:hover {
+    background-color: #e06d05;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .social-cta-section {
+        padding: 60px 20px;
+    }
+
+    .social-cta-title {
+        font-size: 32px;
+    }
+
+    .social-cta-tagline {
+        font-size: 18px;
     }
 }
 
