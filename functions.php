@@ -429,6 +429,21 @@ function blocksy_child_register_patterns() {
             'categories'  => array('sciuuuskids', 'featured'),
         )
     );
+
+    // Register the Social CTA pattern with PHP execution
+    ob_start();
+    include get_stylesheet_directory() . '/patterns/product/social-cta.php';
+    $pattern_content = ob_get_clean();
+
+    register_block_pattern(
+        'blocksy-child/social-cta',
+        array(
+            'title'       => __('Social Media CTA', 'blocksy-child'),
+            'description' => __('Instagram call-to-action section with centered text', 'blocksy-child'),
+            'content'     => $pattern_content,
+            'categories'  => array('sciuuuskids', 'featured'),
+        )
+    );
 }
 add_action('init', 'blocksy_child_register_patterns');
 
