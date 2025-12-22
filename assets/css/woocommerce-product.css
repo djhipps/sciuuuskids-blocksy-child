@@ -145,6 +145,20 @@
     grid-column: 1 / -1;
 }
 
+/* Barefoot Description Box */
+.single-product .barefoot-description {
+    grid-column: 1 / -1;
+    background: #EBF4F9;
+    padding: 16px 20px;
+    border-radius: 4px;
+    font-family: var(--font-primary, Quicksand);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--brand-gray-dark, #333);
+    margin-bottom: 20px;
+}
+
 /* Product Divider */
 .single-product .ct-product-divider {
     display: block;
