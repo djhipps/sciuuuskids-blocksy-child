@@ -436,9 +436,11 @@
    ========================================================================== */
 
 .single-product .related.products {
-    margin: 60px 0;
-    padding: 40px 0;
+    margin: 60px auto;
+    padding: 40px 20px;
     background: var(--brand-white, #fff);
+    max-width: 1400px;
+    width: 100%;
 }
 
 .single-product .related.products .ct-module-title,
@@ -447,7 +449,7 @@
     font-size: 36px;
     font-weight: 400;
     text-align: center;
-    margin: 0 0 30px;
+    margin: 0 auto 30px;
     color: var(--brand-black, #000);
 }
 
