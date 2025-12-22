@@ -90,7 +90,7 @@
     font-weight: 700 !important;
     line-height: 1.2 !important;
     color: var(--brand-black, #000) !important;
-    margin: 0 !important;
+    margin: 30px 0 0 0 !important;
     letter-spacing: -0.5px !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
@@ -168,23 +168,11 @@
 }
 
 /* ==========================================================================
-   Short Description
+   Short Description - Hidden
    ========================================================================== */
 
 .single-product .woocommerce-product-details__short-description {
-    font-family: var(--font-primary, Quicksand);
-    font-size: 16px;
-    line-height: 1.8;
-    color: var(--brand-gray-dark, #333);
-    margin-bottom: 20px;
-}
-
-.single-product .woocommerce-product-details__short-description p {
-    margin-bottom: 10px;
-}
-
-.single-product .woocommerce-product-details__short-description p:last-child {
-    margin-bottom: 0;
+    display: none !important;
 }
 
 /* ==========================================================================

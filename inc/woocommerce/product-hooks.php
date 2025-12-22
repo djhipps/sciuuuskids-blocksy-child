@@ -81,7 +81,7 @@ add_filter( 'woocommerce_output_related_products_args', 'sciuuuskids_related_pro
 
 /**
  * Add barefoot shoes description to all products
- * Displays after title/price, before short description
+ * Displays after short description and divider
  */
 function sciuuuskids_barefoot_description() {
     ?>
@@ -90,4 +90,4 @@ function sciuuuskids_barefoot_description() {
     </div>
     <?php
 }
-add_action( 'woocommerce_single_product_summary', 'sciuuuskids_barefoot_description', 15 );
+add_action( 'woocommerce_single_product_summary', 'sciuuuskids_barefoot_description', 25 );
