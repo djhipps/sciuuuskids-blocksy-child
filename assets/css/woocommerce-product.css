@@ -22,30 +22,11 @@
 }
 
 /* ==========================================================================
-   Breadcrumbs
+   Breadcrumbs - Hidden
    ========================================================================== */
 
 .single-product .ct-breadcrumbs {
-    padding: 15px 0;
-    margin-bottom: 20px;
-    font-family: var(--font-primary, Quicksand);
-    font-size: 14px;
-    color: var(--brand-gray-medium, #666);
-}
-
-.single-product .ct-breadcrumbs a {
-    color: var(--brand-gray-medium, #666);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.single-product .ct-breadcrumbs a:hover {
-    color: var(--brand-orange, #FC7D06);
-}
-
-.single-product .ct-breadcrumbs .ct-separator {
-    margin: 0 8px;
-    opacity: 0.5;
+    display: none !important;
 }
 
 /* ==========================================================================
@@ -97,14 +78,15 @@
     flex-direction: column;
 }
 
-/* Product Title */
+/* Product Title - Modern, Clean Design */
 .single-product .product_title {
-    font-family: var(--font-display, 'Gochi Hand');
-    font-size: 42px;
-    font-weight: 400;
-    line-height: 1.3;
-    color: var(--brand-black, #000);
-    margin: 0 0 10px;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 48px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    color: var(--brand-black, #000) !important;
+    margin: 0 0 8px !important;
+    letter-spacing: -0.5px !important;
 }
 
 /* Custom Subtitle */
@@ -116,17 +98,18 @@
     margin-bottom: 20px;
 }
 
-/* Product Price */
+/* Product Price - Large, Bold, Eye-catching */
 .single-product .price {
-    font-family: var(--font-primary, Quicksand);
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--brand-black, #000);
-    margin-bottom: 20px;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 42px !important;
+    font-weight: 800 !important;
+    color: var(--brand-orange, #FC7D06) !important;
+    margin-bottom: 24px !important;
+    line-height: 1 !important;
 }
 
 .single-product .price .woocommerce-Price-amount {
-    font-size: 32px;
+    font-size: 42px !important;
 }
 
 /* Product Divider */
@@ -621,7 +604,12 @@
     }
 
     .single-product .product_title {
-        font-size: 36px;
+        font-size: 40px !important;
+        letter-spacing: -0.3px !important;
+    }
+
+    .single-product .price {
+        font-size: 38px !important;
     }
 
     /* Related products - 2 columns on tablet (match homepage/archive) */
@@ -641,11 +629,14 @@
     }
 
     .single-product .product_title {
-        font-size: 30px;
+        font-size: 36px !important;
+        letter-spacing: -0.2px !important;
+        margin-bottom: 6px !important;
     }
 
     .single-product .price {
-        font-size: 28px;
+        font-size: 34px !important;
+        margin-bottom: 20px !important;
     }
 
     .single-product .ct-cart-actions {
@@ -711,10 +702,17 @@
 
 @media (max-width: 480px) {
     .single-product .product_title {
-        font-size: 26px;
+        font-size: 32px !important;
+        letter-spacing: 0 !important;
+        margin-bottom: 6px !important;
     }
 
     .single-product .price {
-        font-size: 24px;
+        font-size: 30px !important;
+        margin-bottom: 18px !important;
+    }
+
+    .single-product .price .woocommerce-Price-amount {
+        font-size: 30px !important;
     }
 }
