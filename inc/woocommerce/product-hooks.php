@@ -99,12 +99,23 @@ add_action( 'woocommerce_single_product_summary', 'sciuuuskids_barefoot_descript
 function sciuuuskids_stock_urgency() {
     global $product;
 
-    // Only show for simple and variable products that manage stock
-    if ( ! $product || ! $product->managing_stock() ) {
+    // Make sure we have a product
+    if ( ! $product ) {
         return;
     }
 
-    $stock_qty = $product->get_stock_quantity();
+    // Get stock quantity - works for both managed and unmanaged stock
+    $stock_qty = null;
+
+    if ( $product->managing_stock() ) {
+        $stock_qty = $product->get_stock_quantity();
+    } elseif ( $product->is_in_stock() ) {
+        // If not managing stock but in stock, treat as medium stock (no urgency message)
+        return;
+    } else {
+        // Not managing stock and not in stock = out of stock
+        $stock_qty = 0;
+    }
 
     // Don't show anything if more than 10 items
     if ( $stock_qty > 10 ) {
