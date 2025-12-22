@@ -514,15 +514,11 @@
     transform: scale(1.05) !important;
 }
 
-/* Category label (if present) */
-.single-product .related.products .product .product-category {
-    font-family: var(--font-primary, Quicksand);
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--brand-gray-medium, #666);
-    margin: 15px 20px 5px;
-    text-align: center;
+/* Category label - hidden */
+.single-product .related.products .product .product-category,
+.single-product .related.products .product .entry-meta,
+.single-product .related.products .product .meta-categories {
+    display: none !important;
 }
 
 /* Product title - match homepage/archive exactly */
