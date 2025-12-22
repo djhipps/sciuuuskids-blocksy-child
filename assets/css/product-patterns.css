@@ -240,3 +240,19 @@
     margin-right: -50vw !important;
 }
 
+.season-description-section {
+    margin-bottom: 0 !important;
+}
+
+.season-description-section h3 {
+    margin-bottom: 0 !important;
+    font-family: Quicksand, sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+}
+
+.season-description-section p {
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+}
