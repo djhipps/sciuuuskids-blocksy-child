@@ -73,43 +73,72 @@
    Product Summary (Right Column)
    ========================================================================== */
 
+/* Container with Grid Layout - Title and Price on Same Row */
 .single-product .summary.entry-summary {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 20px;
+    align-items: baseline;
 }
 
-/* Product Title - Modern, Clean Design */
+/* Product Title - Left Column */
 .single-product .product_title {
+    grid-column: 1;
+    grid-row: 1;
     font-family: var(--font-primary, Quicksand) !important;
     font-size: 48px !important;
     font-weight: 700 !important;
     line-height: 1.2 !important;
     color: var(--brand-black, #000) !important;
-    margin: 0 0 8px !important;
+    margin: 0 !important;
     letter-spacing: -0.5px !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
 }
 
-/* Custom Subtitle */
-.single-product .custom-subtitle {
-    font-family: var(--font-primary, Quicksand);
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--brand-gray-medium, #666);
-    margin-bottom: 20px;
-}
-
-/* Product Price - Large, Bold, Eye-catching */
-.single-product .price {
+/* Product Price - Right Column, Aligned with Title */
+.single-product .summary.entry-summary > .price {
+    grid-column: 2;
+    grid-row: 1;
     font-family: var(--font-primary, Quicksand) !important;
     font-size: 42px !important;
     font-weight: 800 !important;
     color: var(--brand-orange, #FC7D06) !important;
-    margin-bottom: 24px !important;
-    line-height: 1 !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    text-align: right !important;
 }
 
 .single-product .price .woocommerce-Price-amount {
     font-size: 42px !important;
+}
+
+/* Handle price ranges - allow wrapping if needed */
+@supports (hyphens: auto) {
+    .single-product .summary.entry-summary > .price {
+        max-width: 200px;
+        white-space: normal !important;
+        hyphens: none !important;
+    }
+}
+
+/* Custom Subtitle - Full Width Below Title/Price */
+.single-product .custom-subtitle {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-family: var(--font-primary, Quicksand);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--brand-gray-medium, #666);
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+/* All other elements span full width and come after subtitle */
+.single-product .summary.entry-summary > *:not(.product_title):not(.price):not(.custom-subtitle) {
+    grid-column: 1 / -1;
 }
 
 /* Product Divider */
@@ -603,12 +632,21 @@
         gap: 40px;
     }
 
+    /* Maintain two-column layout for title/price */
+    .single-product .summary.entry-summary {
+        gap: 0 15px;
+    }
+
     .single-product .product_title {
         font-size: 40px !important;
         letter-spacing: -0.3px !important;
     }
 
-    .single-product .price {
+    .single-product .summary.entry-summary > .price {
+        font-size: 38px !important;
+    }
+
+    .single-product .price .woocommerce-Price-amount {
         font-size: 38px !important;
     }
 
@@ -628,15 +666,22 @@
         padding: 0 15px;
     }
 
-    .single-product .product_title {
-        font-size: 36px !important;
-        letter-spacing: -0.2px !important;
-        margin-bottom: 6px !important;
+    /* Maintain two-column layout for title/price on mobile */
+    .single-product .summary.entry-summary {
+        gap: 0 12px;
     }
 
-    .single-product .price {
-        font-size: 34px !important;
-        margin-bottom: 20px !important;
+    .single-product .product_title {
+        font-size: 28px !important;
+        letter-spacing: -0.2px !important;
+    }
+
+    .single-product .summary.entry-summary > .price {
+        font-size: 26px !important;
+    }
+
+    .single-product .price .woocommerce-Price-amount {
+        font-size: 26px !important;
     }
 
     .single-product .ct-cart-actions {
@@ -701,18 +746,28 @@
 }
 
 @media (max-width: 480px) {
-    .single-product .product_title {
-        font-size: 32px !important;
-        letter-spacing: 0 !important;
-        margin-bottom: 6px !important;
+    /* Maintain two-column layout even on small mobile */
+    .single-product .summary.entry-summary {
+        gap: 0 10px;
     }
 
-    .single-product .price {
-        font-size: 30px !important;
-        margin-bottom: 18px !important;
+    .single-product .product_title {
+        font-size: 24px !important;
+        letter-spacing: 0 !important;
+    }
+
+    .single-product .summary.entry-summary > .price {
+        font-size: 22px !important;
     }
 
     .single-product .price .woocommerce-Price-amount {
-        font-size: 30px !important;
+        font-size: 22px !important;
+    }
+
+    /* Reduce max-width for price on very small screens */
+    @supports (hyphens: auto) {
+        .single-product .summary.entry-summary > .price {
+            max-width: 120px;
+        }
     }
 }
