@@ -91,3 +91,54 @@ function sciuuuskids_barefoot_description() {
     <?php
 }
 add_action( 'woocommerce_single_product_summary', 'sciuuuskids_barefoot_description', 25 );
+
+/**
+ * Display stock urgency message based on available quantity
+ * Shows smart messaging with different urgency levels
+ */
+function sciuuuskids_stock_urgency() {
+    global $product;
+
+    // Only show for simple and variable products that manage stock
+    if ( ! $product || ! $product->managing_stock() ) {
+        return;
+    }
+
+    $stock_qty = $product->get_stock_quantity();
+
+    // Don't show anything if more than 10 items
+    if ( $stock_qty > 10 ) {
+        return;
+    }
+
+    $message = '';
+    $class = '';
+
+    // Determine message and class based on stock quantity
+    if ( $stock_qty === 0 ) {
+        $message = '❌ Temporaneamente esaurito';
+        $class = 'critical';
+    } elseif ( $stock_qty === 1 ) {
+        $message = '⚠️ Solo 1 disponibile!';
+        $class = 'critical';
+    } elseif ( $stock_qty >= 2 && $stock_qty <= 3 ) {
+        $message = '⚠️ Solo ' . $stock_qty . ' disponibili!';
+        $class = 'critical';
+    } elseif ( $stock_qty >= 4 && $stock_qty <= 5 ) {
+        $message = '📦 Disponibilità limitata (' . $stock_qty . ' rimasti)';
+        $class = 'low';
+    } elseif ( $stock_qty >= 6 && $stock_qty <= 10 ) {
+        $message = '✓ Disponibile - ' . $stock_qty . ' in stock';
+        $class = 'medium';
+    }
+
+    // Output the urgency box
+    if ( $message ) {
+        ?>
+        <div class="stock-urgency-box <?php echo esc_attr( $class ); ?>">
+            <?php echo esc_html( $message ); ?>
+        </div>
+        <?php
+    }
+}
+add_action( 'woocommerce_single_product_summary', 'sciuuuskids_stock_urgency', 28 );
