@@ -68,3 +68,13 @@ function sciuuuskids_barefoot_tab_content() {
     </ul>';
 }
 */
+
+/**
+ * Limit related products to 3 items
+ */
+function sciuuuskids_related_products_limit( $args ) {
+    $args['posts_per_page'] = 3;
+    $args['columns'] = 3;
+    return $args;
+}
+add_filter( 'woocommerce_output_related_products_args', 'sciuuuskids_related_products_limit' );
