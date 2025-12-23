@@ -77,6 +77,10 @@
 
         // Listen for variation found event
         $variationForm.on('found_variation', function(event, variation) {
+            console.log('Variation found:', variation);
+            console.log('Stock quantity:', variation.stock_quantity);
+            console.log('Is in stock:', variation.is_in_stock);
+
             const stockQty = variation.stock_quantity || 0;
             const isInStock = variation.is_in_stock;
 
@@ -85,6 +89,7 @@
 
         // Listen for variation reset event
         $variationForm.on('reset_data', function() {
+            console.log('Variation reset');
             $('[data-stock-urgency]').hide();
         });
     }
