@@ -142,7 +142,7 @@ function sciuuuskids_stock_urgency() {
         <?php
     }
 }
-add_action( 'woocommerce_single_product_summary', 'sciuuuskids_stock_urgency', 28 );
+add_action( 'woocommerce_single_product_summary', 'sciuuuskids_stock_urgency', 29 );
 
 /**
  * Get stock urgency data (message and class) based on quantity
@@ -155,6 +155,7 @@ function sciuuuskids_get_stock_urgency_data( $stock_qty ) {
     $class = '';
 
     // Determine message and class based on stock quantity
+    // Red (critical) only for 0-1 items, yellow (low) for 2+ items
     if ( $stock_qty === 0 ) {
         $message = '❌ Temporaneamente esaurito';
         $class = 'critical';
@@ -162,14 +163,14 @@ function sciuuuskids_get_stock_urgency_data( $stock_qty ) {
         $message = '⚠️ Solo 1 disponibile!';
         $class = 'critical';
     } elseif ( $stock_qty >= 2 && $stock_qty <= 3 ) {
-        $message = '⚠️ Solo ' . $stock_qty . ' disponibili!';
-        $class = 'critical';
+        $message = '⚠️ Solo ' . $stock_qty . ' disponibili per questa taglia!';
+        $class = 'low';
     } elseif ( $stock_qty >= 4 && $stock_qty <= 5 ) {
-        $message = '📦 Disponibilità limitata (' . $stock_qty . ' rimasti)';
+        $message = '⚠️ Solo ' . $stock_qty . ' disponibili per questa taglia!';
         $class = 'low';
     } elseif ( $stock_qty >= 6 && $stock_qty <= 10 ) {
-        $message = '✓ Disponibile - ' . $stock_qty . ' in stock';
-        $class = 'medium';
+        $message = '⚠️ Solo ' . $stock_qty . ' disponibili per questa taglia!';
+        $class = 'low';
     }
 
     return array(

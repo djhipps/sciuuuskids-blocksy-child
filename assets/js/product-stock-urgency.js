@@ -7,6 +7,7 @@
 
     /**
      * Get stock urgency data based on quantity
+     * Red (critical) only for 0-1 items, yellow (low) for 2+ items
      */
     function getStockUrgencyData(stockQty) {
         let message = '';
@@ -18,15 +19,9 @@
         } else if (stockQty === 1) {
             message = '⚠️ Solo 1 disponibile!';
             cssClass = 'critical';
-        } else if (stockQty >= 2 && stockQty <= 3) {
-            message = `⚠️ Solo ${stockQty} disponibili!`;
-            cssClass = 'critical';
-        } else if (stockQty >= 4 && stockQty <= 5) {
-            message = `📦 Disponibilità limitata (${stockQty} rimasti)`;
+        } else if (stockQty >= 2 && stockQty <= 10) {
+            message = `⚠️ Solo ${stockQty} disponibili per questa taglia!`;
             cssClass = 'low';
-        } else if (stockQty >= 6 && stockQty <= 10) {
-            message = `✓ Disponibile - ${stockQty} in stock`;
-            cssClass = 'medium';
         }
 
         return { message, cssClass };
