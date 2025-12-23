@@ -142,7 +142,7 @@ function sciuuuskids_stock_urgency() {
         <?php
     }
 }
-add_action( 'woocommerce_single_product_summary', 'sciuuuskids_stock_urgency', 29 );
+add_action( 'woocommerce_before_add_to_cart_button', 'sciuuuskids_stock_urgency', 10 );
 
 /**
  * Get stock urgency data (message and class) based on quantity
