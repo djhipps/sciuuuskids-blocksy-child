@@ -77,11 +77,8 @@
 
         // Listen for variation found event
         $variationForm.on('found_variation', function(event, variation) {
-            console.log('Variation found:', variation);
-            console.log('Stock quantity:', variation.stock_quantity);
-            console.log('Is in stock:', variation.is_in_stock);
-
-            const stockQty = variation.stock_quantity || 0;
+            // WooCommerce stores stock quantity in max_qty for variations
+            const stockQty = variation.max_qty || 0;
             const isInStock = variation.is_in_stock;
 
             updateStockUrgency(stockQty, isInStock);
