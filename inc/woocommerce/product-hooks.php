@@ -95,6 +95,7 @@ add_action( 'woocommerce_single_product_summary', 'sciuuuskids_barefoot_descript
 /**
  * Display stock urgency message based on available quantity
  * Shows smart messaging with different urgency levels
+ * For variable products, updates dynamically when variation is selected
  */
 function sciuuuskids_stock_urgency() {
     global $product;
@@ -104,7 +105,15 @@ function sciuuuskids_stock_urgency() {
         return;
     }
 
-    // Get stock quantity - works for both managed and unmanaged stock
+    // For variable products, output placeholder that JS will update
+    if ( $product->is_type( 'variable' ) ) {
+        ?>
+        <div class="stock-urgency-box" style="display: none;" data-stock-urgency></div>
+        <?php
+        return;
+    }
+
+    // For simple products, show stock urgency directly
     $stock_qty = null;
 
     if ( $product->managing_stock() ) {
@@ -122,6 +131,26 @@ function sciuuuskids_stock_urgency() {
         return;
     }
 
+    $urgency_data = sciuuuskids_get_stock_urgency_data( $stock_qty );
+
+    // Output the urgency box
+    if ( $urgency_data['message'] ) {
+        ?>
+        <div class="stock-urgency-box <?php echo esc_attr( $urgency_data['class'] ); ?>">
+            <?php echo esc_html( $urgency_data['message'] ); ?>
+        </div>
+        <?php
+    }
+}
+add_action( 'woocommerce_single_product_summary', 'sciuuuskids_stock_urgency', 28 );
+
+/**
+ * Get stock urgency data (message and class) based on quantity
+ *
+ * @param int $stock_qty Stock quantity
+ * @return array Array with 'message' and 'class' keys
+ */
+function sciuuuskids_get_stock_urgency_data( $stock_qty ) {
     $message = '';
     $class = '';
 
@@ -143,13 +172,8 @@ function sciuuuskids_stock_urgency() {
         $class = 'medium';
     }
 
-    // Output the urgency box
-    if ( $message ) {
-        ?>
-        <div class="stock-urgency-box <?php echo esc_attr( $class ); ?>">
-            <?php echo esc_html( $message ); ?>
-        </div>
-        <?php
-    }
+    return array(
+        'message' => $message,
+        'class' => $class
+    );
 }
-add_action( 'woocommerce_single_product_summary', 'sciuuuskids_stock_urgency', 28 );
