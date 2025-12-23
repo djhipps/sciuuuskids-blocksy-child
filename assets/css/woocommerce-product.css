@@ -172,6 +172,11 @@
     margin: 20px 0;
 }
 
+/* Override Blocksy's default margin for divider */
+.single-product .product[class*=gallery] .entry-summary-items > .ct-product-divider {
+    margin-bottom: 0 !important;
+}
+
 /* ==========================================================================
    Short Description - Hidden
    ========================================================================== */
