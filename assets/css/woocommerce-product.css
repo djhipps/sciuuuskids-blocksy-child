@@ -331,6 +331,14 @@
     cursor: not-allowed;
 }
 
+/* Stripe Express Checkout - Position right after cart button */
+.single-product .wc-stripe-express-checkout-element,
+.single-product #wc-stripe-payment-request-wrapper,
+.single-product #wc-stripe-payment-request-button-separator {
+    margin-top: 15px !important;
+    margin-bottom: 0 !important;
+}
+
 /* Stock Urgency Box */
 .single-product .stock-urgency-box {
     background: #fff3cd;
