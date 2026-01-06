@@ -309,13 +309,25 @@
     background-color: var(--brand-orange, #FC7D06) !important;
     color: var(--brand-white, #fff) !important;
     font-family: var(--font-primary, Quicksand);
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Add cart icon to button */
+.single-product .single_add_to_cart_button::before {
+    content: '🛒';
+    font-size: 20px;
+    line-height: 1;
 }
 
 .single-product .single_add_to_cart_button:hover,
