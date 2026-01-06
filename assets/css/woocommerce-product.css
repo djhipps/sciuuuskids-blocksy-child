@@ -303,6 +303,7 @@
     width: 100%;
     height: 50px;
     padding: 0 30px;
+    padding-bottom: 0;
     margin-top: 15px;
     background: var(--brand-orange, #FC7D06) !important;
     background-color: var(--brand-orange, #FC7D06) !important;
@@ -331,12 +332,22 @@
     cursor: not-allowed;
 }
 
+/* Product Config Fields - Remove spacing */
+.single-product .fpf-fields.after-add-to-cart {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
 /* Stripe Express Checkout - Position right after cart button */
 .single-product .wc-stripe-express-checkout-element,
+.single-product #wc-stripe-express-checkout-element,
 .single-product #wc-stripe-payment-request-wrapper,
 .single-product #wc-stripe-payment-request-button-separator {
-    margin-top: 15px !important;
+    margin-top: 0 !important;
     margin-bottom: 0 !important;
+    clear: both;
+    position: static;
+    zoom: 1;
 }
 
 /* Stock Urgency Box */
