@@ -305,34 +305,41 @@
 
 /* Add to Cart Button - Full Width */
 .single-product .single_add_to_cart_button {
-    width: 100%;
-    height: 50px;
-    padding: 0 30px;
-    padding-bottom: 0;
-    margin-top: 15px;
+    width: 100% !important;
+    height: 50px !important;
+    padding: 0 30px !important;
+    padding-bottom: 0 !important;
+    margin-top: 15px !important;
     background: var(--brand-orange, #FC7D06) !important;
     background-color: var(--brand-orange, #FC7D06) !important;
     color: var(--brand-white, #fff) !important;
-    font-family: var(--font-primary, Quicksand);
-    font-size: 18px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
 }
 
-/* Add cart icon to button */
+/* Add cart icon to button - Override theme shadow styles */
 .single-product .single_add_to_cart_button::before {
-    content: '🛒';
-    font-size: 20px;
-    line-height: 1;
+    content: '🛒' !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+    position: static !important;
+    display: inline !important;
+    opacity: 1 !important;
+    z-index: auto !important;
+    filter: none !important;
+    inset: auto !important;
+    background: none !important;
 }
 
 .single-product .single_add_to_cart_button:hover,
