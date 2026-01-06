@@ -304,8 +304,9 @@
     height: 50px;
     padding: 0 30px;
     margin-top: 15px;
-    background: var(--brand-orange, #FC7D06);
-    color: var(--brand-white, #fff);
+    background: var(--brand-orange, #FC7D06) !important;
+    background-color: var(--brand-orange, #FC7D06) !important;
+    color: var(--brand-white, #fff) !important;
     font-family: var(--font-primary, Quicksand);
     font-size: 16px;
     font-weight: 700;
@@ -318,7 +319,8 @@
 
 .single-product .single_add_to_cart_button:hover,
 .single-product .single_add_to_cart_button:focus {
-    background: var(--brand-accent-green, #00ce1b);
+    background: var(--brand-accent-green, #00ce1b) !important;
+    background-color: var(--brand-accent-green, #00ce1b) !important;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
