@@ -824,3 +824,75 @@
         }
     }
 }
+
+/* ==========================================================================
+   Product Trust Badges
+   ========================================================================== */
+
+.single-product .product-trust-badges {
+    margin-top: 20px;
+    padding: 20px;
+    background: #EBF4F9;
+    border-radius: 4px;
+}
+
+.single-product .trust-badge-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.single-product .trust-badge-row:last-of-type {
+    margin-bottom: 15px;
+}
+
+.single-product .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-primary, Quicksand);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--brand-gray-dark, #333);
+}
+
+.single-product .trust-badge .badge-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.single-product .payment-methods {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: var(--font-primary, Quicksand);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--brand-gray-medium, #666);
+}
+
+.single-product .payment-methods .payment-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* Responsive trust badges */
+@media (max-width: 640px) {
+    .single-product .trust-badge-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .single-product .trust-badge {
+        font-size: 13px;
+    }
+    
+    .single-product .payment-methods {
+        font-size: 12px;
+    }
+}

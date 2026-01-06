@@ -145,6 +145,41 @@ function sciuuuskids_stock_urgency() {
 add_action( 'woocommerce_before_add_to_cart_button', 'sciuuuskids_stock_urgency', 10 );
 
 /**
+ * Add trust badges after add to cart form
+ */
+function sciuuuskids_product_trust_badges() {
+    ?>
+    <div class="product-trust-badges">
+        <div class="trust-badge-row">
+            <div class="trust-badge">
+                <span class="badge-icon">🚚</span>
+                <span class="badge-text">Spedizione gratuita 50€+</span>
+            </div>
+            <div class="trust-badge">
+                <span class="badge-icon">📦</span>
+                <span class="badge-text">Resi gratuiti 30gg</span>
+            </div>
+        </div>
+        <div class="trust-badge-row">
+            <div class="trust-badge">
+                <span class="badge-icon">🔒</span>
+                <span class="badge-text">Pagamenti sicuri</span>
+            </div>
+            <div class="trust-badge">
+                <span class="badge-icon">✓</span>
+                <span class="badge-text">Garanzia soddisfatti</span>
+            </div>
+        </div>
+        <div class="payment-methods">
+            <span class="payment-icon">💳</span>
+            <span class="payment-text">Visa • Mastercard • PayPal • Apple Pay</span>
+        </div>
+    </div>
+    <?php
+}
+add_action( 'woocommerce_after_add_to_cart_form', 'sciuuuskids_product_trust_badges', 10 );
+
+/**
  * Get stock urgency data (message and class) based on quantity
  *
  * @param int $stock_qty Stock quantity
