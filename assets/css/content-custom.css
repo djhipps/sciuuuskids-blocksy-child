@@ -14,26 +14,12 @@
     background: var(--brand-white) !important;
 }
 
-/* Whitelist approach - default is constrained, override for specific pages */
+/* Container is always full-width */
 .ct-container-full {
-    max-width: var(--container-max-width) !important;
-    margin: 0 auto !important;
-    padding: 0 var(--container-padding) !important;
-    background: var(--brand-white) !important;
-}
-
-/* Full-width ONLY for whitelisted pages */
-.home .ct-container-full,
-.woocommerce-shop .ct-container-full,
-.post-type-archive-product .ct-container-full,
-.tax-product_cat .ct-container-full,
-.tax-product_tag .ct-container-full,
-.woocommerce-cart .ct-container-full,
-.woocommerce-checkout .ct-container-full,
-.single-product .ct-container-full {
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
+    background: var(--brand-white) !important;
 }
 
 /* Remove top padding from entry-content to be flush with header */
