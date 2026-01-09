@@ -192,8 +192,26 @@ body.using-custom-footer .ct-footer {
     position: relative !important;
 }
 
-/* Force full width for all content containers */
+/* ==========================================================================
+   Page Width Control - Whitelist Approach
+   ========================================================================== */
+
+/* Default: Constrained width for all pages */
 .ct-container-full {
+    max-width: var(--container-max-width) !important;
+    margin: 0 auto !important;
+    padding: 0 var(--container-padding) !important;
+}
+
+/* Whitelist: Full-width ONLY for specific page types */
+.home .ct-container-full,
+.woocommerce-shop .ct-container-full,
+.post-type-archive-product .ct-container-full,
+.tax-product_cat .ct-container-full,
+.tax-product_tag .ct-container-full,
+.woocommerce-cart .ct-container-full,
+.woocommerce-checkout .ct-container-full,
+.single-product .ct-container-full {
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;

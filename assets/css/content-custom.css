@@ -14,11 +14,26 @@
     background: var(--brand-white) !important;
 }
 
+/* Whitelist approach - default is constrained, override for specific pages */
 .ct-container-full {
+    max-width: var(--container-max-width) !important;
+    margin: 0 auto !important;
+    padding: 0 var(--container-padding) !important;
+    background: var(--brand-white) !important;
+}
+
+/* Full-width ONLY for whitelisted pages */
+.home .ct-container-full,
+.woocommerce-shop .ct-container-full,
+.post-type-archive-product .ct-container-full,
+.tax-product_cat .ct-container-full,
+.tax-product_tag .ct-container-full,
+.woocommerce-cart .ct-container-full,
+.woocommerce-checkout .ct-container-full,
+.single-product .ct-container-full {
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    background: var(--brand-white) !important;
 }
 
 /* Remove top padding from entry-content to be flush with header */
@@ -94,20 +109,24 @@ h1.entry-title {
     font-weight: var(--font-weight-normal);
     line-height: var(--line-height-content-body);
     color: var(--brand-gray-dark);
-    /* max-width: 800px; */
     margin: 0 auto;
     padding: var(--content-spacing-medium) 0;
 }
 
-/* Apply 800px max-width ONLY to specific page types */
-.page:not(.home):not(.woocommerce-page) .entry-content,
-.single-post .entry-content,
-.archive:not(.woocommerce) .entry-content {
-    /* max-width: 800px; */
+/* Default: Constrained width for all non-whitelisted pages */
+.entry-content {
+    max-width: 800px;
 }
 
-/* Apply 800px ONLY to pages that need it */
-.page-id-796 .entry-content{
+/* Whitelist: Remove max-width constraint for full-width pages */
+.home .entry-content,
+.woocommerce-shop .entry-content,
+.post-type-archive-product .entry-content,
+.tax-product_cat .entry-content,
+.tax-product_tag .entry-content,
+.woocommerce-cart .entry-content,
+.woocommerce-checkout .entry-content,
+.single-product .entry-content {
     max-width: none;
 }
 
