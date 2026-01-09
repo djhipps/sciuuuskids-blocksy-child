@@ -326,9 +326,9 @@
         padding: 0;
     }
     
-    /* Cart - BIGGER and fixed */
+    /* Cart - BIGGER */
     .header-cart-wrapper {
-        position: fixed;
+        position: absolute;
         top: var(--spacing-base);
         right: var(--spacing-base);
         z-index: var(--z-index-cart);

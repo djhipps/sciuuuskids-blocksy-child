@@ -153,7 +153,7 @@ function sciuuuskids_product_trust_badges() {
         <div class="trust-badge-row">
             <div class="trust-badge">
                 <span class="badge-icon">🚚</span>
-                <span class="badge-text">Spedizione gratuita 50€+</span>
+                <span class="badge-text">Spedizione gratuita</span>
             </div>
             <div class="trust-badge">
                 <span class="badge-icon">📦</span>
