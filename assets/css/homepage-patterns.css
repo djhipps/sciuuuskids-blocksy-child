@@ -827,6 +827,7 @@
     flex-direction: column !important;
     padding: 0 !important;
     min-height: 450px !important;
+    height: 100% !important; /* Fill grid cell to ensure consistent row heights */
 }
 
 .home .wc-block-product:hover,

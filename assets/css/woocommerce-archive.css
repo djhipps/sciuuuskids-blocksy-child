@@ -69,6 +69,7 @@ li.wc-block-product {
     display: flex !important;
     flex-direction: column !important;
     padding: 0 !important;
+    height: 100% !important; /* Fill grid cell to ensure consistent row heights */
 }
 
 .wc-block-product:hover {

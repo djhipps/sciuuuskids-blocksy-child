@@ -112,7 +112,9 @@ h1.entry-title {
 .tax-product_tag .entry-content,
 .woocommerce-cart .entry-content,
 .woocommerce-checkout .entry-content,
-.single-product .entry-content {
+.single-product .entry-content,
+/* Pages with product collection blocks (e.g., category collection pages) */
+.entry-content:has(.wp-block-woocommerce-product-collection) {
     max-width: none;
 }
 
