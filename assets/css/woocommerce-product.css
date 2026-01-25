@@ -675,6 +675,32 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
+/* Related products sale badges - white background with border */
+.single-product .related.products .product .onsale,
+.single-product .related.products .product span.onsale,
+.single-product .related.products .product .ct-woo-card-extra span {
+    background: var(--brand-white, #fff) !important;
+    background-color: var(--brand-white, #fff) !important;
+    color: var(--brand-black, #000) !important;
+    border: 1px solid var(--brand-gray-dark, #333) !important;
+    border-radius: 4px !important;
+    padding: 6px 12px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.2 !important;
+    min-width: auto !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    z-index: 10 !important;
+}
+
 /* ==========================================================================
    Responsive Design - Tablet
    ========================================================================== */
@@ -887,12 +913,117 @@
         gap: 10px;
         margin-bottom: 10px;
     }
-    
+
     .single-product .trust-badge {
         font-size: 13px;
     }
-    
+
     .single-product .payment-methods {
         font-size: 12px;
     }
+}
+
+/* ==========================================================================
+   Product Labels / Sale Badges - White Background with Border
+   ========================================================================== */
+
+/* Single product page sale badges */
+.single-product .onsale,
+.single-product span.onsale,
+.single-product .ct-product-sale,
+.single-product .ct-woo-card-extra span,
+.single-product .woocommerce-product-gallery .onsale,
+.single-product .ct-media-container .onsale {
+    background: var(--brand-white, #fff) !important;
+    background-color: var(--brand-white, #fff) !important;
+    color: var(--brand-black, #000) !important;
+    border: 1px solid var(--brand-gray-dark, #333) !important;
+    border-radius: 4px !important;
+    padding: 6px 12px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.2 !important;
+    min-width: auto !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    z-index: 10 !important;
+}
+
+/* Blocksy theme specific badge container */
+.single-product [class*="ct-woo-card-extra"],
+.single-product .ct-woo-card-extra {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    z-index: 10 !important;
+}
+
+.single-product [class*="ct-woo-card-extra"] span,
+.single-product .ct-woo-card-extra span {
+    background: var(--brand-white, #fff) !important;
+    background-color: var(--brand-white, #fff) !important;
+    color: var(--brand-black, #000) !important;
+    border: 1px solid var(--brand-gray-dark, #333) !important;
+    border-radius: 4px !important;
+    padding: 6px 12px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    display: inline-block !important;
+}
+
+/* ==========================================================================
+   Size Guide Button - Positioned Right
+   ========================================================================== */
+
+/* Size guide button wrapper - position to the right */
+.single-product .wvs-size-guide-wrapper,
+.single-product .size-guide-wrapper,
+.single-product .woo-variation-swatches-size-guide,
+.single-product [class*="size-guide"],
+.single-product a[href*="size-guide"],
+.single-product .ct-size-guide {
+    display: flex !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    margin: 15px 0 !important;
+}
+
+/* Size guide button styling - keep existing look but ensure right alignment */
+.single-product .wvs-size-guide-wrapper a,
+.single-product .size-guide-wrapper a,
+.single-product .woo-variation-swatches-size-guide a,
+.single-product a[href*="size-guide"],
+.single-product .ct-size-guide a {
+    margin-left: auto !important;
+    text-align: right !important;
+}
+
+/* Plugin specific: WooCommerce Variation Swatches size guide */
+.single-product .wvs-archive-product-wrapper .wvs-size-guide-wrapper,
+.single-product form.cart .wvs-size-guide-wrapper {
+    display: flex !important;
+    justify-content: flex-end !important;
+}
+
+/* Generic size guide link positioning */
+.single-product .size-guide-link {
+    display: flex !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    margin: 15px 0 !important;
+}
+
+.single-product .size-guide-link a {
+    margin-left: auto !important;
 }

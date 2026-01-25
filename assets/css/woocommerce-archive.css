@@ -309,3 +309,61 @@ li.wc-block-product {
 .wp-block-woocommerce-product-collection[style*="width"] {
     width: 100% !important;
 }
+
+/* ==========================================================================
+   Product Labels / Sale Badges - White Background with Border
+   ========================================================================== */
+
+/* Override default sale badges - all contexts */
+.onsale,
+.wc-block-product .onsale,
+.ct-woo-card-extra .onsale,
+.products .onsale,
+.product .onsale,
+.wc-block-components-product-image .onsale,
+span.onsale,
+.woocommerce span.onsale {
+    background: var(--brand-white, #fff) !important;
+    background-color: var(--brand-white, #fff) !important;
+    color: var(--brand-black, #000) !important;
+    border: 1px solid var(--brand-gray-dark, #333) !important;
+    border-radius: 4px !important;
+    padding: 6px 12px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.2 !important;
+    min-width: auto !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+}
+
+/* Position badges in top-right corner */
+.wc-block-components-product-image .onsale,
+.ct-media-container .onsale,
+.product figure .onsale {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    z-index: 10 !important;
+}
+
+/* Blocksy theme specific badge styling */
+[class*="ct-woo-card-extra"] [class*="sale"],
+.ct-woo-card-extra span,
+.products .ct-woo-card-extra span {
+    background: var(--brand-white, #fff) !important;
+    background-color: var(--brand-white, #fff) !important;
+    color: var(--brand-black, #000) !important;
+    border: 1px solid var(--brand-gray-dark, #333) !important;
+    border-radius: 4px !important;
+    padding: 6px 12px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
