@@ -434,7 +434,17 @@
    ========================================================================== */
 
 .single-product .product_meta,
-.single-product .ct-product-meta {
+.single-product .ct-product-meta,
+.single-product div.product_meta,
+.single-product .woocommerce-product-details__short-description + .product_meta,
+.single-product .summary .product_meta,
+.single-product .entry-summary .product_meta,
+.single-product .sku_wrapper,
+.single-product .posted_in,
+.single-product .tagged_as,
+.single-product span.sku_wrapper,
+.single-product span.posted_in,
+.single-product span.tagged_as {
     display: none !important; /* Content now in product-details-toggle */
 }
 
