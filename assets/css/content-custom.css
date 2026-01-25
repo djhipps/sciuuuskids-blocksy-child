@@ -377,6 +377,102 @@ h1.entry-title {
 }
 
 /* ==========================================================================
+   Size Guide Tables - Color Coded
+   ========================================================================== */
+
+/* Verde (Green) */
+.entry-content table.table-verde th,
+.entry-content .table-verde table th,
+figure.table-verde table th,
+.wp-block-table.table-verde th {
+    background: #2e7d32 !important;
+    color: #fff !important;
+}
+
+.entry-content table.table-verde tr:nth-child(even),
+.entry-content .table-verde table tr:nth-child(even),
+figure.table-verde table tr:nth-child(even),
+.wp-block-table.table-verde tr:nth-child(even) {
+    background: rgba(46, 125, 50, 0.08);
+}
+
+.entry-content table.table-verde tr:hover,
+.entry-content .table-verde table tr:hover,
+figure.table-verde table tr:hover,
+.wp-block-table.table-verde tr:hover {
+    background: rgba(46, 125, 50, 0.15);
+}
+
+/* Rosso (Red) */
+.entry-content table.table-rosso th,
+.entry-content .table-rosso table th,
+figure.table-rosso table th,
+.wp-block-table.table-rosso th {
+    background: #c62828 !important;
+    color: #fff !important;
+}
+
+.entry-content table.table-rosso tr:nth-child(even),
+.entry-content .table-rosso table tr:nth-child(even),
+figure.table-rosso table tr:nth-child(even),
+.wp-block-table.table-rosso tr:nth-child(even) {
+    background: rgba(198, 40, 40, 0.08);
+}
+
+.entry-content table.table-rosso tr:hover,
+.entry-content .table-rosso table tr:hover,
+figure.table-rosso table tr:hover,
+.wp-block-table.table-rosso tr:hover {
+    background: rgba(198, 40, 40, 0.15);
+}
+
+/* Arancione (Orange) - default, but explicit class */
+.entry-content table.table-arancione th,
+.entry-content .table-arancione table th,
+figure.table-arancione table th,
+.wp-block-table.table-arancione th {
+    background: var(--brand-orange, #FC7D06) !important;
+    color: #fff !important;
+}
+
+.entry-content table.table-arancione tr:nth-child(even),
+.entry-content .table-arancione table tr:nth-child(even),
+figure.table-arancione table tr:nth-child(even),
+.wp-block-table.table-arancione tr:nth-child(even) {
+    background: rgba(252, 125, 6, 0.08);
+}
+
+.entry-content table.table-arancione tr:hover,
+.entry-content .table-arancione table tr:hover,
+figure.table-arancione table tr:hover,
+.wp-block-table.table-arancione tr:hover {
+    background: rgba(252, 125, 6, 0.15);
+}
+
+/* Giallo (Yellow) */
+.entry-content table.table-giallo th,
+.entry-content .table-giallo table th,
+figure.table-giallo table th,
+.wp-block-table.table-giallo th {
+    background: #f9a825 !important;
+    color: #000 !important;
+}
+
+.entry-content table.table-giallo tr:nth-child(even),
+.entry-content .table-giallo table tr:nth-child(even),
+figure.table-giallo table tr:nth-child(even),
+.wp-block-table.table-giallo tr:nth-child(even) {
+    background: rgba(249, 168, 37, 0.12);
+}
+
+.entry-content table.table-giallo tr:hover,
+.entry-content .table-giallo table tr:hover,
+figure.table-giallo table tr:hover,
+.wp-block-table.table-giallo tr:hover {
+    background: rgba(249, 168, 37, 0.2);
+}
+
+/* ==========================================================================
    Code Blocks
    ========================================================================== */
 
