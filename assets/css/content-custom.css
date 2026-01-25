@@ -598,14 +598,110 @@ h1.entry-title {
         line-height: 1.5;
         color: #000;
     }
-    
+
     .entry-content a {
         color: #000;
         text-decoration: underline;
     }
-    
+
     .entry-content a[href]:after {
         content: " (" attr(href) ")";
         font-size: 0.8em;
     }
+}
+
+/* ==========================================================================
+   Cart Page Styles
+   ========================================================================== */
+
+/* Product title links in cart - cleaner look */
+.woocommerce-cart .wc-block-cart-item__product a,
+.woocommerce-cart .wc-block-components-product-name,
+.woocommerce-cart .cart_item .product-name a,
+.woocommerce-cart a.wc-block-components-product-name {
+    color: var(--brand-green, #009285) !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.woocommerce-cart .wc-block-cart-item__product a:hover,
+.woocommerce-cart .wc-block-components-product-name:hover,
+.woocommerce-cart .cart_item .product-name a:hover,
+.woocommerce-cart a.wc-block-components-product-name:hover {
+    color: var(--brand-orange, #FC7D06) !important;
+    text-decoration: none !important;
+}
+
+/* Remove item link - subtle styling */
+.woocommerce-cart .wc-block-cart-item__remove-link,
+.woocommerce-cart .wc-block-components-product-details + a,
+.woocommerce-cart a.remove,
+.woocommerce-cart .product-remove a,
+.woocommerce-cart a[href*="remove_item"] {
+    color: var(--brand-gray-medium, #666) !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+}
+
+.woocommerce-cart .wc-block-cart-item__remove-link:hover,
+.woocommerce-cart .wc-block-components-product-details + a:hover,
+.woocommerce-cart a.remove:hover,
+.woocommerce-cart .product-remove a:hover,
+.woocommerce-cart a[href*="remove_item"]:hover {
+    color: #dc3545 !important;
+    text-decoration: underline !important;
+    opacity: 1;
+}
+
+/* Stock/inventory notices in cart */
+.woocommerce-cart .wc-block-components-product-badge,
+.woocommerce-cart .stock-notice {
+    background: rgba(252, 125, 6, 0.1);
+    color: var(--brand-orange, #FC7D06);
+    border: 1px solid rgba(252, 125, 6, 0.3);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+/* Cart item variation details (size, color) */
+.woocommerce-cart .wc-block-components-product-details,
+.woocommerce-cart .variation {
+    font-size: 14px;
+    color: var(--brand-gray-dark, #333);
+    margin-top: 5px;
+}
+
+.woocommerce-cart .wc-block-components-product-details dt,
+.woocommerce-cart .variation dt {
+    font-weight: 600;
+    display: inline;
+}
+
+.woocommerce-cart .wc-block-components-product-details dd,
+.woocommerce-cart .variation dd {
+    display: inline;
+    margin-left: 0;
+    color: var(--brand-gray-medium, #666);
+}
+
+/* Coupon/promo code link */
+.woocommerce-cart .wc-block-components-totals-coupon-link,
+.woocommerce-cart a[class*="coupon"] {
+    color: var(--brand-gray-dark, #333) !important;
+    text-decoration: none !important;
+    font-weight: 500;
+}
+
+.woocommerce-cart .wc-block-components-totals-coupon-link:hover,
+.woocommerce-cart a[class*="coupon"]:hover {
+    color: var(--brand-orange, #FC7D06) !important;
 }
