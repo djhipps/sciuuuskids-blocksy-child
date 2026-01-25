@@ -180,6 +180,112 @@ function sciuuuskids_product_trust_badges() {
 add_action( 'woocommerce_after_add_to_cart_form', 'sciuuuskids_product_trust_badges', 10 );
 
 /**
+ * Add product details toggle (description + attributes) after trust badges
+ * Replaces the default WooCommerce tabs with a collapsible accordion
+ */
+function sciuuuskids_product_details_toggle() {
+    global $product;
+
+    if ( ! $product ) {
+        return;
+    }
+
+    // Get product description
+    $description = $product->get_description();
+
+    // Get product attributes (visible ones)
+    $attributes = $product->get_attributes();
+    $visible_attributes = array();
+
+    foreach ( $attributes as $attribute ) {
+        if ( $attribute->get_visible() ) {
+            $visible_attributes[] = $attribute;
+        }
+    }
+
+    // Only show toggle if there's content to display
+    if ( empty( $description ) && empty( $visible_attributes ) ) {
+        return;
+    }
+    ?>
+    <div class="product-details-toggle">
+        <button type="button" class="product-details-toggle-btn" aria-expanded="false" aria-controls="product-details-content">
+            <span class="toggle-text">Dettagli prodotto</span>
+            <span class="toggle-icon">+</span>
+        </button>
+        <div id="product-details-content" class="product-details-content" hidden>
+            <?php if ( ! empty( $description ) ) : ?>
+                <div class="product-description-section">
+                    <h4>Descrizione</h4>
+                    <div class="description-content">
+                        <?php echo wp_kses_post( wpautop( $description ) ); ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if ( ! empty( $visible_attributes ) ) : ?>
+                <div class="product-attributes-section">
+                    <h4>Caratteristiche</h4>
+                    <table class="product-attributes-table">
+                        <tbody>
+                        <?php foreach ( $visible_attributes as $attribute ) :
+                            $name = wc_attribute_label( $attribute->get_name() );
+                            $values = array();
+
+                            if ( $attribute->is_taxonomy() ) {
+                                $terms = wc_get_product_terms( $product->get_id(), $attribute->get_name(), array( 'fields' => 'names' ) );
+                                $values = $terms;
+                            } else {
+                                $values = $attribute->get_options();
+                            }
+                        ?>
+                            <tr>
+                                <th><?php echo esc_html( ucfirst( $name ) ); ?></th>
+                                <td><?php echo esc_html( implode( ', ', $values ) ); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const toggleBtn = document.querySelector('.product-details-toggle-btn');
+        const content = document.getElementById('product-details-content');
+        const icon = toggleBtn?.querySelector('.toggle-icon');
+
+        if (toggleBtn && content) {
+            toggleBtn.addEventListener('click', function() {
+                const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+                toggleBtn.setAttribute('aria-expanded', !isExpanded);
+                content.hidden = isExpanded;
+                if (icon) {
+                    icon.textContent = isExpanded ? '+' : '−';
+                }
+                toggleBtn.classList.toggle('is-open', !isExpanded);
+            });
+        }
+    })();
+    </script>
+    <?php
+}
+add_action( 'woocommerce_after_add_to_cart_form', 'sciuuuskids_product_details_toggle', 15 );
+
+/**
+ * Remove default WooCommerce product tabs
+ * Content is now shown in the toggle accordion above
+ */
+function sciuuuskids_remove_product_tabs( $tabs ) {
+    unset( $tabs['description'] );
+    unset( $tabs['additional_information'] );
+    return $tabs;
+}
+add_filter( 'woocommerce_product_tabs', 'sciuuuskids_remove_product_tabs', 99 );
+
+/**
  * Get stock urgency data (message and class) based on quantity
  *
  * @param int $stock_qty Stock quantity
