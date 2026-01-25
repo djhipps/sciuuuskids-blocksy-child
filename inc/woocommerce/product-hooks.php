@@ -157,7 +157,7 @@ function sciuuuskids_product_trust_badges() {
             </div>
             <div class="trust-badge">
                 <span class="badge-icon">📦</span>
-                <span class="badge-text">Resi gratuiti 30gg</span>
+                <span class="badge-text">Resi 14gg</span>
             </div>
         </div>
         <div class="trust-badge-row">
