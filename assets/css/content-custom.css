@@ -614,6 +614,30 @@ h1.entry-title {
    Cart Page Styles
    ========================================================================== */
 
+/* Override entry-content link styles for cart/checkout buttons */
+.woocommerce-cart .entry-content .wc-block-components-button,
+.woocommerce-cart .entry-content .wc-block-components-button__text,
+.woocommerce-cart .entry-content a.wc-block-components-button,
+.woocommerce-cart .entry-content .wp-element-button,
+.woocommerce-cart .entry-content a.wp-element-button,
+.woocommerce-cart .entry-content .wc-block-cart__submit-button,
+.woocommerce-cart .entry-content .wc-block-components-checkout-place-order-button,
+.woocommerce-checkout .entry-content .wc-block-components-button,
+.woocommerce-checkout .entry-content .wc-block-components-button__text,
+.woocommerce-checkout .entry-content a.wc-block-components-button,
+.woocommerce-checkout .entry-content .wp-element-button,
+.woocommerce-checkout .entry-content a.wp-element-button {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+/* Ensure button text inherits white color */
+.woocommerce-cart .wc-block-components-button__text,
+.woocommerce-checkout .wc-block-components-button__text {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
 /* Product title links in cart - cleaner look */
 .woocommerce-cart .wc-block-cart-item__product a,
 .woocommerce-cart .wc-block-components-product-name,
