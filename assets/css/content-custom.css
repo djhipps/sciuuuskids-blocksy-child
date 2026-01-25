@@ -472,6 +472,83 @@ figure.table-giallo table tr:hover,
     background: rgba(249, 168, 37, 0.2);
 }
 
+/* Size Guide Tables by ID */
+/* Verde - Coyote/Scriccicolo */
+#size-guide-table-coyote-scriccicolo th {
+    background: #2e7d32 !important;
+    color: #fff !important;
+}
+#size-guide-table-coyote-scriccicolo tr:nth-child(even) {
+    background: rgba(46, 125, 50, 0.08);
+}
+#size-guide-table-coyote-scriccicolo tr:hover {
+    background: rgba(46, 125, 50, 0.15);
+}
+#size-guide-table-coyote-scriccicolo caption {
+    color: #2e7d32;
+    font-weight: 700;
+}
+
+/* Rosso - Koala/Coccinella */
+#size-guide-table-koala-coccinella th {
+    background: #c62828 !important;
+    color: #fff !important;
+}
+#size-guide-table-koala-coccinella tr:nth-child(even) {
+    background: rgba(198, 40, 40, 0.08);
+}
+#size-guide-table-koala-coccinella tr:hover {
+    background: rgba(198, 40, 40, 0.15);
+}
+#size-guide-table-koala-coccinella caption {
+    color: #c62828;
+    font-weight: 700;
+}
+
+/* Arancione - Bimbi */
+#size-guide-table-bimbi th {
+    background: #FC7D06 !important;
+    color: #fff !important;
+}
+#size-guide-table-bimbi tr:nth-child(even) {
+    background: rgba(252, 125, 6, 0.08);
+}
+#size-guide-table-bimbi tr:hover {
+    background: rgba(252, 125, 6, 0.15);
+}
+#size-guide-table-bimbi caption {
+    color: #FC7D06;
+    font-weight: 700;
+}
+
+/* Giallo - Sandali */
+#size-guide-table-sandali th {
+    background: #f9a825 !important;
+    color: #000 !important;
+}
+#size-guide-table-sandali tr:nth-child(even) {
+    background: rgba(249, 168, 37, 0.12);
+}
+#size-guide-table-sandali tr:hover {
+    background: rgba(249, 168, 37, 0.2);
+}
+#size-guide-table-sandali caption {
+    color: #f9a825;
+    font-weight: 700;
+}
+
+/* Style all size guide captions */
+#size-guide-table-coyote-scriccicolo caption,
+#size-guide-table-koala-coccinella caption,
+#size-guide-table-bimbi caption,
+#size-guide-table-sandali caption {
+    caption-side: top;
+    text-align: center;
+    font-size: 18px;
+    padding: 12px 0;
+    font-family: var(--font-primary, Quicksand);
+}
+
 /* ==========================================================================
    Code Blocks
    ========================================================================== */
