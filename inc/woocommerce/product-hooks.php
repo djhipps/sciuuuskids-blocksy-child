@@ -180,7 +180,7 @@ function sciuuuskids_product_trust_badges() {
 add_action( 'woocommerce_after_add_to_cart_form', 'sciuuuskids_product_trust_badges', 10 );
 
 /**
- * Add product details toggle (description + attributes) after trust badges
+ * Add product details toggle (description + attributes + meta) after trust badges
  * Replaces the default WooCommerce tabs with a collapsible accordion
  */
 function sciuuuskids_product_details_toggle() {
@@ -203,8 +203,22 @@ function sciuuuskids_product_details_toggle() {
         }
     }
 
-    // Only show toggle if there's content to display
-    if ( empty( $description ) && empty( $visible_attributes ) ) {
+    // Get product meta
+    $sku = $product->get_sku();
+    $categories = wc_get_product_category_list( $product->get_id(), ', ' );
+    $tags = wc_get_product_tag_list( $product->get_id(), ', ' );
+
+    // Get brand (pa_marchio taxonomy or custom field)
+    $brand = '';
+    $brand_terms = get_the_terms( $product->get_id(), 'pa_marchio' );
+    if ( $brand_terms && ! is_wp_error( $brand_terms ) ) {
+        $brand_names = wp_list_pluck( $brand_terms, 'name' );
+        $brand = implode( ', ', $brand_names );
+    }
+
+    // Check if there's any content to display
+    $has_meta = $sku || $categories || $brand;
+    if ( empty( $description ) && empty( $visible_attributes ) && ! $has_meta ) {
         return;
     }
     ?>
@@ -244,6 +258,34 @@ function sciuuuskids_product_details_toggle() {
                                 <td><?php echo esc_html( implode( ', ', $values ) ); ?></td>
                             </tr>
                         <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+
+            <?php if ( $has_meta ) : ?>
+                <div class="product-meta-section">
+                    <h4>Informazioni</h4>
+                    <table class="product-attributes-table">
+                        <tbody>
+                        <?php if ( $sku ) : ?>
+                            <tr>
+                                <th>COD</th>
+                                <td><?php echo esc_html( $sku ); ?></td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if ( $categories ) : ?>
+                            <tr>
+                                <th>Categorie</th>
+                                <td><?php echo wp_kses_post( $categories ); ?></td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if ( $brand ) : ?>
+                            <tr>
+                                <th>Marchio</th>
+                                <td><?php echo esc_html( $brand ); ?></td>
+                            </tr>
+                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
