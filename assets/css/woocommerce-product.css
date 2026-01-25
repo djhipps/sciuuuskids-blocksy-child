@@ -532,7 +532,7 @@
     color: var(--brand-black, #000);
 }
 
-/* Products grid - 3 columns to match homepage/archive */
+/* Products grid - strictly 3 columns, 3 products max */
 .single-product .related.products .products {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
@@ -542,6 +542,11 @@
     margin: 0 auto !important;
     max-width: 1200px !important;
     width: 100% !important;
+}
+
+/* Hide any products beyond the first 3 */
+.single-product .related.products .products > .product:nth-child(n+4) {
+    display: none !important;
 }
 
 /* Product card - match homepage/archive exactly */
