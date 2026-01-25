@@ -983,15 +983,14 @@
 }
 
 /* ==========================================================================
-   Size Guide Button - Positioned Right
+   Size Guide Button - Positioned Right (auto-width, not full width)
    ========================================================================== */
 
 /* Size guide button wrapper - position to the right */
 .single-product .wvs-size-guide-wrapper,
 .single-product .size-guide-wrapper,
 .single-product .woo-variation-swatches-size-guide,
-.single-product [class*="size-guide"],
-.single-product a[href*="size-guide"],
+.single-product [class*="size-guide"]:not(a),
 .single-product .ct-size-guide {
     display: flex !important;
     justify-content: flex-end !important;
@@ -999,14 +998,24 @@
     margin: 15px 0 !important;
 }
 
-/* Size guide button styling - keep existing look but ensure right alignment */
+/* Size guide button/link - keep original proportional size */
 .single-product .wvs-size-guide-wrapper a,
+.single-product .wvs-size-guide-wrapper button,
 .single-product .size-guide-wrapper a,
+.single-product .size-guide-wrapper button,
 .single-product .woo-variation-swatches-size-guide a,
-.single-product a[href*="size-guide"],
-.single-product .ct-size-guide a {
+.single-product .woo-variation-swatches-size-guide button,
+.single-product [class*="size-guide"] a,
+.single-product [class*="size-guide"] button,
+.single-product a[class*="size-guide"],
+.single-product button[class*="size-guide"],
+.single-product .ct-size-guide a,
+.single-product .ct-size-guide button {
+    width: auto !important;
+    width: fit-content !important;
+    max-width: fit-content !important;
+    flex: 0 0 auto !important;
     margin-left: auto !important;
-    text-align: right !important;
 }
 
 /* Plugin specific: WooCommerce Variation Swatches size guide */
@@ -1025,5 +1034,7 @@
 }
 
 .single-product .size-guide-link a {
+    width: auto !important;
+    width: fit-content !important;
     margin-left: auto !important;
 }
