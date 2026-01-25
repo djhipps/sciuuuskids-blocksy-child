@@ -430,6 +430,15 @@
 }
 
 /* ==========================================================================
+   Product Meta - Hidden (moved to toggle accordion)
+   ========================================================================== */
+
+.single-product .product_meta,
+.single-product .ct-product-meta {
+    display: none !important; /* Content now in product-details-toggle */
+}
+
+/* ==========================================================================
    Product Tabs - Hidden (content moved to toggle accordion)
    ========================================================================== */
 
