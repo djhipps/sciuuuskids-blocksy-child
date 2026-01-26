@@ -61,7 +61,7 @@ function blocksy_child_enqueue_styles() {
         'custom-content',
         get_stylesheet_directory_uri() . '/assets/css/content-custom.css',
         array('blocksy-style', 'google-fonts-quicksand'),
-        '1.1.0'
+        '1.1.1'
     );
     
     // Homepage patterns CSS
