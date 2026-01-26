@@ -61,7 +61,7 @@ function blocksy_child_enqueue_styles() {
         'custom-content',
         get_stylesheet_directory_uri() . '/assets/css/content-custom.css',
         array('blocksy-style', 'google-fonts-quicksand'),
-        '1.0.0'
+        '1.1.0'
     );
     
     // Homepage patterns CSS
@@ -80,13 +80,13 @@ function blocksy_child_enqueue_styles() {
         '1.0.0'
     );
 
-    // Load on specific pages by slug
-    if ( is_shop() || is_product_category() || is_product_tag() || is_page( array( 'scarpe-bebe', 'scarpe-bambini', 'outlet' ) ) ) {
+    // Load on specific pages by slug (including cart page for "New in store" section)
+    if ( is_shop() || is_product_category() || is_product_tag() || is_cart() || is_page( array( 'scarpe-bebe', 'scarpe-bambini', 'outlet' ) ) ) {
         wp_enqueue_style(
             'woocommerce-archive',
             get_stylesheet_directory_uri() . '/assets/css/woocommerce-archive.css',
             array('blocksy-style', 'google-fonts-quicksand'),
-            '1.0.1'
+            '1.0.2'
         );
     }
 
