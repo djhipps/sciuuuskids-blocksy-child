@@ -788,19 +788,50 @@ figure.table-giallo table tr:hover,
    ========================================================================== */
 
 /* ==========================================================================
-   Empty Cart Styling
+   Empty Cart Styling (WooCommerce Blocks)
    ========================================================================== */
 
-/* Hide the default WooCommerce empty cart icon (crying face) */
+/* Hide the crying face SVG completely */
+.wc-block-cart__empty-cart__image,
 .woocommerce-cart .wc-block-cart__empty-cart__image,
+.woocommerce-cart svg.wc-block-cart__empty-cart__image,
+svg[class*="empty-cart"],
+.wc-block-cart--is-empty svg,
+.wc-block-cart__empty-cart__image svg {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    opacity: 0 !important;
+}
+
+/* Hide the "Browse store" link */
+.wc-block-cart__empty-cart__link,
+.woocommerce-cart .wc-block-cart__empty-cart__link,
+.woocommerce-cart a[href*="shop"],
+.wc-block-cart--is-empty a.wc-block-cart__empty-cart__link,
+a.wc-block-components-empty-cart__browse-store {
+    display: none !important;
+}
+
+/* Style the empty cart message */
+.wc-block-cart__empty-cart__title,
+.woocommerce-cart .wc-block-cart__empty-cart__title {
+    font-family: var(--font-display, 'Gochi Hand') !important;
+    font-size: 28px !important;
+    font-weight: 400 !important;
+    color: var(--brand-gray-dark, #333) !important;
+    margin: 40px auto 30px !important;
+    text-align: center !important;
+}
+
+/* Classic WooCommerce fallbacks */
 .woocommerce-cart .woocommerce-info::before,
 .woocommerce-cart .cart-empty::before,
-.woocommerce-cart svg.wc-block-cart__empty-cart__image,
 .cart-empty-container .woocommerce-info::before {
     display: none !important;
 }
 
-/* Style the empty cart message container */
 .cart-empty-container {
     text-align: center;
     padding: 40px 20px;
@@ -808,7 +839,6 @@ figure.table-giallo table tr:hover,
     margin: 0 auto;
 }
 
-/* Style the empty cart message */
 .cart-empty-container .cart-empty,
 .woocommerce-cart .cart-empty {
     font-family: var(--font-primary, Quicksand);
@@ -821,7 +851,7 @@ figure.table-giallo table tr:hover,
     margin: 0 auto !important;
 }
 
-/* Hide default return to shop button if it appears */
+/* Hide default return to shop button */
 .woocommerce-cart .return-to-shop,
 .woocommerce-cart a.button.wc-backward {
     display: none !important;
