@@ -261,8 +261,30 @@
 }
 
 .single-product .variable-item.disabled .variable-item-contents {
-    opacity: 0.3;
+    opacity: 0.5;
     cursor: not-allowed;
+    position: relative;
+}
+
+/* X mark for out-of-stock/disabled variations */
+.single-product .variable-item.disabled .variable-item-contents::before,
+.single-product .variable-item.disabled .variable-item-contents::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 2px;
+    background-color: #e74c3c;
+    transform-origin: center;
+}
+
+.single-product .variable-item.disabled .variable-item-contents::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.single-product .variable-item.disabled .variable-item-contents::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 /* Reset variations link */
