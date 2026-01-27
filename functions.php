@@ -430,9 +430,10 @@ function sciuuuskids_customize_empty_cart_block( $block_content, $block ) {
         // Get the custom astronaut image URL (from WordPress uploads)
         $astronaut_image = content_url( '/uploads/2024/01/2-3.png' );
 
-        // Create custom empty cart HTML with just the image (no redundant text)
+        // Create custom empty cart HTML with image and centered text
         $custom_image_html = '<div class="sciuuuskids-empty-cart-image-wrapper">
             <img src="' . esc_url( $astronaut_image ) . '" alt="Carrello vuoto" class="sciuuuskids-empty-cart-image" />
+            <span class="sciuuuskids-empty-cart-text">Carrello vuoto</span>
         </div>';
 
         // Replace the entire h2 title with just the image
