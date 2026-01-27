@@ -460,7 +460,7 @@ function sciuuuskids_customize_empty_cart_block( $block_content, $block ) {
 add_filter( 'render_block_woocommerce/cart', 'sciuuuskids_customize_empty_cart_block', 10, 2 );
 
 /**
- * Customize WooCommerce Product New block - change to 3 columns
+ * Customize WooCommerce Product New block - change to 3 columns and limit to 3 products
  */
 function sciuuuskids_customize_product_new_block( $block_content, $block ) {
     // Only modify on cart page
@@ -471,6 +471,24 @@ function sciuuuskids_customize_product_new_block( $block_content, $block ) {
     // Change columns from 4 to 3
     $block_content = str_replace( 'data-columns="4"', 'data-columns="3"', $block_content );
     $block_content = str_replace( 'has-4-columns', 'has-3-columns', $block_content );
+
+    // Limit to 3 products by removing the 4th <li> element
+    // Count how many products are in the grid
+    preg_match_all( '/<li class="wc-block-grid__product">.*?<\/li>/s', $block_content, $matches );
+
+    if ( isset( $matches[0] ) && count( $matches[0] ) > 3 ) {
+        // Remove products beyond the 3rd
+        $products = $matches[0];
+        $products_to_keep = array_slice( $products, 0, 3 );
+
+        // Replace the entire ul content with just 3 products
+        $new_products_html = implode( '', $products_to_keep );
+        $block_content = preg_replace(
+            '/<ul class="wc-block-grid__products">.*?<\/ul>/s',
+            '<ul class="wc-block-grid__products">' . $new_products_html . '</ul>',
+            $block_content
+        );
+    }
 
     return $block_content;
 }
