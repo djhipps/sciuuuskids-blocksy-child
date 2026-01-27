@@ -80,8 +80,8 @@ function blocksy_child_enqueue_styles() {
         '1.0.0'
     );
 
-    // Load on specific pages by slug (including cart page for "New in store" section)
-    if ( is_shop() || is_product_category() || is_product_tag() || is_cart() || is_page( array( 'scarpe-bebe', 'scarpe-bambini', 'outlet' ) ) ) {
+    // Load on specific pages by slug (archive/shop pages only - cart page uses Block Editor)
+    if ( is_shop() || is_product_category() || is_product_tag() || is_page( array( 'scarpe-bebe', 'scarpe-bambini', 'outlet' ) ) ) {
         wp_enqueue_style(
             'woocommerce-archive',
             get_stylesheet_directory_uri() . '/assets/css/woocommerce-archive.css',
