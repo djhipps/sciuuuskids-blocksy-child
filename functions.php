@@ -197,9 +197,13 @@ require_once get_stylesheet_directory() . '/inc/customizer.php';
  * WooCommerce: Update cart count via AJAX
  */
 function sciuuuskids_cart_count_fragments($fragments) {
+    $cart_count = WC()->cart->get_cart_contents_count();
+    $cart_count_class = $cart_count > 0 ? 'cart-count' : 'cart-count is-empty';
     ob_start();
     ?>
-    <span class="cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+    <span class="<?php echo esc_attr($cart_count_class); ?>" data-count="<?php echo esc_attr($cart_count); ?>">
+        <?php echo esc_html($cart_count); ?>
+    </span>
     <?php
     $fragments['span.cart-count'] = ob_get_clean();
     return $fragments;

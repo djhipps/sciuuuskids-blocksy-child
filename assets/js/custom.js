@@ -216,14 +216,26 @@
      * Add to Cart AJAX Update (WooCommerce)
      */
     if (typeof wc_add_to_cart_params !== 'undefined') {
+        const refreshCartFragments = function() {
+            if (typeof wc_cart_fragments_params !== 'undefined') {
+                $(document.body).trigger('wc_fragment_refresh');
+            }
+        };
+
         $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
-            // Cart count is already updated via WordPress fragments
+            // Cart count is updated via fragments; ensure the badge exists.
+            refreshCartFragments();
+
             // Add animation to cart icon
             $('.cart-link').addClass('cart-updated');
             
             setTimeout(function() {
                 $('.cart-link').removeClass('cart-updated');
             }, 1000);
+        });
+
+        $(document.body).on('removed_from_cart updated_cart_totals updated_wc_div', function() {
+            refreshCartFragments();
         });
     }
 
