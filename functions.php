@@ -417,3 +417,64 @@ function sciuuuskids_increase_variation_threshold( $threshold ) {
     return 100;
 }
 add_filter( 'woocommerce_ajax_variation_threshold', 'sciuuuskids_increase_variation_threshold' );
+
+/**
+ * Customize WooCommerce Blocks Cart - Empty Cart State
+ *
+ * Replaces the default crying face SVG with custom astronaut image
+ * and translates text to Italian
+ */
+function sciuuuskids_customize_empty_cart_block( $block_content, $block ) {
+    // Only modify on cart page when cart is empty
+    if ( ! is_cart() ) {
+        return $block_content;
+    }
+
+    // Check if this is the empty cart state (contains the SVG or empty cart class)
+    if ( strpos( $block_content, 'wc-block-cart--is-empty' ) !== false ||
+         strpos( $block_content, 'wc-block-cart__empty-cart__image' ) !== false ) {
+
+        // Get the custom astronaut image URL
+        $astronaut_image = get_stylesheet_directory_uri() . '/assets/images/cart/empty-cart-astronaut.png';
+
+        // Replace the SVG with custom image
+        $block_content = preg_replace(
+            '/<svg[^>]*class="[^"]*wc-block-cart__empty-cart__image[^"]*"[^>]*>.*?<\/svg>/s',
+            '<img src="' . esc_url( $astronaut_image ) . '" alt="Carrello vuoto" class="sciuuuskids-empty-cart-image" style="max-width: 250px; height: auto; margin: 0 auto 20px; display: block;" />',
+            $block_content
+        );
+
+        // Translate "Your cart is currently empty!" to Italian
+        $block_content = str_replace(
+            'Your cart is currently empty!',
+            'Il tuo carrello è vuoto!',
+            $block_content
+        );
+
+        // Also handle variations of the text
+        $block_content = str_replace(
+            'Your cart is currently empty',
+            'Il tuo carrello è vuoto',
+            $block_content
+        );
+    }
+
+    return $block_content;
+}
+add_filter( 'render_block_woocommerce/cart', 'sciuuuskids_customize_empty_cart_block', 10, 2 );
+
+/**
+ * Translate "New in store" heading to Italian on cart page
+ */
+function sciuuuskids_translate_new_in_store( $block_content, $block ) {
+    if ( ! is_cart() ) {
+        return $block_content;
+    }
+
+    // Translate "New in store" to Italian
+    $block_content = str_replace( 'New in store', 'Novità in negozio', $block_content );
+    $block_content = str_replace( 'New in Store', 'Novità in negozio', $block_content );
+
+    return $block_content;
+}
+add_filter( 'render_block_core/heading', 'sciuuuskids_translate_new_in_store', 10, 2 );
