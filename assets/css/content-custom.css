@@ -889,20 +889,18 @@ a.wc-block-components-empty-cart__browse-store {
     padding: 0 20px !important;
 }
 
-/* WooCommerce Blocks Legacy Product Grid - 3 columns */
-.woocommerce-cart .wc-block-grid.has-3-columns .wc-block-grid__products,
-.woocommerce-cart .wp-block-product-new.has-3-columns ul.wc-block-grid__products {
+/* WooCommerce Blocks Legacy Product Grid - Force 3 columns regardless of block settings */
+.woocommerce-cart .wc-block-grid .wc-block-grid__products,
+.woocommerce-cart .wp-block-product-new .wc-block-grid__products,
+.woocommerce-cart ul.wc-block-grid__products,
+.woocommerce-cart .wc-block-grid__products {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 25px !important;
-}
-
-/* Override 4-column default styles */
-.woocommerce-cart .wc-block-grid.has-4-columns .wc-block-grid__products,
-.woocommerce-cart .wp-block-product-new.has-4-columns ul.wc-block-grid__products {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 25px !important;
+    gap: 30px !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    list-style: none !important;
 }
 
 /* Product card in legacy WooCommerce Blocks grid */
