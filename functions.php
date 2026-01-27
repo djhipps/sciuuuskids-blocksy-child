@@ -427,8 +427,8 @@ function sciuuuskids_customize_empty_cart_block( $block_content, $block ) {
     // Check if this contains the empty cart block
     if ( strpos( $block_content, 'wp-block-woocommerce-empty-cart-block' ) !== false ) {
 
-        // Get the custom astronaut image URL
-        $astronaut_image = get_stylesheet_directory_uri() . '/assets/images/cart/empty-cart-astronaut.png';
+        // Get the custom astronaut image URL (from WordPress uploads)
+        $astronaut_image = content_url( '/uploads/2024/01/2-3.png' );
 
         // Create custom empty cart HTML with just the image (no redundant text)
         $custom_image_html = '<div class="sciuuuskids-empty-cart-image-wrapper">
