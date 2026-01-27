@@ -805,6 +805,14 @@ svg[class*="empty-cart"],
     opacity: 0 !important;
 }
 
+/* Hide the CSS pseudo-element icon from with-empty-cart-icon class */
+.woocommerce-cart h2.with-empty-cart-icon::before,
+.woocommerce-cart .with-empty-cart-icon::before,
+h2.with-empty-cart-icon::before {
+    display: none !important;
+    content: none !important;
+}
+
 /* Hide the "Browse store" link */
 .wc-block-cart__empty-cart__link,
 .woocommerce-cart .wc-block-cart__empty-cart__link,
@@ -875,10 +883,106 @@ a.wc-block-components-empty-cart__browse-store {
 .woocommerce-cart .wp-block-woocommerce-all-products,
 .woocommerce-cart .products.columns-4,
 .woocommerce-cart ul.products {
-    max-width: 1400px !important;
+    max-width: 1000px !important;
     width: 100% !important;
     margin: 0 auto !important;
     padding: 0 20px !important;
+}
+
+/* WooCommerce Blocks Legacy Product Grid - 3 columns */
+.woocommerce-cart .wc-block-grid.has-3-columns .wc-block-grid__products,
+.woocommerce-cart .wp-block-product-new.has-3-columns ul.wc-block-grid__products {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 25px !important;
+}
+
+/* Override 4-column default styles */
+.woocommerce-cart .wc-block-grid.has-4-columns .wc-block-grid__products,
+.woocommerce-cart .wp-block-product-new.has-4-columns ul.wc-block-grid__products {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 25px !important;
+}
+
+/* Product card in legacy WooCommerce Blocks grid */
+.woocommerce-cart .wc-block-grid__product {
+    background: var(--brand-white, #fff) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 15px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+}
+
+.woocommerce-cart .wc-block-grid__product:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Product image in legacy grid */
+.woocommerce-cart .wc-block-grid__product-image {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+}
+
+.woocommerce-cart .wc-block-grid__product-image img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 6px !important;
+}
+
+/* Product title in legacy grid */
+.woocommerce-cart .wc-block-grid__product-title {
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: var(--brand-gray-dark, #333) !important;
+    margin-bottom: 10px !important;
+    text-align: center !important;
+    display: block !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+/* Product price in legacy grid */
+.woocommerce-cart .wc-block-grid__product-price {
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--brand-orange, #f5a623) !important;
+    margin-bottom: 15px !important;
+    text-align: center !important;
+}
+
+/* Add to cart button in legacy grid */
+.woocommerce-cart .wc-block-grid__product-add-to-cart .wp-block-button__link {
+    background-color: var(--brand-orange, #f5a623) !important;
+    color: white !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-weight: 600 !important;
+    padding: 12px 24px !important;
+    border-radius: 25px !important;
+    text-transform: uppercase !important;
+    font-size: 14px !important;
+    display: inline-block !important;
+    text-align: center !important;
+    width: 100% !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.woocommerce-cart .wc-block-grid__product-add-to-cart .wp-block-button__link:hover {
+    background-color: var(--brand-orange-dark, #e09515) !important;
+}
+
+/* Product link - remove underline */
+.woocommerce-cart .wc-block-grid__product-link {
+    text-decoration: none !important;
 }
 
 /* Product grid layout for cart page - 3 columns */

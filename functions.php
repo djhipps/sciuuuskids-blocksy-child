@@ -421,26 +421,30 @@ add_filter( 'woocommerce_ajax_variation_threshold', 'sciuuuskids_increase_variat
 /**
  * Customize WooCommerce Blocks Cart - Empty Cart State
  *
- * Replaces the default crying face SVG with custom astronaut image
+ * Replaces default empty cart icon with custom astronaut image
  * and translates text to Italian
  */
 function sciuuuskids_customize_empty_cart_block( $block_content, $block ) {
-    // Only modify on cart page when cart is empty
+    // Only modify on cart page
     if ( ! is_cart() ) {
         return $block_content;
     }
 
-    // Check if this is the empty cart state (contains the SVG or empty cart class)
-    if ( strpos( $block_content, 'wc-block-cart--is-empty' ) !== false ||
-         strpos( $block_content, 'wc-block-cart__empty-cart__image' ) !== false ) {
+    // Check if this contains the empty cart block
+    if ( strpos( $block_content, 'wp-block-woocommerce-empty-cart-block' ) !== false ) {
 
         // Get the custom astronaut image URL
         $astronaut_image = get_stylesheet_directory_uri() . '/assets/images/cart/empty-cart-astronaut.png';
 
-        // Replace the SVG with custom image
+        // Add custom image before the title (replace the CSS icon with actual image)
+        $custom_image_html = '<div class="sciuuuskids-empty-cart-image-wrapper" style="text-align: center; margin-bottom: 20px;">
+            <img src="' . esc_url( $astronaut_image ) . '" alt="Carrello vuoto" class="sciuuuskids-empty-cart-image" />
+        </div>';
+
+        // Insert image before the h2 title and remove the icon class
         $block_content = preg_replace(
-            '/<svg[^>]*class="[^"]*wc-block-cart__empty-cart__image[^"]*"[^>]*>.*?<\/svg>/s',
-            '<img src="' . esc_url( $astronaut_image ) . '" alt="Carrello vuoto" class="sciuuuskids-empty-cart-image" style="max-width: 250px; height: auto; margin: 0 auto 20px; display: block;" />',
+            '/<h2([^>]*class="[^"]*)(with-empty-cart-icon)([^"]*"[^>]*)>/',
+            $custom_image_html . '<h2$1$3>',
             $block_content
         );
 
@@ -451,10 +455,10 @@ function sciuuuskids_customize_empty_cart_block( $block_content, $block ) {
             $block_content
         );
 
-        // Also handle variations of the text
-        $block_content = str_replace(
-            'Your cart is currently empty',
-            'Il tuo carrello è vuoto',
+        // Hide "Browse store" link via string replacement
+        $block_content = preg_replace(
+            '/<p class="has-text-align-center"><a href="[^"]*">Browse store<\/a><\/p>/',
+            '',
             $block_content
         );
     }
@@ -462,6 +466,23 @@ function sciuuuskids_customize_empty_cart_block( $block_content, $block ) {
     return $block_content;
 }
 add_filter( 'render_block_woocommerce/cart', 'sciuuuskids_customize_empty_cart_block', 10, 2 );
+
+/**
+ * Customize WooCommerce Product New block - change to 3 columns
+ */
+function sciuuuskids_customize_product_new_block( $block_content, $block ) {
+    // Only modify on cart page
+    if ( ! is_cart() ) {
+        return $block_content;
+    }
+
+    // Change columns from 4 to 3
+    $block_content = str_replace( 'data-columns="4"', 'data-columns="3"', $block_content );
+    $block_content = str_replace( 'has-4-columns', 'has-3-columns', $block_content );
+
+    return $block_content;
+}
+add_filter( 'render_block_woocommerce/product-new', 'sciuuuskids_customize_product_new_block', 10, 2 );
 
 /**
  * Translate "New in store" heading to Italian on cart page
