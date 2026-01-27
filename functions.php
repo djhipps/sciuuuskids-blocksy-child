@@ -421,8 +421,7 @@ add_filter( 'woocommerce_ajax_variation_threshold', 'sciuuuskids_increase_variat
 /**
  * Customize WooCommerce Blocks Cart - Empty Cart State
  *
- * Replaces default empty cart icon with custom astronaut image
- * and translates text to Italian
+ * Replaces default empty cart with custom astronaut image
  */
 function sciuuuskids_customize_empty_cart_block( $block_content, $block ) {
     // Only modify on cart page
@@ -436,22 +435,15 @@ function sciuuuskids_customize_empty_cart_block( $block_content, $block ) {
         // Get the custom astronaut image URL
         $astronaut_image = get_stylesheet_directory_uri() . '/assets/images/cart/empty-cart-astronaut.png';
 
-        // Add custom image before the title (replace the CSS icon with actual image)
-        $custom_image_html = '<div class="sciuuuskids-empty-cart-image-wrapper" style="text-align: center; margin-bottom: 20px;">
+        // Create custom empty cart HTML with just the image (no redundant text)
+        $custom_image_html = '<div class="sciuuuskids-empty-cart-image-wrapper">
             <img src="' . esc_url( $astronaut_image ) . '" alt="Carrello vuoto" class="sciuuuskids-empty-cart-image" />
         </div>';
 
-        // Insert image before the h2 title and remove the icon class
+        // Replace the entire h2 title with just the image
         $block_content = preg_replace(
-            '/<h2([^>]*class="[^"]*)(with-empty-cart-icon)([^"]*"[^>]*)>/',
-            $custom_image_html . '<h2$1$3>',
-            $block_content
-        );
-
-        // Translate "Your cart is currently empty!" to Italian
-        $block_content = str_replace(
-            'Your cart is currently empty!',
-            'Il tuo carrello è vuoto!',
+            '/<h2[^>]*class="[^"]*wc-block-cart__empty-cart__title[^"]*"[^>]*>.*?<\/h2>/s',
+            $custom_image_html,
             $block_content
         );
 
