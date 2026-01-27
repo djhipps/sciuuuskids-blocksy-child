@@ -857,6 +857,14 @@ a.wc-block-components-empty-cart__browse-store {
     display: none !important;
 }
 
+/* Custom astronaut empty cart image */
+.sciuuuskids-empty-cart-image {
+    max-width: 250px !important;
+    height: auto !important;
+    margin: 30px auto 20px !important;
+    display: block !important;
+}
+
 /* ==========================================================================
    "New in Store" Products Section on Cart Page (Product Collection Cards)
    ========================================================================== */
@@ -873,18 +881,18 @@ a.wc-block-components-empty-cart__browse-store {
     padding: 0 20px !important;
 }
 
-/* Product grid layout for cart page */
+/* Product grid layout for cart page - 3 columns */
 .woocommerce-cart .wc-block-product-template,
 .woocommerce-cart ul.wc-block-product-template,
 .woocommerce-cart .wc-block-grid__products,
 .woocommerce-cart ul.products {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 25px !important;
     list-style: none !important;
     padding: 0 !important;
     margin: 30px auto !important;
-    max-width: 1200px !important;
+    max-width: 1000px !important;
     width: 100% !important;
 }
 
@@ -903,6 +911,18 @@ a.wc-block-components-empty-cart__browse-store {
     padding: 0 !important;
     height: 100% !important;
     min-height: 400px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    writing-mode: horizontal-tb !important;
+}
+
+/* Force proper text flow in product cards */
+.woocommerce-cart .wc-block-product-template li.wc-block-product *,
+.woocommerce-cart li.wc-block-product *,
+.woocommerce-cart .wc-block-grid__product *,
+.woocommerce-cart li.product * {
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
 }
 
 .woocommerce-cart .wc-block-product:hover,
@@ -1037,13 +1057,13 @@ a.wc-block-components-empty-cart__browse-store {
     z-index: 10 !important;
 }
 
-/* Responsive: Tablet (3 columns) */
+/* Responsive: Tablet (2 columns) */
 @media (max-width: 1024px) {
     .woocommerce-cart .wc-block-product-template,
     .woocommerce-cart ul.wc-block-product-template,
     .woocommerce-cart .wc-block-grid__products,
     .woocommerce-cart ul.products {
-        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 20px !important;
     }
 }
