@@ -217,6 +217,18 @@
      */
     if (typeof wc_add_to_cart_params !== 'undefined') {
         let cartFragmentTimer;
+        const syncCartBadge = function() {
+            const $badge = $('.cart-count');
+            if (!$badge.length) {
+                return;
+            }
+            const count = parseInt($badge.attr('data-count'), 10) || 0;
+            if (count > 0) {
+                $badge.removeClass('is-empty').text(count);
+            } else {
+                $badge.addClass('is-empty').text('');
+            }
+        };
         const refreshCartFragments = function() {
             if (typeof wc_cart_fragments_params === 'undefined') {
                 return;
@@ -228,6 +240,12 @@
                 $(document.body).trigger('wc_fragment_refresh');
             }, 150);
         };
+
+        $(document.body).on('wc_fragments_refreshed', function() {
+            syncCartBadge();
+        });
+
+        syncCartBadge();
 
         $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
             // Cart count is updated via fragments; ensure the badge exists.
@@ -247,6 +265,18 @@
 
         $(document).on('wc-blocks_cart_updated wc-blocks_checkout_updated', function() {
             refreshCartFragments();
+        });
+
+        $(document).on('click', '.wc-block-cart-item__remove-link, .wc-block-components-quantity-selector__button', function() {
+            setTimeout(function() {
+                refreshCartFragments();
+            }, 600);
+        });
+
+        $(document).on('change', '.wc-block-components-quantity-selector__input', function() {
+            setTimeout(function() {
+                refreshCartFragments();
+            }, 600);
         });
     }
 
