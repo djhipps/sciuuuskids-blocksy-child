@@ -216,10 +216,17 @@
      * Add to Cart AJAX Update (WooCommerce)
      */
     if (typeof wc_add_to_cart_params !== 'undefined') {
+        let cartFragmentTimer;
         const refreshCartFragments = function() {
-            if (typeof wc_cart_fragments_params !== 'undefined') {
-                $(document.body).trigger('wc_fragment_refresh');
+            if (typeof wc_cart_fragments_params === 'undefined') {
+                return;
             }
+            if (cartFragmentTimer) {
+                clearTimeout(cartFragmentTimer);
+            }
+            cartFragmentTimer = setTimeout(function() {
+                $(document.body).trigger('wc_fragment_refresh');
+            }, 150);
         };
 
         $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
@@ -235,6 +242,10 @@
         });
 
         $(document.body).on('removed_from_cart updated_cart_totals updated_wc_div', function() {
+            refreshCartFragments();
+        });
+
+        $(document).on('wc-blocks_cart_updated wc-blocks_checkout_updated', function() {
             refreshCartFragments();
         });
     }
