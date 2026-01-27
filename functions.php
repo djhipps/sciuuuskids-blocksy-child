@@ -397,3 +397,18 @@ function sciuuuskids_add_return_to_shop_link() {
     echo '</div>';
 }
 add_action('woocommerce_thankyou', 'sciuuuskids_add_return_to_shop_link', 20);
+
+/**
+ * Increase WooCommerce AJAX variation threshold
+ *
+ * Products with more variations than this threshold load variation data via AJAX
+ * instead of embedding it in the page HTML. This can break variation swatch plugins
+ * from properly detecting which options should be disabled/out-of-stock.
+ *
+ * Default is 30. Increase to 100 to support products with up to 100 variations
+ * (e.g., 10 sizes × 10 colors = 100 combinations).
+ */
+function sciuuuskids_increase_variation_threshold( $threshold ) {
+    return 100;
+}
+add_filter( 'woocommerce_ajax_variation_threshold', 'sciuuuskids_increase_variation_threshold' );
