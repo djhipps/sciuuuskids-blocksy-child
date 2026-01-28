@@ -113,7 +113,7 @@ function blocksy_child_enqueue_styles() {
         'custom-scripts',
         get_stylesheet_directory_uri() . '/assets/js/custom.js',
         array('jquery'),
-        '1.0.3',
+        '1.0.4',
         true
     );
 }
@@ -210,6 +210,36 @@ function sciuuuskids_cart_count_fragments($fragments) {
     return $fragments;
 }
 add_filter('woocommerce_add_to_cart_fragments', 'sciuuuskids_cart_count_fragments');
+
+/**
+ * AJAX endpoint to get current cart count
+ * Used by WooCommerce Blocks cart page which doesn't trigger traditional events
+ */
+function sciuuuskids_ajax_get_cart_count() {
+    if ( ! class_exists( 'WooCommerce' ) || ! WC()->cart ) {
+        wp_send_json_error( 'WooCommerce not available' );
+    }
+
+    $cart_count = WC()->cart->get_cart_contents_count();
+    wp_send_json_success( array(
+        'count' => $cart_count,
+        'display' => $cart_count > 0 ? $cart_count : '',
+        'class' => $cart_count > 0 ? 'cart-count' : 'cart-count is-empty',
+    ) );
+}
+add_action( 'wp_ajax_sciuuuskids_get_cart_count', 'sciuuuskids_ajax_get_cart_count' );
+add_action( 'wp_ajax_nopriv_sciuuuskids_get_cart_count', 'sciuuuskids_ajax_get_cart_count' );
+
+/**
+ * Localize script with AJAX URL for cart count updates
+ */
+function sciuuuskids_localize_cart_ajax() {
+    wp_localize_script( 'custom-scripts', 'sciuuuskidsCartAjax', array(
+        'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+        'action'  => 'sciuuuskids_get_cart_count',
+    ) );
+}
+add_action( 'wp_enqueue_scripts', 'sciuuuskids_localize_cart_ajax', 20 );
 
 /**
  * Remove default Blocksy header/footer hooks

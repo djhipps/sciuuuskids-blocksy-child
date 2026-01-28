@@ -1,8 +1,8 @@
 /**
  * Custom JavaScript for SciuuuS Kids
- * 
+ *
  * @package Blocksy_Child_SciuuusKids
- * @version 1.0.3
+ * @version 1.0.4
  */
 
 (function($) {
@@ -215,8 +215,11 @@
     /**
      * Add to Cart AJAX Update (WooCommerce)
      */
-    if (typeof wc_add_to_cart_params !== 'undefined') {
+    (function() {
         let cartFragmentTimer;
+        let cartCountTimer;
+
+        // Refresh traditional WooCommerce fragments
         const refreshCartFragments = function() {
             if (typeof wc_cart_fragments_params === 'undefined') {
                 return;
@@ -229,26 +232,116 @@
             }, 150);
         };
 
-        $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
-            // Cart count is updated via fragments; ensure the badge exists.
-            refreshCartFragments();
+        // Fetch cart count via custom AJAX endpoint (for WooCommerce Blocks)
+        const fetchCartCount = function() {
+            if (typeof sciuuuskidsCartAjax === 'undefined') {
+                return;
+            }
+            if (cartCountTimer) {
+                clearTimeout(cartCountTimer);
+            }
+            // Delay to allow Store API to complete
+            cartCountTimer = setTimeout(function() {
+                $.ajax({
+                    url: sciuuuskidsCartAjax.ajaxUrl,
+                    type: 'POST',
+                    data: {
+                        action: sciuuuskidsCartAjax.action
+                    },
+                    success: function(response) {
+                        if (response.success && response.data) {
+                            var $cartCount = $('span.cart-count');
+                            if ($cartCount.length) {
+                                $cartCount
+                                    .removeClass('is-empty')
+                                    .attr('class', response.data.class)
+                                    .attr('data-count', response.data.count)
+                                    .text(response.data.display);
 
-            // Add animation to cart icon
-            $('.cart-link').addClass('cart-updated');
-            
-            setTimeout(function() {
-                $('.cart-link').removeClass('cart-updated');
-            }, 1000);
+                                // Add animation
+                                $('.cart-link').addClass('cart-updated');
+                                setTimeout(function() {
+                                    $('.cart-link').removeClass('cart-updated');
+                                }, 1000);
+                            }
+                        }
+                    }
+                });
+            }, 800); // Wait for Store API to complete
+        };
+
+        // Traditional WooCommerce events (product pages, etc.)
+        if (typeof wc_add_to_cart_params !== 'undefined') {
+            $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
+                refreshCartFragments();
+                $('.cart-link').addClass('cart-updated');
+                setTimeout(function() {
+                    $('.cart-link').removeClass('cart-updated');
+                }, 1000);
+            });
+
+            $(document.body).on('removed_from_cart updated_cart_totals updated_wc_div', function() {
+                refreshCartFragments();
+            });
+        }
+
+        // WooCommerce Blocks cart page listeners
+        // Listen for clicks on remove button and quantity buttons
+        $(document).on('click', '.wc-block-cart-item__remove-link, .wc-block-components-quantity-selector__button', function() {
+            fetchCartCount();
         });
 
-        $(document.body).on('removed_from_cart updated_cart_totals updated_wc_div', function() {
-            refreshCartFragments();
+        // Listen for quantity input changes
+        $(document).on('change', '.wc-block-components-quantity-selector__input', function() {
+            fetchCartCount();
         });
 
-        $(document).on('wc-blocks_cart_updated wc-blocks_checkout_updated', function() {
-            refreshCartFragments();
-        });
-    }
+        // MutationObserver to catch all cart changes (fallback for edge cases)
+        if (typeof MutationObserver !== 'undefined') {
+            var cartObserver = null;
+
+            var initCartObserver = function() {
+                var cartContainer = document.querySelector('.wc-block-cart');
+                if (!cartContainer || cartObserver) {
+                    return;
+                }
+
+                var lastItemCount = cartContainer.querySelectorAll('.wc-block-cart-items__row').length;
+
+                cartObserver = new MutationObserver(function(mutations) {
+                    var hasRelevantChange = false;
+                    var currentItemCount = cartContainer.querySelectorAll('.wc-block-cart-items__row').length;
+
+                    // Check if item count changed
+                    if (currentItemCount !== lastItemCount) {
+                        hasRelevantChange = true;
+                        lastItemCount = currentItemCount;
+                    }
+
+                    // Check for subtree changes that might indicate quantity updates
+                    mutations.forEach(function(mutation) {
+                        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                            hasRelevantChange = true;
+                        }
+                    });
+
+                    if (hasRelevantChange) {
+                        fetchCartCount();
+                    }
+                });
+
+                cartObserver.observe(cartContainer, {
+                    childList: true,
+                    subtree: true
+                });
+            };
+
+            // Initialize observer when DOM is ready and on page load
+            $(document).ready(function() {
+                setTimeout(initCartObserver, 500);
+            });
+        }
+    })();
 
     /**
      * Scroll to Top Button (Optional)
