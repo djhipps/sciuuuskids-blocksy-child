@@ -57,11 +57,16 @@ function blocksy_child_enqueue_styles() {
     );
     
     // Custom content CSS (pages, posts, WooCommerce)
+    // Depends on wc-blocks-style to ensure it loads AFTER WooCommerce block CSS
+    $content_deps = array('blocksy-style', 'google-fonts-quicksand');
+    if (wp_style_is('wc-blocks-style', 'registered') || wp_style_is('wc-blocks-style', 'enqueued')) {
+        $content_deps[] = 'wc-blocks-style';
+    }
     wp_enqueue_style(
         'custom-content',
         get_stylesheet_directory_uri() . '/assets/css/content-custom.css',
-        array('blocksy-style', 'google-fonts-quicksand'),
-        '1.1.1'
+        $content_deps,
+        '1.1.2'
     );
     
     // Homepage patterns CSS
@@ -136,6 +141,64 @@ function sciuuuskids_hide_blocksy_footer() {
     </style>';
 }
 add_action('wp_head', 'sciuuuskids_hide_blocksy_footer', 100);
+
+/**
+ * Inject high-priority inline CSS for empty cart product grid.
+ * This runs at wp_head priority 999 to ensure it loads AFTER all WooCommerce block CSS.
+ * Fixes the legacy wc-block-grid product cards appearing as thin columns.
+ */
+function sciuuuskids_empty_cart_grid_fix() {
+    if ( ! is_cart() ) {
+        return;
+    }
+    ?>
+    <style id="sciuuuskids-empty-cart-grid-fix">
+        /* Force legacy WooCommerce product grid to use CSS Grid layout */
+        body.woocommerce-cart .wc-block-grid.has-3-columns,
+        body.woocommerce-cart .wp-block-woocommerce-empty-cart-block .wc-block-grid {
+            display: block !important;
+            width: 100% !important;
+            max-width: 900px !important;
+            margin: 0 auto !important;
+        }
+        body.woocommerce-cart .wc-block-grid.has-3-columns .wc-block-grid__products,
+        body.woocommerce-cart .wc-block-grid .wc-block-grid__products,
+        body.woocommerce-cart .wp-block-woocommerce-empty-cart-block .wc-block-grid__products,
+        body.woocommerce-cart ul.wc-block-grid__products {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 25px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            list-style: none !important;
+            padding: 20px 0 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+        }
+        body.woocommerce-cart .wc-block-grid.has-3-columns .wc-block-grid__product,
+        body.woocommerce-cart .wc-block-grid .wc-block-grid__product,
+        body.woocommerce-cart .wp-block-woocommerce-empty-cart-block .wc-block-grid__product {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            flex: unset !important;
+            float: none !important;
+            margin: 0 !important;
+        }
+        body.woocommerce-cart .wc-block-grid__product .wc-block-grid__product-link {
+            display: block !important;
+            width: 100% !important;
+        }
+        body.woocommerce-cart .wc-block-grid__product .wc-block-grid__product-image {
+            display: block !important;
+            width: 100% !important;
+        }
+    </style>
+    <?php
+}
+add_action('wp_head', 'sciuuuskids_empty_cart_grid_fix', 999);
 
 /**
  * Add body classes for custom header/footer
