@@ -266,25 +266,18 @@
     position: relative;
 }
 
-/* X mark for out-of-stock/disabled variations */
-.single-product .variable-item.disabled .variable-item-contents::before,
+/* X mark for out-of-stock/disabled variations - works with Variation Swatches for WooCommerce plugin */
 .single-product .variable-item.disabled .variable-item-contents::after {
-    content: '';
+    content: '✕';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 70%;
-    height: 2px;
-    background-color: #e74c3c;
-    transform-origin: center;
-}
-
-.single-product .variable-item.disabled .variable-item-contents::before {
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.single-product .variable-item.disabled .variable-item-contents::after {
-    transform: translate(-50%, -50%) rotate(-45deg);
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: 700;
+    color: #e74c3c;
+    line-height: 1;
+    pointer-events: none;
 }
 
 /* Reset variations link */
