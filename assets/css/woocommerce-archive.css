@@ -35,51 +35,41 @@
 }
 
 /* ==========================================================================
-   WooCommerce Result Count & Ordering - Aligned with Product Grid
+   Blocksy WooCommerce Shop - Result Count & Ordering
+   Uses .woo-listing-top container
    ========================================================================== */
 
-/* Wrapper for result count and ordering */
-.woocommerce-shop .woocommerce-notices-wrapper + .woocommerce-result-count,
-.woocommerce-shop .woocommerce-result-count,
-.woocommerce-shop .woocommerce-ordering,
-.post-type-archive-product .woocommerce-result-count,
-.post-type-archive-product .woocommerce-ordering,
-.tax-product_cat .woocommerce-result-count,
-.tax-product_cat .woocommerce-ordering {
+/* Blocksy's listing top container - holds result count + ordering */
+.woo-listing-top {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     max-width: 1200px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin: 0 auto 20px !important;
     padding: 0 20px !important;
     box-sizing: border-box !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
 }
 
-/* Container that holds both result count and ordering */
-.woocommerce-shop .ct-container > .woocommerce-result-count,
-.woocommerce-shop .ct-container > .woocommerce-ordering,
-.post-type-archive-product .ct-container > .woocommerce-result-count,
-.post-type-archive-product .ct-container > .woocommerce-ordering {
-    display: inline-block !important;
-}
-
-/* Result count styling - left aligned */
-.woocommerce-result-count {
+/* Result count styling */
+.woo-listing-top .woocommerce-result-count {
     font-family: var(--font-primary, 'Quicksand') !important;
     font-size: 14px !important;
     font-weight: 500 !important;
     color: var(--brand-gray-medium, #666) !important;
-    text-transform: none !important;
-    letter-spacing: 0.3px !important;
-    float: left !important;
-    margin: 0 0 20px 0 !important;
-    padding-top: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    order: 1 !important;
 }
 
-/* Ordering dropdown - right aligned */
-.woocommerce-ordering {
-    float: right !important;
-    margin: 0 0 20px 0 !important;
+/* Ordering dropdown */
+.woo-listing-top .woocommerce-ordering {
+    margin: 0 !important;
+    order: 2 !important;
 }
 
+.woo-listing-top .woocommerce-ordering select,
 .woocommerce-ordering select {
     font-family: var(--font-primary, 'Quicksand') !important;
     font-size: 14px !important;
@@ -106,13 +96,54 @@
     outline: none !important;
 }
 
-/* Clear floats after result count and ordering */
-.woocommerce-shop .woocommerce-ordering::after,
-.post-type-archive-product .woocommerce-ordering::after,
-.tax-product_cat .woocommerce-ordering::after {
-    content: "" !important;
-    display: table !important;
-    clear: both !important;
+/* ==========================================================================
+   Blocksy Pagination (nav.ct-pagination)
+   ========================================================================== */
+
+nav.ct-pagination {
+    max-width: 1200px !important;
+    margin: 40px auto !important;
+    padding: 0 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+nav.ct-pagination .page-numbers {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    padding: 0 12px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: var(--brand-gray-dark, #333) !important;
+    background: var(--brand-white, #fff) !important;
+    border: 1px solid var(--brand-gray-light, #ddd) !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+
+nav.ct-pagination .page-numbers:hover {
+    background: var(--brand-orange, #FC7D06) !important;
+    color: var(--brand-white, #fff) !important;
+    border-color: var(--brand-orange, #FC7D06) !important;
+}
+
+nav.ct-pagination .page-numbers.current {
+    background: var(--brand-orange, #FC7D06) !important;
+    color: var(--brand-white, #fff) !important;
+    border-color: var(--brand-orange, #FC7D06) !important;
+}
+
+/* Next/Prev buttons */
+nav.ct-pagination .next,
+nav.ct-pagination .prev {
+    padding: 0 15px !important;
 }
 
 /* ==========================================================================
@@ -363,6 +394,11 @@ li.wc-block-product {
     }
 
     /* Result count and ordering tablet */
+    .woo-listing-top {
+        padding: 0 15px !important;
+    }
+
+    .woo-listing-top .woocommerce-result-count,
     .woocommerce-result-count {
         font-size: 13px !important;
     }
@@ -370,6 +406,11 @@ li.wc-block-product {
     .woocommerce-ordering select {
         min-width: 180px !important;
         font-size: 13px !important;
+    }
+
+    /* Tablet pagination */
+    nav.ct-pagination {
+        padding: 0 15px !important;
     }
 }
 
@@ -396,55 +437,65 @@ li.wc-block-product {
         padding: 10px 0 !important;
     }
 
-    /* Result count and ordering mobile - horizontal row */
-    .woocommerce-result-count,
-    .woocommerce-ordering {
-        float: none !important;
-        display: inline-block !important;
-        vertical-align: middle !important;
-        max-width: none !important;
-        padding: 0 !important;
+    /* ==========================================================
+       Blocksy Mobile: Override ct-hidden-sm to SHOW result count
+       ========================================================== */
+
+    /* CRITICAL: Override Blocksy's ct-hidden-sm that hides result count on mobile */
+    .woocommerce-result-count.ct-hidden-sm,
+    .woo-listing-top .woocommerce-result-count.ct-hidden-sm,
+    p.woocommerce-result-count.ct-hidden-sm {
+        display: block !important;
+        visibility: visible !important;
     }
 
-    /* Result count - abbreviated display on mobile */
+    /* Mobile .woo-listing-top layout */
+    .woo-listing-top {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0 12px !important;
+        gap: 8px !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* Result count - compact on mobile */
+    .woo-listing-top .woocommerce-result-count,
     .woocommerce-result-count {
         font-size: 11px !important;
         margin: 0 !important;
-        padding: 8px 0 !important;
-        text-align: left !important;
-        width: auto !important;
+        padding: 0 !important;
         white-space: nowrap !important;
+        flex: 0 1 auto !important;
     }
 
     /* Ordering dropdown - compact on mobile */
+    .woo-listing-top .woocommerce-ordering,
     .woocommerce-ordering {
         margin: 0 !important;
-        text-align: right !important;
+        flex: 0 0 auto !important;
     }
 
     .woocommerce-ordering select {
-        width: auto !important;
-        min-width: 140px !important;
-        max-width: 180px !important;
-        padding: 6px 28px 6px 10px !important;
+        min-width: 130px !important;
+        max-width: 160px !important;
+        padding: 6px 28px 6px 8px !important;
         font-size: 12px !important;
     }
 
-    /* Wrapper container for result count + ordering on mobile */
-    .post-type-archive-product .ct-container > .woocommerce-result-count,
-    .post-type-archive-product .ct-container > .woocommerce-ordering,
-    .woocommerce-shop .ct-container > .woocommerce-result-count,
-    .woocommerce-shop .ct-container > .woocommerce-ordering {
-        display: inline-block !important;
+    /* Mobile pagination */
+    nav.ct-pagination {
+        margin: 25px auto !important;
+        padding: 0 12px !important;
+        gap: 6px !important;
+        flex-wrap: wrap !important;
     }
 
-    /* Shop controls wrapper - flex layout */
-    .woocommerce-shop .woocommerce-notices-wrapper ~ .woocommerce-result-count,
-    .woocommerce-shop .woocommerce-notices-wrapper ~ .woocommerce-ordering,
-    .post-type-archive-product .woocommerce-notices-wrapper ~ .woocommerce-result-count,
-    .post-type-archive-product .woocommerce-notices-wrapper ~ .woocommerce-ordering {
-        max-width: none !important;
-        padding: 0 12px !important;
+    nav.ct-pagination .page-numbers {
+        min-width: 36px !important;
+        height: 36px !important;
+        padding: 0 10px !important;
+        font-size: 13px !important;
     }
 
     /* Hide Blocksy pagination arrows on mobile if present */
