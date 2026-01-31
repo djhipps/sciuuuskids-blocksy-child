@@ -5,15 +5,106 @@
  */
 
 /* ==========================================================================
-   Category Header
+   Category/Archive Hero Section - Match Product Collection Style
    ========================================================================== */
+
+/* Archive/Shop page hero section with proper padding */
+.post-type-archive-product .hero-section,
+.woocommerce-shop .hero-section,
+.tax-product_cat .hero-section,
+.tax-product_tag .hero-section {
+    padding: 50px 20px 30px !important;
+    margin-bottom: 0 !important;
+    background: var(--brand-white, #fff) !important;
+}
 
 .hero-section h1.page-title {
     font-family: var(--font-display, 'Gochi Hand') !important;
     color: var(--brand-black, #000) !important;
     font-size: var(--font-size-h1, 42px) !important;
     text-align: center !important;
-    margin-bottom: var(--spacing-base, 20px) !important;
+    margin-bottom: 0 !important;
+}
+
+/* ==========================================================================
+   WooCommerce Result Count & Ordering - Aligned with Product Grid
+   ========================================================================== */
+
+/* Wrapper for result count and ordering */
+.woocommerce-shop .woocommerce-notices-wrapper + .woocommerce-result-count,
+.woocommerce-shop .woocommerce-result-count,
+.woocommerce-shop .woocommerce-ordering,
+.post-type-archive-product .woocommerce-result-count,
+.post-type-archive-product .woocommerce-ordering,
+.tax-product_cat .woocommerce-result-count,
+.tax-product_cat .woocommerce-ordering {
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* Container that holds both result count and ordering */
+.woocommerce-shop .ct-container > .woocommerce-result-count,
+.woocommerce-shop .ct-container > .woocommerce-ordering,
+.post-type-archive-product .ct-container > .woocommerce-result-count,
+.post-type-archive-product .ct-container > .woocommerce-ordering {
+    display: inline-block !important;
+}
+
+/* Result count styling - left aligned */
+.woocommerce-result-count {
+    font-family: var(--font-primary, 'Quicksand') !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--brand-gray-medium, #666) !important;
+    text-transform: none !important;
+    letter-spacing: 0.3px !important;
+    float: left !important;
+    margin: 0 0 20px 0 !important;
+    padding-top: 8px !important;
+}
+
+/* Ordering dropdown - right aligned */
+.woocommerce-ordering {
+    float: right !important;
+    margin: 0 0 20px 0 !important;
+}
+
+.woocommerce-ordering select {
+    font-family: var(--font-primary, 'Quicksand') !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--brand-gray-dark, #333) !important;
+    background: var(--brand-white, #fff) !important;
+    border: 1px solid var(--brand-gray-light, #ddd) !important;
+    border-radius: 4px !important;
+    padding: 8px 35px 8px 12px !important;
+    cursor: pointer !important;
+    transition: border-color 0.2s ease !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    min-width: 200px !important;
+}
+
+.woocommerce-ordering select:hover,
+.woocommerce-ordering select:focus {
+    border-color: var(--brand-orange, #FC7D06) !important;
+    outline: none !important;
+}
+
+/* Clear floats after result count and ordering */
+.woocommerce-shop .woocommerce-ordering::after,
+.post-type-archive-product .woocommerce-ordering::after,
+.tax-product_cat .woocommerce-ordering::after {
+    content: "" !important;
+    display: table !important;
+    clear: both !important;
 }
 
 /* ==========================================================================
@@ -251,9 +342,26 @@ li.wc-block-product {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 20px !important;
     }
-    
+
     .hero-section h1.page-title {
         font-size: 36px !important;
+    }
+
+    /* Archive hero section tablet */
+    .post-type-archive-product .hero-section,
+    .woocommerce-shop .hero-section,
+    .tax-product_cat .hero-section {
+        padding: 40px 20px 25px !important;
+    }
+
+    /* Result count and ordering tablet */
+    .woocommerce-result-count {
+        font-size: 13px !important;
+    }
+
+    .woocommerce-ordering select {
+        min-width: 180px !important;
+        font-size: 13px !important;
     }
 }
 
@@ -268,21 +376,53 @@ li.wc-block-product {
         gap: 20px !important;
         margin: 20px auto !important;
     }
-    
+
     .hero-section h1.page-title {
         font-size: 30px !important;
     }
-    
+
+    /* Archive hero section mobile */
+    .post-type-archive-product .hero-section,
+    .woocommerce-shop .hero-section,
+    .tax-product_cat .hero-section {
+        padding: 30px 15px 20px !important;
+    }
+
+    /* Result count and ordering mobile - stack vertically */
+    .woocommerce-result-count,
+    .woocommerce-ordering {
+        float: none !important;
+        display: block !important;
+        text-align: center !important;
+        max-width: 100% !important;
+        padding: 0 15px !important;
+    }
+
+    .woocommerce-result-count {
+        margin: 0 0 15px 0 !important;
+        padding-top: 0 !important;
+    }
+
+    .woocommerce-ordering {
+        margin: 0 auto 20px !important;
+    }
+
+    .woocommerce-ordering select {
+        width: 100% !important;
+        max-width: 300px !important;
+        min-width: unset !important;
+    }
+
     .wc-block-product h2.wp-block-post-title {
         font-size: 16px !important;
         margin: 15px 15px 8px !important;
     }
-    
+
     .wc-block-product .wc-block-components-product-price {
         font-size: 24px !important;
         margin: 0 15px 12px !important;
     }
-    
+
     .wc-block-product .wc-block-components-product-button {
         margin: 0 15px 15px !important;
     }
