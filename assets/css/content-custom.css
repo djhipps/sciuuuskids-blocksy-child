@@ -1266,16 +1266,26 @@ body.woocommerce-cart .wc-block-grid__product .wp-block-button__link:hover {
 
 /* Responsive: Mobile (1 column for empty cart products) */
 @media (max-width: 480px) {
+    /* Force 1 column on mobile - maximum specificity */
     .woocommerce-cart .wc-block-product-template,
     .woocommerce-cart ul.wc-block-product-template,
     .woocommerce-cart ul.products,
+    body.woocommerce-cart .wp-block-woocommerce-empty-cart-block .wc-block-grid__products,
+    body.woocommerce-cart .wp-block-woocommerce-empty-cart-block ul.wc-block-grid__products,
     body.woocommerce-cart .wc-block-grid.has-3-columns .wc-block-grid__products,
+    body.woocommerce-cart .wc-block-grid.has-3-columns > .wc-block-grid__products,
+    body.woocommerce-cart .wc-block-grid .wc-block-grid__products,
+    body.woocommerce-cart .wp-block-product-new .wc-block-grid__products,
+    body.woocommerce-cart ul.wc-block-grid__products,
     body.woocommerce-cart .wc-block-grid__products {
         grid-template-columns: 1fr !important;
         gap: 15px !important;
     }
 
     .woocommerce-cart .wc-block-product,
+    body.woocommerce-cart .wp-block-woocommerce-empty-cart-block .wc-block-grid__product,
+    body.woocommerce-cart .wc-block-grid.has-3-columns .wc-block-grid__products .wc-block-grid__product,
+    body.woocommerce-cart .wc-block-grid .wc-block-grid__product,
     body.woocommerce-cart .wc-block-grid__product,
     .woocommerce-cart li.product {
         min-height: auto !important;
