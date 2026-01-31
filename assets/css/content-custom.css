@@ -900,9 +900,20 @@ a.wc-block-components-empty-cart__browse-store {
    ========================================================================== */
 
 /* --- Container: the outer div.wc-block-grid wrapper --- */
+/* Empty cart container - wider layout */
 body.woocommerce-cart .wp-block-woocommerce-empty-cart-block .wc-block-grid,
 body.woocommerce-cart .wp-block-woocommerce-empty-cart-block .wp-block-product-new,
-body.woocommerce-cart .wp-block-woocommerce-empty-cart-block .wc-block-grid.has-3-columns,
+body.woocommerce-cart .wp-block-woocommerce-empty-cart-block .wc-block-grid.has-3-columns {
+    display: block !important;
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+}
+
+/* Other cart grid containers */
 body.woocommerce-cart .wc-block-grid.wp-block-product-new {
     display: block !important;
     max-width: 900px !important;

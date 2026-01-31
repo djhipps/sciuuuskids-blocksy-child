@@ -430,6 +430,12 @@ li.wc-block-product {
         font-size: 12px !important;
     }
 
+    /* Blocksy sort icon positioning */
+    .woo-listing-top .woocommerce-ordering .ct-sort-icon {
+        position: inherit !important;
+        margin-left: 5px !important;
+    }
+
     /* Wrapper container for result count + ordering on mobile */
     .post-type-archive-product .ct-container > .woocommerce-result-count,
     .post-type-archive-product .ct-container > .woocommerce-ordering,

@@ -379,3 +379,15 @@ function sciuuuskids_get_stock_urgency_data( $stock_qty ) {
         'class' => $class
     );
 }
+
+/**
+ * Change "Select options" button text to "Scegli" for variable products
+ * This applies to the shop page and archive pages
+ */
+function sciuuuskids_variable_product_button_text( $text, $product ) {
+    if ( $product->is_type( 'variable' ) ) {
+        return __( 'Scegli', 'blocksy-child' );
+    }
+    return $text;
+}
+add_filter( 'woocommerce_product_add_to_cart_text', 'sciuuuskids_variable_product_button_text', 10, 2 );
