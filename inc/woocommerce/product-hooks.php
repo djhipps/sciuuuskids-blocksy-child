@@ -82,13 +82,31 @@ add_filter( 'woocommerce_output_related_products_args', 'sciuuuskids_related_pro
 /**
  * Add barefoot shoes description to all products
  * Displays after short description and divider
+ * Uses product short description if available, otherwise shows default text
  */
 function sciuuuskids_barefoot_description() {
-    ?>
-    <div class="barefoot-description">
-        Scarpe barefoot in pelle certificata LWG. Perfette per lo sviluppo naturale del piede del bambino.
-    </div>
-    <?php
+    global $product;
+
+    if ( ! $product ) {
+        return;
+    }
+
+    $short_description = $product->get_short_description();
+
+    if ( ! empty( $short_description ) ) {
+        ?>
+        <div class="barefoot-description">
+            <?php echo wp_kses_post( $short_description ); ?>
+        </div>
+        <?php
+    } else {
+        $product_name = $product->get_name();
+        ?>
+        <div class="barefoot-description">
+            Le scarpe barefoot <?php echo esc_html( $product_name ); ?> sono realizzate con materiali atossici e di alta qualità per la pelle sensibile dei più piccoli. Progettate per assecondare lo sviluppo naturale del piede, offrono una suola ultra-flessibile e ampio spazio per le dita.
+        </div>
+        <?php
+    }
 }
 add_action( 'woocommerce_single_product_summary', 'sciuuuskids_barefoot_description', 25 );
 
