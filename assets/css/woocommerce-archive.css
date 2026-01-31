@@ -367,3 +367,261 @@ span.onsale,
     text-transform: uppercase !important;
     letter-spacing: 0.5px !important;
 }
+
+/* ==========================================================================
+   Shop Page - Blocksy Theme Override
+   High specificity selectors to override Blocksy theme defaults
+   ========================================================================== */
+
+/* Reset Blocksy's column CSS variables and force grid */
+body.woocommerce-shop .site-main ul.products,
+body.woocommerce-shop .content-area ul.products,
+body.woocommerce-shop [class*="products"],
+body.post-type-archive-product .site-main ul.products,
+body.post-type-archive-product .content-area ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 25px !important;
+    list-style: none !important;
+    padding: 0 20px !important;
+    margin: 30px auto !important;
+    max-width: 1200px !important;
+    width: 100% !important;
+    --columns: 3 !important;
+    --grid-columns: 3 !important;
+}
+
+/* Override Blocksy's flex/column behavior */
+body.woocommerce-shop ul.products[data-columns],
+body.post-type-archive-product ul.products[data-columns] {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    flex-wrap: unset !important;
+}
+
+/* Product card - Override Blocksy's card styling */
+body.woocommerce-shop ul.products li.product,
+body.woocommerce-shop ul.products .product,
+body.woocommerce-shop .products li.product,
+body.post-type-archive-product ul.products li.product,
+body.post-type-archive-product ul.products .product {
+    background: var(--brand-white, #fff) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    flex: none !important;
+    --card-background: var(--brand-white, #fff) !important;
+}
+
+body.woocommerce-shop ul.products li.product:hover,
+body.post-type-archive-product ul.products li.product:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Hide Blocksy-specific elements we don't want */
+body.woocommerce-shop ul.products li.product .product-category,
+body.woocommerce-shop ul.products li.product .entry-meta,
+body.woocommerce-shop ul.products li.product .ct-woo-card-actions,
+body.post-type-archive-product ul.products li.product .product-category,
+body.post-type-archive-product ul.products li.product .entry-meta,
+body.post-type-archive-product ul.products li.product .ct-woo-card-actions {
+    display: none !important;
+}
+
+/* Product image - Blocksy uses figure.ct-media-container */
+body.woocommerce-shop ul.products li.product figure,
+body.woocommerce-shop ul.products li.product .ct-media-container,
+body.post-type-archive-product ul.products li.product figure,
+body.post-type-archive-product ul.products li.product .ct-media-container {
+    position: relative !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+body.woocommerce-shop ul.products li.product figure img,
+body.woocommerce-shop ul.products li.product .ct-media-container img,
+body.woocommerce-shop ul.products li.product img.wp-post-image,
+body.woocommerce-shop ul.products li.product img.attachment-woocommerce_thumbnail,
+body.post-type-archive-product ul.products li.product figure img,
+body.post-type-archive-product ul.products li.product .ct-media-container img,
+body.post-type-archive-product ul.products li.product img.wp-post-image {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4/3 !important;
+    object-fit: cover !important;
+    display: block !important;
+    transition: transform 0.8s ease !important;
+    border-radius: 0 !important;
+}
+
+body.woocommerce-shop ul.products li.product:hover figure img,
+body.woocommerce-shop ul.products li.product:hover .ct-media-container img,
+body.post-type-archive-product ul.products li.product:hover figure img,
+body.post-type-archive-product ul.products li.product:hover .ct-media-container img {
+    transform: scale(1.05) !important;
+}
+
+/* Product title - Blocksy wraps in h2.woocommerce-loop-product__title */
+body.woocommerce-shop ul.products li.product h2.woocommerce-loop-product__title,
+body.woocommerce-shop ul.products li.product .woocommerce-loop-product__title,
+body.post-type-archive-product ul.products li.product h2.woocommerce-loop-product__title,
+body.post-type-archive-product ul.products li.product .woocommerce-loop-product__title {
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin: 20px 20px 10px !important;
+    padding: 0 !important;
+    color: var(--brand-black, #000) !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    background: transparent !important;
+    order: 2 !important;
+}
+
+body.woocommerce-shop ul.products li.product a:hover .woocommerce-loop-product__title,
+body.post-type-archive-product ul.products li.product a:hover .woocommerce-loop-product__title {
+    color: var(--brand-orange, #FC7D06) !important;
+}
+
+/* Product price */
+body.woocommerce-shop ul.products li.product .price,
+body.woocommerce-shop ul.products li.product span.price,
+body.post-type-archive-product ul.products li.product .price,
+body.post-type-archive-product ul.products li.product span.price {
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: var(--brand-black, #000) !important;
+    text-align: center !important;
+    margin: 0 20px 15px !important;
+    padding: 0 !important;
+    display: block !important;
+    order: 3 !important;
+}
+
+body.woocommerce-shop ul.products li.product .price del,
+body.post-type-archive-product ul.products li.product .price del {
+    font-size: 18px !important;
+    opacity: 0.6 !important;
+}
+
+body.woocommerce-shop ul.products li.product .price ins,
+body.post-type-archive-product ul.products li.product .price ins {
+    text-decoration: none !important;
+}
+
+/* Add to cart button - Blocksy puts in .ct-woo-card-actions, we show our own */
+body.woocommerce-shop ul.products li.product a.button,
+body.woocommerce-shop ul.products li.product a.add_to_cart_button,
+body.woocommerce-shop ul.products li.product .button,
+body.post-type-archive-product ul.products li.product a.button,
+body.post-type-archive-product ul.products li.product a.add_to_cart_button,
+body.post-type-archive-product ul.products li.product .button {
+    display: block !important;
+    width: calc(100% - 40px) !important;
+    margin: auto 20px 20px !important;
+    background-color: var(--brand-orange, #FC7D06) !important;
+    color: var(--brand-white, #fff) !important;
+    padding: 14px 20px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 4px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    transition: background-color 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    order: 4 !important;
+}
+
+body.woocommerce-shop ul.products li.product a.button:hover,
+body.woocommerce-shop ul.products li.product a.add_to_cart_button:hover,
+body.post-type-archive-product ul.products li.product a.button:hover,
+body.post-type-archive-product ul.products li.product a.add_to_cart_button:hover {
+    background-color: #e06d05 !important;
+    color: var(--brand-white, #fff) !important;
+}
+
+/* Variable product button */
+body.woocommerce-shop ul.products li.product a.product_type_variable,
+body.post-type-archive-product ul.products li.product a.product_type_variable {
+    display: block !important;
+    width: calc(100% - 40px) !important;
+    margin: auto 20px 20px !important;
+    background-color: var(--brand-orange, #FC7D06) !important;
+    color: var(--brand-white, #fff) !important;
+    padding: 14px 20px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 4px !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    border: none !important;
+    order: 4 !important;
+}
+
+/* Shop page responsive - Tablet (2 columns) */
+@media (max-width: 1024px) {
+    body.woocommerce-shop .site-main ul.products,
+    body.woocommerce-shop ul.products,
+    body.woocommerce-shop ul.products[data-columns],
+    body.post-type-archive-product .site-main ul.products,
+    body.post-type-archive-product ul.products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        --columns: 2 !important;
+        --grid-columns: 2 !important;
+    }
+}
+
+/* Shop page responsive - Mobile (1 column) */
+@media (max-width: 640px) {
+    body.woocommerce-shop .site-main ul.products,
+    body.woocommerce-shop ul.products,
+    body.woocommerce-shop ul.products[data-columns],
+    body.post-type-archive-product .site-main ul.products,
+    body.post-type-archive-product ul.products {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        margin: 20px auto !important;
+        --columns: 1 !important;
+        --grid-columns: 1 !important;
+    }
+
+    body.woocommerce-shop ul.products li.product h2.woocommerce-loop-product__title,
+    body.woocommerce-shop ul.products li.product .woocommerce-loop-product__title,
+    body.post-type-archive-product ul.products li.product h2.woocommerce-loop-product__title,
+    body.post-type-archive-product ul.products li.product .woocommerce-loop-product__title {
+        font-size: 16px !important;
+        margin: 15px 15px 8px !important;
+    }
+
+    body.woocommerce-shop ul.products li.product .price,
+    body.post-type-archive-product ul.products li.product .price {
+        font-size: 24px !important;
+        margin: 0 15px 12px !important;
+    }
+
+    body.woocommerce-shop ul.products li.product a.button,
+    body.woocommerce-shop ul.products li.product a.add_to_cart_button,
+    body.post-type-archive-product ul.products li.product a.button,
+    body.post-type-archive-product ul.products li.product a.add_to_cart_button {
+        width: calc(100% - 30px) !important;
+        margin: auto 15px 15px !important;
+    }
+}
