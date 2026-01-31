@@ -366,6 +366,53 @@
     cursor: not-allowed;
 }
 
+/* ==========================================================================
+   Add to Cart + View Cart Button Layout (when both visible)
+   ========================================================================== */
+
+/* Container for both buttons - flex layout */
+.single-product form.cart {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+}
+
+/* When view cart button appears, adjust add to cart button */
+.single-product .single_add_to_cart_button.added {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    font-size: 14px !important;
+    padding: 0 15px !important;
+}
+
+/* View Cart button (Visualizza carrello) */
+.single-product a.added_to_cart,
+.single-product .added_to_cart {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 1 auto !important;
+    height: 50px !important;
+    padding: 0 20px !important;
+    margin-top: 15px !important;
+    background: var(--brand-gray-light, #f1f1f1) !important;
+    color: var(--brand-gray-dark, #333) !important;
+    font-family: var(--font-primary, Quicksand) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    border: 1px solid var(--brand-gray-light, #ddd) !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
+}
+
+.single-product a.added_to_cart:hover {
+    background: var(--brand-gray-dark, #333) !important;
+    color: var(--brand-white, #fff) !important;
+    border-color: var(--brand-gray-dark, #333) !important;
+}
+
 /* Product Config Fields - Remove spacing */
 .single-product .fpf-fields.after-add-to-cart {
     margin-top: 0 !important;
