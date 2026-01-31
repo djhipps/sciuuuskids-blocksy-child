@@ -8,14 +8,22 @@
    Category/Archive Hero Section - Match Product Collection Style
    ========================================================================== */
 
-/* Archive/Shop page hero section with proper padding */
+/* Archive/Shop page hero section - remove excess padding */
 .post-type-archive-product .hero-section,
 .woocommerce-shop .hero-section,
 .tax-product_cat .hero-section,
 .tax-product_tag .hero-section {
-    padding: 50px 20px 30px !important;
     margin-bottom: 0 !important;
     background: var(--brand-white, #fff) !important;
+}
+
+/* Override Blocksy theme container padding and min-height for shop pages */
+.post-type-archive-product .hero-section[data-type="type-2"] > [class*="ct-container"],
+.woocommerce-shop .hero-section[data-type="type-2"] > [class*="ct-container"],
+.tax-product_cat .hero-section[data-type="type-2"] > [class*="ct-container"],
+.tax-product_tag .hero-section[data-type="type-2"] > [class*="ct-container"] {
+    padding: 20px 0 !important;
+    min-height: auto !important;
 }
 
 .hero-section h1.page-title {
@@ -348,10 +356,10 @@ li.wc-block-product {
     }
 
     /* Archive hero section tablet */
-    .post-type-archive-product .hero-section,
-    .woocommerce-shop .hero-section,
-    .tax-product_cat .hero-section {
-        padding: 40px 20px 25px !important;
+    .post-type-archive-product .hero-section[data-type="type-2"] > [class*="ct-container"],
+    .woocommerce-shop .hero-section[data-type="type-2"] > [class*="ct-container"],
+    .tax-product_cat .hero-section[data-type="type-2"] > [class*="ct-container"] {
+        padding: 15px 0 !important;
     }
 
     /* Result count and ordering tablet */
@@ -382,10 +390,10 @@ li.wc-block-product {
     }
 
     /* Archive hero section mobile */
-    .post-type-archive-product .hero-section,
-    .woocommerce-shop .hero-section,
-    .tax-product_cat .hero-section {
-        padding: 30px 15px 20px !important;
+    .post-type-archive-product .hero-section[data-type="type-2"] > [class*="ct-container"],
+    .woocommerce-shop .hero-section[data-type="type-2"] > [class*="ct-container"],
+    .tax-product_cat .hero-section[data-type="type-2"] > [class*="ct-container"] {
+        padding: 10px 0 !important;
     }
 
     /* Result count and ordering mobile - stack vertically */
