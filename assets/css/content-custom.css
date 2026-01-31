@@ -1253,50 +1253,52 @@ body.woocommerce-cart .wc-block-grid__product .wp-block-button__link:hover {
     }
 }
 
-/* Responsive: Mobile (2 columns still, smaller cards) */
+/* Responsive: Mobile (1 column for empty cart products) */
 @media (max-width: 480px) {
     .woocommerce-cart .wc-block-product-template,
     .woocommerce-cart ul.wc-block-product-template,
     .woocommerce-cart ul.products,
     body.woocommerce-cart .wc-block-grid.has-3-columns .wc-block-grid__products,
     body.woocommerce-cart .wc-block-grid__products {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
     }
 
     .woocommerce-cart .wc-block-product,
     body.woocommerce-cart .wc-block-grid__product,
     .woocommerce-cart li.product {
-        min-height: 300px !important;
+        min-height: auto !important;
+        max-width: 350px !important;
+        margin: 0 auto !important;
     }
 
     .woocommerce-cart .wc-block-product h2.wp-block-post-title,
     body.woocommerce-cart .wc-block-grid__product .wc-block-grid__product-title,
     .woocommerce-cart li.product .woocommerce-loop-product__title {
-        font-size: 13px !important;
-        margin: 10px 10px 5px !important;
+        font-size: 16px !important;
+        margin: 15px 15px 8px !important;
     }
 
     .woocommerce-cart .wc-block-product .wc-block-components-product-price,
     body.woocommerce-cart .wc-block-grid__product .wc-block-grid__product-price,
     .woocommerce-cart li.product .price {
-        font-size: 18px !important;
-        margin: 0 10px 10px !important;
+        font-size: 22px !important;
+        margin: 0 15px 12px !important;
     }
 
     .woocommerce-cart .wc-block-product .wc-block-components-product-button,
     body.woocommerce-cart .wc-block-grid__product .wc-block-grid__product-add-to-cart,
     .woocommerce-cart li.product .add_to_cart_button,
     .woocommerce-cart li.product .button {
-        margin: auto 10px 10px !important;
+        margin: auto 15px 15px !important;
     }
 
     .woocommerce-cart .wc-block-product .wp-block-button__link,
     body.woocommerce-cart .wc-block-grid__product .wp-block-button__link,
     .woocommerce-cart li.product .add_to_cart_button,
     .woocommerce-cart li.product .button {
-        padding: 10px 12px !important;
-        font-size: 12px !important;
+        padding: 12px 15px !important;
+        font-size: 14px !important;
     }
 }
 
