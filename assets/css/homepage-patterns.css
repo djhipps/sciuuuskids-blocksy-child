@@ -246,6 +246,10 @@
     margin: 0 auto;
     text-align: center;
     z-index: 2;
+    /* Subtle dark backdrop for text readability */
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 75%) !important;
+    padding: 40px 60px !important;
+    border-radius: 20px;
 }
 
 /* H1 - Radio Canada Bold Uppercase */
@@ -258,7 +262,8 @@
     color: #ffffff !important;
     margin-top: 0 !important;
     margin-bottom: 20px !important;
-    text-shadow: 0 0 19px rgba(0, 0, 0, 0.5) !important;
+    /* Enhanced text shadow for better contrast */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.4) !important;
     line-height: 1.2;
 }
 
@@ -273,7 +278,8 @@
     color: #ffffff !important;
     margin-top: 0 !important;
     margin-bottom: 20px !important;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) !important;
+    /* Enhanced text shadow for better contrast */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 0, 0, 0.3) !important;
     line-height: 1.3;
 }
 
