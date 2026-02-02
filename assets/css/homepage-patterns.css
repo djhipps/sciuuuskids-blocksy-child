@@ -234,6 +234,12 @@
     z-index: 0 !important;
 }
 
+/* Hero Lira variant - centered image positioning */
+.hero-section-bg-lira .wp-block-cover__image-background,
+.hero-section-bg-lira .hero-bg-image {
+    object-position: center center !important;
+}
+
 /* Cover block background overlay */
 .hero-section-bg .wp-block-cover__background {
     background-color: #FAFAFA !important;
