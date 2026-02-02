@@ -26,7 +26,7 @@ return array(
     <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"15px","bottom":"0"}}}} -->
     <div class="wp-block-buttons" style="margin-top:15px;margin-bottom:0">
         <!-- wp:button {"style":{"border":{"radius":"30px","width":"2px","color":"#D86A01"},"typography":{"fontSize":"14px","fontWeight":"600","textTransform":"uppercase","letterSpacing":"1.8px"},"spacing":{"padding":{"top":"15px","bottom":"15px","left":"45px","right":"45px"}},"color":{"text":"#ffffff","background":"#009285"}}} -->
-        <div class="wp-block-button has-custom-font-size" style="font-size:14px"><a class="wp-block-button__link has-text-color has-background has-border-color wp-element-button" href="#" style="border-color:#D86A01;border-width:2px;border-radius:30px;color:#ffffff;background-color:#009285;padding-top:15px;padding-right:45px;padding-bottom:15px;padding-left:45px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase">SCOPRI DI PIù</a></div>
+        <div class="wp-block-button has-custom-font-size" style="font-size:14px"><a class="wp-block-button__link has-text-color has-background has-border-color wp-element-button" href="/scarpe-bambini/" style="border-color:#D86A01;border-width:2px;border-radius:30px;color:#ffffff;background-color:#009285;padding-top:15px;padding-right:45px;padding-bottom:15px;padding-left:45px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase">SCOPRI DI PIù</a></div>
         <!-- /wp:button -->
     </div>
     <!-- /wp:buttons -->
