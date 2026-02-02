@@ -74,7 +74,7 @@ function blocksy_child_enqueue_styles() {
         'homepage-patterns',
         get_stylesheet_directory_uri() . '/assets/css/homepage-patterns.css',
         array('blocksy-style', 'google-fonts-quicksand'),
-        '1.0.1'
+        '1.0.2'
     );
 
     // Product patterns CSS
