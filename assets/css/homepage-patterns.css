@@ -230,7 +230,7 @@
     object-fit: cover !important;
     /* POSITION: object-position controls which part of image is visible (like a mask) */
     /* 85% = show lower portion of image (shoes). Adjust: 50% = center, 100% = very bottom */
-    object-position: center 85% !important;
+    object-position: center 95% !important;
     z-index: 0 !important;
 }
 
