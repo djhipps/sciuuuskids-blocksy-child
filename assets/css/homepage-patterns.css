@@ -229,8 +229,8 @@
     height: 140% !important;
     object-fit: cover !important;
     /* ZOOM: adjust scale to zoom in/out (0.7 = more zoomed out, 1 = normal) */
-    /* POSITION: adjust translate to move image (e.g., -50%, -40% moves image up) */
-    transform: translate(-50%, -50%) scale(0.75) !important;
+    /* POSITION: adjust translate Y to show shoes (-65% shifts image up to reveal bottom) */
+    transform: translate(-50%, -65%) scale(0.75) !important;
     z-index: 0 !important;
 }
 
