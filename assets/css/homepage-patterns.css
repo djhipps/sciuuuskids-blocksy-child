@@ -223,14 +223,14 @@
 .hero-section-bg .wp-block-cover__image-background,
 .hero-section-bg .hero-bg-image {
     position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    width: 140% !important;
-    height: 140% !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover !important;
-    /* ZOOM: adjust scale to zoom in/out (0.7 = more zoomed out, 1 = normal) */
-    /* POSITION: adjust translate Y to show shoes (-65% shifts image up to reveal bottom) */
-    transform: translate(-50%, -65%) scale(0.75) !important;
+    /* POSITION: object-position controls which part of image is visible (like a mask) */
+    /* 85% = show lower portion of image (shoes). Adjust: 50% = center, 100% = very bottom */
+    object-position: center 85% !important;
     z-index: 0 !important;
 }
 
