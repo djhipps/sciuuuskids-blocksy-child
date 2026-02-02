@@ -229,8 +229,8 @@
     height: 100% !important;
     object-fit: cover !important;
     /* POSITION: object-position controls which part of image is visible (like a mask) */
-    /* 72% shows full shoe. Adjust: 50% = center, 100% = very bottom */
-    object-position: center 72% !important;
+    /* Lower % = view moves up to show more bottom. 50% = center, 100% = very bottom */
+    object-position: center 65% !important;
     z-index: 0 !important;
 }
 
