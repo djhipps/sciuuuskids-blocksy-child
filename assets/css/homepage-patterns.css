@@ -229,10 +229,8 @@
     height: 100% !important;
     object-fit: cover !important;
     /* POSITION: object-position controls which part of image is visible (like a mask) */
-    /* 70% = show lower portion with full shoe visible. Adjust: 50% = center, 100% = very bottom */
-    object-position: center 70% !important;
-    /* ZOOM: scale(0.9) zooms out slightly to make shoe appear smaller */
-    transform: scale(0.92) !important;
+    /* 72% shows full shoe. Adjust: 50% = center, 100% = very bottom */
+    object-position: center 72% !important;
     z-index: 0 !important;
 }
 
