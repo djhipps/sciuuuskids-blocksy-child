@@ -66,7 +66,7 @@ function blocksy_child_enqueue_styles() {
         'custom-content',
         get_stylesheet_directory_uri() . '/assets/css/content-custom.css',
         $content_deps,
-        '1.1.2'
+        '1.1.3'
     );
     
     // Homepage patterns CSS
