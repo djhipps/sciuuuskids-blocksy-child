@@ -603,3 +603,34 @@ function sciuuuskids_translate_new_in_store( $block_content, $block ) {
     return $block_content;
 }
 add_filter( 'render_block_core/heading', 'sciuuuskids_translate_new_in_store', 10, 2 );
+
+/**
+ * Fix hero image position for cached pages
+ * Injects object-position inline style to hero background images
+ */
+function sciuuuskids_fix_hero_image_position( $block_content, $block ) {
+    // Only process cover blocks with hero-section-bg class
+    if ( strpos( $block_content, 'hero-section-bg' ) === false ) {
+        return $block_content;
+    }
+
+    // Check if hero-bg-image exists in the content
+    if ( strpos( $block_content, 'hero-bg-image' ) === false ) {
+        return $block_content;
+    }
+
+    // If already has object-position, skip
+    if ( strpos( $block_content, 'object-position' ) !== false ) {
+        return $block_content;
+    }
+
+    // Add object-position by appending style attribute to hero-bg-image img
+    $block_content = preg_replace(
+        '/(<img[^>]*class="[^"]*hero-bg-image[^"]*"[^>]*)(\/?>)/i',
+        '$1 style="object-position:center 95%!important" $2',
+        $block_content
+    );
+
+    return $block_content;
+}
+add_filter( 'render_block_core/cover', 'sciuuuskids_fix_hero_image_position', 10, 2 );
