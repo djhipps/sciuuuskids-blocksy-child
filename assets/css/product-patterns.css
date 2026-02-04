@@ -24,7 +24,8 @@
     min-height: 700px;
     max-width: none;
     width: 100%;
-    margin: 0;
+    margin: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 /* Override WordPress constraint */
@@ -121,13 +122,16 @@
         padding: 40px 30px;
     }
 
-    .shoe-features-grid {
-        flex-wrap: wrap;
+    /* Override WordPress is-layout-flex nowrap */
+    .raro-cade-content-column .shoe-features-grid.wp-block-columns {
+        flex-wrap: wrap !important;
         gap: 30px 20px;
     }
 
-    .shoe-features-grid .feature-item {
+    /* Override inline flex-basis:25% with !important */
+    .raro-cade-content-column .shoe-features-grid .feature-item.wp-block-column {
         flex-basis: calc(50% - 10px) !important;
+        flex-grow: 0 !important;
         max-width: calc(50% - 10px);
     }
 
