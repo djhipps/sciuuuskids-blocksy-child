@@ -116,7 +116,7 @@
 }
 
 /* Responsive - Tablet (2x2 grid for features) */
-@media (max-width: 1200px) and (min-width: 783px) {
+@media (max-width: 1855px) and (min-width: 783px) {
     .raro-cade-content-column {
         padding: 40px 30px;
     }
