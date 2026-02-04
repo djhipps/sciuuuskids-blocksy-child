@@ -1432,6 +1432,23 @@ body.woocommerce-cart .wc-block-grid__product .wp-block-button__link:hover {
 }
 
 /* ==========================================================================
+   Checkout Order Summary - Prevent Price Overflow
+   ========================================================================== */
+
+/* Ensure order summary items contain their prices within the sidebar */
+.woocommerce-checkout .wc-block-components-order-summary-item {
+    overflow: hidden;
+}
+
+/* Keep total price from overflowing the order summary sidebar on tablets */
+.woocommerce-checkout .wc-block-components-order-summary-item__total-price {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    min-width: 0;
+    flex-shrink: 1;
+}
+
+/* ==========================================================================
    Cart & Checkout Mobile Responsive Fixes
    ========================================================================== */
 
