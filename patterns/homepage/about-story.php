@@ -54,7 +54,7 @@ return array(
         <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
 
             <!-- wp:image {"id":1234,"sizeSlug":"large","linkDestination":"none","className":"story-image","style":{"border":{"radius":"20px"}}} -->
-            <figure class="wp-block-image size-large has-custom-border story-image"><img src="' . $theme_uri . '/assets/images/about-story.webp" alt="Madre e bambino" style="border-radius:20px"/></figure>
+            <figure class="wp-block-image size-large has-custom-border story-image"><img src="' . $theme_uri . '/assets/images/homepage/about-story.webp" alt="Madre e bambino" style="border-radius:20px"/></figure>
             <!-- /wp:image -->
 
         </div>
