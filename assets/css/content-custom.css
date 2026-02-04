@@ -1441,6 +1441,11 @@ body.woocommerce-cart .wc-block-grid__product .wp-block-button__link:hover {
     display: none !important;
 }
 
+/* Hide the shipping options section - only free shipping is offered */
+.woocommerce-checkout .wc-block-checkout__shipping-option {
+    display: none !important;
+}
+
 /* ==========================================================================
    Cart & Checkout Mobile Responsive Fixes
    ========================================================================== */
