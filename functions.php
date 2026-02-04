@@ -346,6 +346,11 @@ if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/product-hooks.p
     require_once get_stylesheet_directory() . '/inc/woocommerce/product-hooks.php';
 }
 
+// Checkout page hooks
+if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/checkout-hooks.php' ) ) {
+    require_once get_stylesheet_directory() . '/inc/woocommerce/checkout-hooks.php';
+}
+
 
 // Set custom WooCommerce image sizes
 add_filter( 'woocommerce_get_image_size_thumbnail', function( $size ) {
