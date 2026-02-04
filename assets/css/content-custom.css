@@ -1446,6 +1446,16 @@ body.woocommerce-cart .wc-block-grid__product .wp-block-button__link:hover {
     display: none !important;
 }
 
+/* Spacing within checkout order summary items */
+.woocommerce-checkout .wc-block-components-order-summary-item__individual-prices {
+    display: block;
+    margin-top: 4px;
+}
+
+.woocommerce-checkout .wc-block-components-product-low-stock-badge {
+    margin-top: 6px;
+}
+
 /* ==========================================================================
    Cart & Checkout Mobile Responsive Fixes
    ========================================================================== */
