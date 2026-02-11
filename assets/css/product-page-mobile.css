@@ -66,11 +66,6 @@
         text-align: left !important;
     }
 
-    /* Hide the original title inside the summary on mobile
-       (price stays visible in its original position) */
-    .single-product .summary.entry-summary .product_title {
-        display: none !important;
-    }
 
     /* ==========================================================================
        Full-Bleed Gallery - Edge to Edge
