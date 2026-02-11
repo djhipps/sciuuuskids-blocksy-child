@@ -3,15 +3,15 @@
  * SciuuuS Kids - Blocksy Child Theme
  *
  * Strategy:
- * - Title + price rendered via PHP hook ABOVE gallery (visible on mobile only)
- * - Original title + price inside summary hidden on mobile
+ * - Product title rendered via PHP hook ABOVE gallery (visible on mobile only)
+ * - Price stays in its original position in the summary
  * - Gallery goes full-bleed (edge-to-edge) on mobile
  * - Thumbnails converted to compact horizontal strip
  * - No overflow:hidden (preserves zoom/lightbox)
  * - No position:sticky (avoids overlap issues)
  *
  * @package Blocksy_Child_SciuuusKids
- * @version 1.1.0
+ * @version 1.2.0
  */
 
 /* ==========================================================================
@@ -29,51 +29,30 @@
 @media (max-width: 768px) {
 
     /* ==========================================================================
-       Mobile Product Header - Title + Price above gallery
+       Mobile Product Header - Title above gallery
        ========================================================================== */
 
     .mobile-product-header {
-        display: flex !important;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 12px 15px 10px;
+        display: block !important;
+        padding: 14px 15px 10px;
         background: var(--brand-white, #fff);
-        /* Full width of the grid cell */
         grid-column: 1 / -1;
     }
 
     .mobile-product-header .mobile-product-title {
         font-family: var(--font-primary, Quicksand) !important;
-        font-size: 22px !important;
+        font-size: 24px !important;
         font-weight: 700 !important;
-        line-height: 1.2 !important;
+        line-height: 1.25 !important;
         color: var(--brand-black, #000) !important;
         margin: 0 !important;
-        flex: 1;
-        min-width: 0;
-        word-wrap: break-word;
+        padding: 0 !important;
+        letter-spacing: -0.3px;
     }
 
-    .mobile-product-header .mobile-product-price {
-        font-family: var(--font-primary, Quicksand) !important;
-        font-size: 22px !important;
-        font-weight: 800 !important;
-        color: var(--brand-orange, #FC7D06) !important;
-        white-space: nowrap;
-        flex-shrink: 0;
-    }
-
-    .mobile-product-header .mobile-product-price .woocommerce-Price-amount {
-        font-size: 22px !important;
-    }
-
-    /* Hide the original title + price inside the summary on mobile */
+    /* Hide the original title inside the summary on mobile
+       (price stays visible in its original position) */
     .single-product .summary.entry-summary .product_title {
-        display: none !important;
-    }
-
-    .single-product .summary.entry-summary > .price {
         display: none !important;
     }
 
