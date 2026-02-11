@@ -2,101 +2,94 @@
  * WooCommerce Single Product Page - Mobile Layout Fix
  * SciuuuS Kids - Blocksy Child Theme
  *
- * Fixes:
- * - Excessive white space around product images
- * - Gallery pushing product title too far down
- * - Sticky product title/price for easy access while scrolling
- * - Horizontal scrollable thumbnail strip
+ * Strategy:
+ * - Title + price rendered via PHP hook ABOVE gallery (visible on mobile only)
+ * - Original title + price inside summary hidden on mobile
+ * - Gallery goes full-bleed (edge-to-edge) on mobile
+ * - Thumbnails converted to compact horizontal strip
+ * - No overflow:hidden (preserves zoom/lightbox)
+ * - No position:sticky (avoids overlap issues)
  *
  * @package Blocksy_Child_SciuuusKids
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 /* ==========================================================================
-   All styles scoped to mobile only (max-width: 768px)
+   Desktop: Hide the mobile-only product header
+   ========================================================================== */
+
+.mobile-product-header {
+    display: none;
+}
+
+/* ==========================================================================
+   Mobile styles (max-width: 768px)
    ========================================================================== */
 
 @media (max-width: 768px) {
 
     /* ==========================================================================
-       Sticky Product Title + Price
-       Positioned below the site header (approx 60px)
+       Mobile Product Header - Title + Price above gallery
        ========================================================================== */
 
-    .single-product .summary.entry-summary {
-        position: sticky;
-        top: 60px;
-        z-index: 90;
+    .mobile-product-header {
+        display: flex !important;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 15px 10px;
         background: var(--brand-white, #fff);
-        padding: 10px 15px 8px;
-        margin: 0 -15px;
-        width: calc(100% + 30px);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        /* Full width of the grid cell */
+        grid-column: 1 / -1;
     }
 
-    /* Ensure the product title is sized well for sticky bar */
-    .single-product .summary.entry-summary .product_title {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        font-size: 20px !important;
-        line-height: 1.3 !important;
+    .mobile-product-header .mobile-product-title {
+        font-family: var(--font-primary, Quicksand) !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        color: var(--brand-black, #000) !important;
+        margin: 0 !important;
+        flex: 1;
+        min-width: 0;
+        word-wrap: break-word;
     }
 
-    /* Price in sticky bar */
-    .single-product .summary.entry-summary > .price {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        font-size: 20px !important;
-        line-height: 1.3 !important;
+    .mobile-product-header .mobile-product-price {
+        font-family: var(--font-primary, Quicksand) !important;
+        font-size: 22px !important;
+        font-weight: 800 !important;
         color: var(--brand-orange, #FC7D06) !important;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
-    .single-product .summary.entry-summary > .price .woocommerce-Price-amount {
-        font-size: 20px !important;
+    .mobile-product-header .mobile-product-price .woocommerce-Price-amount {
+        font-size: 22px !important;
+    }
+
+    /* Hide the original title + price inside the summary on mobile */
+    .single-product .summary.entry-summary .product_title {
+        display: none !important;
+    }
+
+    .single-product .summary.entry-summary > .price {
+        display: none !important;
     }
 
     /* ==========================================================================
-       Product Gallery - Constrained Height & Full-Width Images
+       Full-Bleed Gallery - Edge to Edge
        ========================================================================== */
 
-    /* Limit overall gallery height so it doesn't dominate the screen */
-    .single-product .woocommerce-product-gallery,
-    .single-product .ct-product-gallery-container {
-        max-height: 400px;
-        overflow: hidden;
-    }
-
-    /* Main gallery figure / image wrapper */
-    .single-product .woocommerce-product-gallery figure,
-    .single-product .woocommerce-product-gallery .woocommerce-product-gallery__wrapper {
-        max-height: 400px;
-    }
-
-    /* Main product image - fill width, contain within height */
-    .single-product .woocommerce-product-gallery img.wp-post-image,
-    .single-product .woocommerce-product-gallery .woocommerce-product-gallery__image img,
-    .single-product .ct-product-gallery-container img {
-        width: 100% !important;
-        height: auto !important;
-        max-height: 380px;
-        object-fit: contain !important;
-        object-position: center center !important;
-        display: block;
-        margin: 0 auto;
-        border-radius: 0 !important;
-    }
-
-    /* Remove any padding/margin that creates white space around images */
+    /* Break gallery out of container padding */
+    .single-product .ct-product-gallery-container,
     .single-product .woocommerce-product-gallery {
-        margin: 0 !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-    }
-
-    .single-product .ct-product-gallery-container {
+        margin-left: -15px !important;
+        margin-right: -15px !important;
+        width: calc(100% + 30px) !important;
+        max-width: none !important;
         border-radius: 0 !important;
         padding: 0 !important;
-        margin: 0 !important;
     }
 
     .single-product .woocommerce-product-gallery figure {
@@ -104,33 +97,48 @@
         padding: 0 !important;
     }
 
+    /* Blocksy slider container */
+    .single-product .ct-media-container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* ==========================================================================
+       Main Product Image - Fill Width, Limit Height
+       ========================================================================== */
+
+    .single-product .woocommerce-product-gallery .woocommerce-product-gallery__image img,
+    .single-product .woocommerce-product-gallery img.wp-post-image,
+    .single-product .ct-media-container > .ct-image-container img {
+        width: 100% !important;
+        max-height: 400px;
+        object-fit: contain !important;
+        object-position: center center !important;
+        display: block;
+        border-radius: 0 !important;
+    }
+
     /* ==========================================================================
        Thumbnail Gallery - Horizontal Scrollable Strip
        ========================================================================== */
 
-    /* Blocksy uses flex-column for thumbnails by default - override to row */
     .single-product .woocommerce-product-gallery .flex-control-thumbs,
-    .single-product .ct-product-gallery-container .flex-control-thumbs,
-    .single-product .woocommerce-product-gallery ol,
-    .single-product .ct-media-container .flexy-pills {
+    .single-product .ct-product-gallery-container .flex-control-thumbs {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
         overflow-y: hidden !important;
         gap: 8px !important;
-        padding: 8px 0 !important;
+        padding: 8px 15px !important;
         margin: 0 !important;
         list-style: none !important;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
-        max-height: none !important;
     }
 
-    /* Individual thumbnail items */
     .single-product .woocommerce-product-gallery .flex-control-thumbs li,
-    .single-product .ct-product-gallery-container .flex-control-thumbs li,
-    .single-product .ct-media-container .flexy-pills .flexy-pill {
+    .single-product .ct-product-gallery-container .flex-control-thumbs li {
         flex: 0 0 70px !important;
         width: 70px !important;
         height: 70px !important;
@@ -140,7 +148,6 @@
         list-style: none !important;
     }
 
-    /* Thumbnail images */
     .single-product .woocommerce-product-gallery .flex-control-thumbs li img,
     .single-product .ct-product-gallery-container .flex-control-thumbs li img {
         width: 70px !important;
@@ -152,25 +159,13 @@
         transition: border-color 0.2s ease;
     }
 
-    /* Active thumbnail highlight */
     .single-product .woocommerce-product-gallery .flex-control-thumbs li img.flex-active,
     .single-product .woocommerce-product-gallery .flex-control-thumbs li img:hover,
     .single-product .ct-product-gallery-container .flex-control-thumbs li img.flex-active {
         border-color: var(--brand-orange, #FC7D06);
     }
 
-    /* Flexy pills (Blocksy's gallery navigation dots) as thumbnail strip */
-    .single-product .ct-media-container .flexy-pills .flexy-pill {
-        border-radius: 4px !important;
-        opacity: 0.6;
-    }
-
-    .single-product .ct-media-container .flexy-pills .flexy-pill.active {
-        opacity: 1;
-        border: 2px solid var(--brand-orange, #FC7D06);
-    }
-
-    /* Hide scrollbar on WebKit (keep scrollable) */
+    /* Thin scrollbar */
     .single-product .woocommerce-product-gallery .flex-control-thumbs::-webkit-scrollbar,
     .single-product .ct-product-gallery-container .flex-control-thumbs::-webkit-scrollbar {
         height: 4px;
@@ -183,25 +178,11 @@
     }
 
     /* ==========================================================================
-       Product Entry Layout - Reduce Spacing
+       Layout Spacing - Tighten Gap Between Gallery and Summary
        ========================================================================== */
 
     .single-product .product-entry-wrapper {
-        gap: 15px !important;
+        gap: 12px !important;
         margin-bottom: 20px !important;
-    }
-
-    /* Reduce container padding on mobile */
-    .single-product .ct-container-full {
-        padding: 0 15px !important;
-    }
-
-    /* ==========================================================================
-       Related Products - Mobile Adjustments
-       ========================================================================== */
-
-    .single-product .related.products {
-        margin: 20px auto !important;
-        padding: 20px 15px !important;
     }
 }

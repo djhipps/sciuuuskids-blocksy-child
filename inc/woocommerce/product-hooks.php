@@ -70,6 +70,29 @@ function sciuuuskids_barefoot_tab_content() {
 */
 
 /**
+ * Output product title + price ABOVE the gallery for mobile.
+ * Hidden on desktop via CSS; on mobile it appears first so the user
+ * sees the product name and price before scrolling through the gallery.
+ *
+ * Hooked at priority 8 on woocommerce_before_single_product_summary
+ * (before sale flash at 10 and gallery images at 20).
+ */
+function sciuuuskids_mobile_product_header() {
+    global $product;
+
+    if ( ! $product ) {
+        return;
+    }
+    ?>
+    <div class="mobile-product-header">
+        <h1 class="mobile-product-title"><?php echo esc_html( $product->get_name() ); ?></h1>
+        <div class="mobile-product-price"><?php echo $product->get_price_html(); ?></div>
+    </div>
+    <?php
+}
+add_action( 'woocommerce_before_single_product_summary', 'sciuuuskids_mobile_product_header', 8 );
+
+/**
  * Limit related products to 3 items
  */
 function sciuuuskids_related_products_limit( $args ) {
