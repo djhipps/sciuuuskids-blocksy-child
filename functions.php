@@ -104,6 +104,14 @@ function blocksy_child_enqueue_styles() {
             '1.0.0'
         );
 
+        // Mobile layout fixes for product pages
+        wp_enqueue_style(
+            'product-page-mobile',
+            get_stylesheet_directory_uri() . '/assets/css/product-page-mobile.css',
+            array('blocksy-style', 'google-fonts-quicksand', 'woocommerce-product'),
+            '1.1.0'
+        );
+
         wp_enqueue_script(
             'product-stock-urgency',
             get_stylesheet_directory_uri() . '/assets/js/product-stock-urgency.js',
