@@ -109,7 +109,7 @@ function blocksy_child_enqueue_styles() {
             'product-page-mobile',
             get_stylesheet_directory_uri() . '/assets/css/product-page-mobile.css',
             array('blocksy-style', 'google-fonts-quicksand', 'woocommerce-product'),
-            '1.0.0'
+            '1.1.0'
         );
 
         wp_enqueue_script(
