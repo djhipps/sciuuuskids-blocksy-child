@@ -1,0 +1,188 @@
+/**
+ * WooCommerce Single Product Page - Mobile Layout Fix
+ * SciuuuS Kids - Blocksy Child Theme
+ *
+ * Strategy:
+ * - Title + price rendered via PHP hook ABOVE gallery (visible on mobile only)
+ * - Original title + price inside summary hidden on mobile
+ * - Gallery goes full-bleed (edge-to-edge) on mobile
+ * - Thumbnails converted to compact horizontal strip
+ * - No overflow:hidden (preserves zoom/lightbox)
+ * - No position:sticky (avoids overlap issues)
+ *
+ * @package Blocksy_Child_SciuuusKids
+ * @version 1.1.0
+ */
+
+/* ==========================================================================
+   Desktop: Hide the mobile-only product header
+   ========================================================================== */
+
+.mobile-product-header {
+    display: none;
+}
+
+/* ==========================================================================
+   Mobile styles (max-width: 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* ==========================================================================
+       Mobile Product Header - Title + Price above gallery
+       ========================================================================== */
+
+    .mobile-product-header {
+        display: flex !important;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 15px 10px;
+        background: var(--brand-white, #fff);
+        /* Full width of the grid cell */
+        grid-column: 1 / -1;
+    }
+
+    .mobile-product-header .mobile-product-title {
+        font-family: var(--font-primary, Quicksand) !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        color: var(--brand-black, #000) !important;
+        margin: 0 !important;
+        flex: 1;
+        min-width: 0;
+        word-wrap: break-word;
+    }
+
+    .mobile-product-header .mobile-product-price {
+        font-family: var(--font-primary, Quicksand) !important;
+        font-size: 22px !important;
+        font-weight: 800 !important;
+        color: var(--brand-orange, #FC7D06) !important;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .mobile-product-header .mobile-product-price .woocommerce-Price-amount {
+        font-size: 22px !important;
+    }
+
+    /* Hide the original title + price inside the summary on mobile */
+    .single-product .summary.entry-summary .product_title {
+        display: none !important;
+    }
+
+    .single-product .summary.entry-summary > .price {
+        display: none !important;
+    }
+
+    /* ==========================================================================
+       Full-Bleed Gallery - Edge to Edge
+       ========================================================================== */
+
+    /* Break gallery out of container padding */
+    .single-product .ct-product-gallery-container,
+    .single-product .woocommerce-product-gallery {
+        margin-left: -15px !important;
+        margin-right: -15px !important;
+        width: calc(100% + 30px) !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+    }
+
+    .single-product .woocommerce-product-gallery figure {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Blocksy slider container */
+    .single-product .ct-media-container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* ==========================================================================
+       Main Product Image - Fill Width, Limit Height
+       ========================================================================== */
+
+    .single-product .woocommerce-product-gallery .woocommerce-product-gallery__image img,
+    .single-product .woocommerce-product-gallery img.wp-post-image,
+    .single-product .ct-media-container > .ct-image-container img {
+        width: 100% !important;
+        max-height: 400px;
+        object-fit: contain !important;
+        object-position: center center !important;
+        display: block;
+        border-radius: 0 !important;
+    }
+
+    /* ==========================================================================
+       Thumbnail Gallery - Horizontal Scrollable Strip
+       ========================================================================== */
+
+    .single-product .woocommerce-product-gallery .flex-control-thumbs,
+    .single-product .ct-product-gallery-container .flex-control-thumbs {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        gap: 8px !important;
+        padding: 8px 15px !important;
+        margin: 0 !important;
+        list-style: none !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .single-product .woocommerce-product-gallery .flex-control-thumbs li,
+    .single-product .ct-product-gallery-container .flex-control-thumbs li {
+        flex: 0 0 70px !important;
+        width: 70px !important;
+        height: 70px !important;
+        min-width: 70px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+
+    .single-product .woocommerce-product-gallery .flex-control-thumbs li img,
+    .single-product .ct-product-gallery-container .flex-control-thumbs li img {
+        width: 70px !important;
+        height: 70px !important;
+        object-fit: cover !important;
+        border-radius: 4px !important;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+    }
+
+    .single-product .woocommerce-product-gallery .flex-control-thumbs li img.flex-active,
+    .single-product .woocommerce-product-gallery .flex-control-thumbs li img:hover,
+    .single-product .ct-product-gallery-container .flex-control-thumbs li img.flex-active {
+        border-color: var(--brand-orange, #FC7D06);
+    }
+
+    /* Thin scrollbar */
+    .single-product .woocommerce-product-gallery .flex-control-thumbs::-webkit-scrollbar,
+    .single-product .ct-product-gallery-container .flex-control-thumbs::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .single-product .woocommerce-product-gallery .flex-control-thumbs::-webkit-scrollbar-thumb,
+    .single-product .ct-product-gallery-container .flex-control-thumbs::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+    }
+
+    /* ==========================================================================
+       Layout Spacing - Tighten Gap Between Gallery and Summary
+       ========================================================================== */
+
+    .single-product .product-entry-wrapper {
+        gap: 12px !important;
+        margin-bottom: 20px !important;
+    }
+}
