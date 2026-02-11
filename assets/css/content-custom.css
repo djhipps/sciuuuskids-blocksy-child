@@ -696,7 +696,8 @@ figure.table-giallo table tr:hover,
 
 @media (max-width: 768px) {
     .ct-container-full {
-        padding: 0 var(--spacing-medium) !important;
+        padding-left: var(--spacing-medium) !important;
+        padding-right: var(--spacing-medium) !important;
     }
 
     .hero-section {
@@ -710,7 +711,21 @@ figure.table-giallo table tr:hover,
     }
 
     .entry-content {
-        padding: var(--content-spacing-small) var(--spacing-medium);
+        padding-left: var(--spacing-medium) !important;
+        padding-right: var(--spacing-medium) !important;
+    }
+
+    .entry-content.is-layout-constrained {
+        padding-left: var(--spacing-medium) !important;
+        padding-right: var(--spacing-medium) !important;
+    }
+
+    /* WPForms contact form mobile margins */
+    .entry-content form[id^="wpforms-form-"],
+    .entry-content .wpforms-container {
+        padding-left: var(--spacing-small) !important;
+        padding-right: var(--spacing-small) !important;
+        box-sizing: border-box !important;
     }
     
     .entry-content h1 {
