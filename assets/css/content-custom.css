@@ -670,26 +670,47 @@ figure.table-giallo table tr:hover,
 }
 
 /* ==========================================================================
+   WPForms Contact Form
+   ========================================================================== */
+
+.entry-content .wpforms-container,
+.entry-content form[id^="wpforms-form-"] {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.entry-content form[id^="wpforms-form-"] input[type="text"],
+.entry-content form[id^="wpforms-form-"] input[type="email"],
+.entry-content form[id^="wpforms-form-"] input[type="tel"],
+.entry-content form[id^="wpforms-form-"] input[type="url"],
+.entry-content form[id^="wpforms-form-"] textarea,
+.entry-content form[id^="wpforms-form-"] select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
    Responsive Design
    ========================================================================== */
 
 @media (max-width: 768px) {
     .ct-container-full {
-        padding: 0 var(--spacing-medium);
+        padding: 0 var(--spacing-medium) !important;
     }
-    
+
     .hero-section {
         padding: var(--content-spacing-medium) 0;
         margin-bottom: var(--content-spacing-medium);
     }
-    
+
     h1.page-title,
     h1.entry-title {
         font-size: calc(var(--font-size-h1) * 0.8) !important;
     }
-    
+
     .entry-content {
-        padding: var(--content-spacing-small) 0;
+        padding: var(--content-spacing-small) var(--spacing-medium);
     }
     
     .entry-content h1 {
