@@ -1,133 +1,317 @@
 /* ========================================
-   Shop Filters — Layout and Styling
-   Applied only to WooCommerce archive/shop
+   SciuuuS Kids — WooCommerce Shop Filters
+   Scope: .sciuuus-shop-layout and children
 ======================================== */
 
-/* === Grid layout: sidebar + products === */
+:root {
+    --brand-orange: #FC7D06;
+    --brand-orange-dark: #d96500;
+    --brand-orange-soft: #fff3e8;
+    --filter-bg: #ffffff;
+    --filter-border: #e7e7e7;
+    --filter-text: #2b2b2b;
+    --filter-muted: #666;
+    --filter-overlay: rgba(24, 24, 24, 0.5);
+    --filter-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+    --font-primary: 'Quicksand', sans-serif;
+    --font-display: 'Gochi Hand', cursive;
+}
 
 .sciuuus-shop-layout {
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 32px;
-    margin-top: 24px;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 2rem;
+    margin-top: 1.5rem;
+    align-items: start;
+    font-family: var(--font-primary);
 }
 
-/* Allow products section full width */
-.sciuuus-products > .ct-container {
-    max-width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+.sciuuus-shop-layout .sciuuus-products {
+    min-width: 0;
 }
 
-/* Ensure product content stretches */
-.sciuuus-products section {
+.sciuuus-shop-layout .sciuuus-products > .ct-container {
+    max-width: 100%;
+    padding-inline: 0;
+}
+
+.sciuuus-shop-layout .sciuuus-products section {
     width: 100%;
 }
 
-/* === Filters sidebar === */
+/* Sidebar shell */
+.sciuuus-shop-layout .sciuuus-sidebar {
+    position: sticky;
+    top: 1.5rem;
+    background: var(--filter-bg);
+    border: 1px solid var(--filter-border);
+    border-radius: 14px;
+    box-shadow: var(--filter-shadow);
+    padding: 1.25rem;
+}
 
-.sciuuus-sidebar {
-    background: #f9f9f9;
+.sciuuus-shop-layout .wc-block-product-filters {
+    color: var(--filter-text);
+}
+
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__header {
+    margin: 0 0 1rem;
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    line-height: 1.05;
+    color: #191919;
+    letter-spacing: 0.02em;
+}
+
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__filter {
+    border: 1px solid var(--filter-border);
+    border-radius: 12px;
+    background: #fefefe;
+    padding: 1rem;
+    margin: 0 0 0.9rem;
+}
+
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__filter-title,
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__filter-label {
+    margin: 0 0 0.6rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: #1f1f1f;
+}
+
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__filter-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__filter-list-item {
+    margin-block: 0.25rem;
+}
+
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__filter-list-item label,
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-components-checkbox__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--filter-text);
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.sciuuus-shop-layout .wc-block-product-filters input[type="checkbox"] {
+    accent-color: var(--brand-orange);
+    inline-size: 1rem;
+    block-size: 1rem;
+    margin: 0;
+}
+
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-components-price-slider__range-input,
+.sciuuus-shop-layout .wc-block-product-filters input[type="range"] {
+    accent-color: var(--brand-orange);
+}
+
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-components-price-slider__inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+}
+
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-components-price-slider__input,
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__price-range input[type="number"],
+.sciuuus-shop-layout .wc-block-product-filters select {
+    width: 100%;
+    min-height: 2.4rem;
+    border: 1px solid #d2d2d2;
     border-radius: 8px;
-    padding: 24px;
-    border: 1px solid #e5e5e5;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.95rem;
+    color: #1f1f1f;
+    background: #fff;
 }
 
-/* Block filters title */
-.wc-block-product-filters .wc-block-product-filters__header {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #333;
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-components-chip,
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__active-filter {
+    background: var(--brand-orange-soft);
+    border: 1px solid #ffc89d;
+    border-radius: 999px;
+    color: #622d00;
 }
 
-/* Filter group label */
-.wc-block-product-filters .wc-block-product-filters__filter-label {
-    font-size: 1rem;
-    font-weight: 500;
-    text-transform: none;
-    margin-top: 16px;
-    margin-bottom: 8px;
-}
-
-/* Checkbox list */
-.wc-block-product-filters .wc-block-product-filters__filter-list {
-    margin-bottom: 12px;
-}
-
-.wc-block-product-filters .wc-block-product-filters__filter-list input[type="checkbox"] {
-    margin-right: 8px;
-}
-
-/* Price slider */
-.wc-block-product-filters .wc-block-product-filters__price-range {
-    margin-top: 8px;
-    margin-bottom: 16px;
-}
-
-.wc-block-product-filters .wc-block-product-filters__price-range input[type="number"] {
-    width: 72px;
-    padding: 4px 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* Buttons */
-.wc-block-product-filters .wc-block-product-filters__clear-filters {
-    display: inline-block;
-    margin-top: 16px;
-    padding: 8px 16px;
-    background: #fc7d06;
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__clear-filters {
+    width: 100%;
+    margin-top: 0.45rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--brand-orange);
     color: #fff;
-    border-radius: 6px;
-    font-weight: 600;
     text-decoration: none;
-    transition: background .3s ease;
+    min-height: 2.75rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 14px rgba(252, 125, 6, 0.24);
 }
 
-.wc-block-product-filters .wc-block-product-filters__clear-filters:hover {
-    background: #e76a00;
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__clear-filters:hover {
+    background: var(--brand-orange-dark);
+    transform: translateY(-1px);
 }
 
-/* Separators & spacing */
-.wc-block-product-filters .wc-block-product-filters__filter {
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 12px;
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__clear-filters:disabled,
+.sciuuus-shop-layout .wc-block-product-filters .wc-block-product-filters__clear-filters[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
-/* === Mobile behavior === */
+/* Focus treatment */
+.sciuuus-shop-layout .wc-block-product-filters input:focus-visible,
+.sciuuus-shop-layout .wc-block-product-filters select:focus-visible,
+.sciuuus-shop-layout .wc-block-product-filters button:focus-visible,
+.sciuuus-shop-layout .wc-block-product-filters a:focus-visible,
+.sciuuus-shop-layout .sciuuus-filters-toggle:focus-visible,
+.sciuuus-shop-layout .sciuuus-filters-close:focus-visible {
+    outline: 2px solid var(--brand-orange);
+    outline-offset: 2px;
+}
 
-@media (max-width: 1024px) {
+/* Product controls + pagination stability */
+.sciuuus-shop-layout .woocommerce-ordering,
+.sciuuus-shop-layout .woocommerce-result-count {
+    margin-bottom: 1rem;
+}
+
+.sciuuus-shop-layout .woocommerce-ordering select {
+    min-height: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #d4d4d4;
+    padding-inline: 0.65rem 2rem;
+}
+
+.sciuuus-shop-layout .woocommerce nav.woocommerce-pagination {
+    margin-top: 1.6rem;
+}
+
+.sciuuus-shop-layout .woocommerce nav.woocommerce-pagination ul {
+    border: 0;
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+.sciuuus-shop-layout .woocommerce nav.woocommerce-pagination ul li {
+    border: 0;
+}
+
+.sciuuus-shop-layout .woocommerce nav.woocommerce-pagination ul li span,
+.sciuuus-shop-layout .woocommerce nav.woocommerce-pagination ul li a {
+    border: 1px solid var(--filter-border);
+    border-radius: 8px;
+    min-width: 2.3rem;
+    min-height: 2.3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.65rem;
+}
+
+.sciuuus-shop-layout .woocommerce nav.woocommerce-pagination ul li span.current {
+    border-color: var(--brand-orange);
+    background: var(--brand-orange);
+    color: #fff;
+}
+
+.sciuuus-shop-layout .woocommerce ul.products {
+    gap: 1.5rem;
+}
+
+/* Mobile controls injected by JS */
+.sciuuus-shop-layout .sciuuus-filters-toggle {
+    display: none;
+}
+
+.sciuuus-shop-layout .sciuuus-filters-overlay {
+    display: none;
+}
+
+.sciuuus-shop-layout .sciuuus-filters-close {
+    display: none;
+}
+
+@media (max-width: 1023px) {
     .sciuuus-shop-layout {
         grid-template-columns: 1fr;
+        gap: 1.1rem;
+        margin-top: 1rem;
     }
 
-    .sciuuus-sidebar {
-        margin-bottom: 24px;
-    }
-
-    /* Collapsible header for filters */
-    .sciuuus-sidebar h2,
-    .sciuuus-sidebar .wc-block-product-filters__header {
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
+    .sciuuus-shop-layout .sciuuus-filters-toggle {
+        position: sticky;
+        top: 0.5rem;
+        z-index: 20;
+        width: 100%;
+        min-height: 2.85rem;
+        display: inline-flex;
         align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        border: 1px solid var(--brand-orange);
+        border-radius: 999px;
+        background: #fff;
+        color: #252525;
+        font-weight: 700;
     }
 
-    .wc-block-product-filters {
-        display: none;
+    .sciuuus-shop-layout .sciuuus-sidebar {
+        position: fixed;
+        inset: auto 0 0 0;
+        top: 4.3rem;
+        border-radius: 18px 18px 0 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        max-height: calc(100dvh - 4.3rem);
+        transform: translateY(110%);
+        opacity: 0;
+        visibility: hidden;
+        overflow-y: auto;
+        z-index: 45;
+        transition: transform 0.26s ease, opacity 0.2s ease, visibility 0.2s ease;
     }
 
-    .sciuuus-sidebar.is-open .wc-block-product-filters {
+    .sciuuus-shop-layout .sciuuus-filters-close {
+        display: inline-flex;
+        margin-bottom: 0.8rem;
+        border: 1px solid var(--filter-border);
+        border-radius: 999px;
+        padding: 0.45rem 0.85rem;
+        background: #fff;
+        color: #222;
+        font-weight: 600;
+    }
+
+    .sciuuus-shop-layout .sciuuus-filters-overlay {
+        position: fixed;
+        inset: 0;
+        background: var(--filter-overlay);
+        z-index: 40;
+    }
+
+    .sciuuus-shop-layout.is-filters-open .sciuuus-sidebar {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .sciuuus-shop-layout.is-filters-open .sciuuus-filters-overlay {
         display: block;
     }
 }
-
-/* === Product grid tweaks === */
-
-.woocommerce ul.products {
-    grid-gap: 24px;
-}
-
