@@ -647,3 +647,64 @@ function sciuuuskids_fix_hero_image_position( $block_content, $block ) {
     return $block_content;
 }
 add_filter( 'render_block_core/cover', 'sciuuuskids_fix_hero_image_position', 10, 2 );
+
+/**
+ * ========================================
+ * FORCE SIDEBAR ON WOOCOMMERCE ARCHIVES
+ * ========================================
+ */
+
+
+/**
+ * Remove Blocksy WooCommerce wrapper
+ */
+function sciuuus_remove_blocksy_woo_wrappers() {
+    if (is_shop() || is_product_category() || is_product_tag()) {
+        remove_action('woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
+        remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+    }
+}
+add_action('wp', 'sciuuus_remove_blocksy_woo_wrappers');
+
+
+/**
+ * Custom WooCommerce layout wrapper
+ */
+function sciuuus_custom_woo_wrapper_start() {
+
+    if (is_shop() || is_product_category() || is_product_tag()) {
+
+        echo '<div class="sciuuus-shop-layout ct-container">';
+        echo '<aside class="sciuuus-sidebar">';
+
+        if (is_active_sidebar('sidebar-woocommerce')) {
+            dynamic_sidebar('sidebar-woocommerce');
+        }
+
+        echo '</aside>';
+        echo '<div class="sciuuus-products">';
+    }
+}
+add_action('woocommerce_before_main_content', 'sciuuus_custom_woo_wrapper_start', 5);
+
+function sciuuus_custom_woo_wrapper_end() {
+
+    if (is_shop() || is_product_category() || is_product_tag()) {
+        echo '</div></div>';
+    }
+}
+add_action('woocommerce_after_main_content', 'sciuuus_custom_woo_wrapper_end', 50);
+
+
+function sciuuus_enqueue_shop_filters_js() {
+    if (is_shop() || is_product_category() || is_product_tag()) {
+        wp_enqueue_script(
+            'sciuuus-shop-filters-js',
+            get_stylesheet_directory_uri() . '/assets/js/shop-filters.js',
+            array(),
+            filemtime(get_stylesheet_directory() . '/assets/js/shop-filters.js'),
+            true
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'sciuuus_enqueue_shop_filters_js');

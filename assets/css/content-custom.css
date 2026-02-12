@@ -727,6 +727,11 @@ figure.table-giallo table tr:hover,
         padding-right: var(--spacing-small) !important;
         box-sizing: border-box !important;
     }
+
+    .wpforms-form-2095 {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
     
     .entry-content h1 {
         font-size: calc(var(--font-size-h1) * 0.8);

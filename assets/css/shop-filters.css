@@ -1,0 +1,133 @@
+/* ========================================
+   Shop Filters — Layout and Styling
+   Applied only to WooCommerce archive/shop
+======================================== */
+
+/* === Grid layout: sidebar + products === */
+
+.sciuuus-shop-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 32px;
+    margin-top: 24px;
+}
+
+/* Allow products section full width */
+.sciuuus-products > .ct-container {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Ensure product content stretches */
+.sciuuus-products section {
+    width: 100%;
+}
+
+/* === Filters sidebar === */
+
+.sciuuus-sidebar {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 24px;
+    border: 1px solid #e5e5e5;
+}
+
+/* Block filters title */
+.wc-block-product-filters .wc-block-product-filters__header {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+/* Filter group label */
+.wc-block-product-filters .wc-block-product-filters__filter-label {
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: none;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+/* Checkbox list */
+.wc-block-product-filters .wc-block-product-filters__filter-list {
+    margin-bottom: 12px;
+}
+
+.wc-block-product-filters .wc-block-product-filters__filter-list input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* Price slider */
+.wc-block-product-filters .wc-block-product-filters__price-range {
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.wc-block-product-filters .wc-block-product-filters__price-range input[type="number"] {
+    width: 72px;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Buttons */
+.wc-block-product-filters .wc-block-product-filters__clear-filters {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: #fc7d06;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .3s ease;
+}
+
+.wc-block-product-filters .wc-block-product-filters__clear-filters:hover {
+    background: #e76a00;
+}
+
+/* Separators & spacing */
+.wc-block-product-filters .wc-block-product-filters__filter {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 12px;
+}
+
+/* === Mobile behavior === */
+
+@media (max-width: 1024px) {
+    .sciuuus-shop-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sciuuus-sidebar {
+        margin-bottom: 24px;
+    }
+
+    /* Collapsible header for filters */
+    .sciuuus-sidebar h2,
+    .sciuuus-sidebar .wc-block-product-filters__header {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .wc-block-product-filters {
+        display: none;
+    }
+
+    .sciuuus-sidebar.is-open .wc-block-product-filters {
+        display: block;
+    }
+}
+
+/* === Product grid tweaks === */
+
+.woocommerce ul.products {
+    grid-gap: 24px;
+}
+
