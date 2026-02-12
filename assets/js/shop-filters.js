@@ -1,9 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     const layout = document.querySelector('.sciuuus-shop-layout');
     const sidebar = layout ? layout.querySelector('.sciuuus-sidebar') : null;
+    const products = layout ? layout.querySelector('.sciuuus-products') : null;
 
-    if (!layout || !sidebar) {
+    if (!layout || !sidebar || !products) {
         return;
+    }
+
+    const productsHeader = products.querySelector('.woocommerce-products-header');
+    if (productsHeader && productsHeader.parentElement !== layout) {
+        layout.insertBefore(productsHeader, layout.firstChild);
     }
 
     const mobileQuery = window.matchMedia('(max-width: 1023px)');
