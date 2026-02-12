@@ -816,7 +816,6 @@ span.onsale,
 /* Reset Blocksy's column CSS variables and force grid */
 body.woocommerce-shop .site-main ul.products,
 body.woocommerce-shop .content-area ul.products,
-body.woocommerce-shop [class*="products"],
 body.post-type-archive-product .site-main ul.products,
 body.post-type-archive-product .content-area ul.products {
     display: grid !important;
