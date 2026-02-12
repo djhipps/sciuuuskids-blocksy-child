@@ -21,9 +21,19 @@
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
     gap: 2rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     align-items: start;
     font-family: var(--font-primary);
+}
+
+.sciuuus-shop-layout > .woocommerce-products-header {
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+.sciuuus-shop-layout > .woocommerce-products-header .page-title {
+    margin: 0 0 0.75rem;
+    text-align: left;
 }
 
 .sciuuus-shop-layout .sciuuus-products {
@@ -42,7 +52,7 @@
 /* Sidebar shell */
 .sciuuus-shop-layout .sciuuus-sidebar {
     position: sticky;
-    top: 1.5rem;
+    top: 1rem;
     background: var(--filter-bg);
     border: 1px solid var(--filter-border);
     border-radius: 14px;
@@ -230,7 +240,19 @@
 }
 
 .sciuuus-shop-layout .woocommerce ul.products {
-    gap: 1.5rem;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.sciuuus-shop-layout .woocommerce ul.products li.product {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
 }
 
 /* Mobile controls injected by JS */
@@ -251,6 +273,15 @@
         grid-template-columns: 1fr;
         gap: 1.1rem;
         margin-top: 1rem;
+    }
+
+    .sciuuus-shop-layout > .woocommerce-products-header .page-title {
+        margin-bottom: 0.5rem;
+    }
+
+    .sciuuus-shop-layout .woocommerce ul.products {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 0.95rem !important;
     }
 
     .sciuuus-shop-layout .sciuuus-filters-toggle {
@@ -313,5 +344,17 @@
 
     .sciuuus-shop-layout.is-filters-open .sciuuus-filters-overlay {
         display: block;
+    }
+}
+
+@media (max-width: 640px) {
+    .sciuuus-shop-layout .woocommerce ul.products {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .sciuuus-shop-layout .woocommerce ul.products {
+        grid-template-columns: 1fr !important;
     }
 }
