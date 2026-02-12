@@ -8,8 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const productsHeader = products.querySelector('.woocommerce-products-header');
-    if (productsHeader && productsHeader.parentElement !== layout) {
-        layout.insertBefore(productsHeader, layout.firstChild);
+    const heroHeader = products.querySelector(':scope > .hero-section');
+    const headerToPromote = heroHeader || productsHeader;
+
+    if (headerToPromote && headerToPromote.parentElement !== layout) {
+        layout.insertBefore(headerToPromote, layout.firstChild);
     }
 
     const mobileQuery = window.matchMedia('(max-width: 1023px)');
