@@ -22,6 +22,12 @@ function sciuuuskids_custom_country_locale( $locale ) {
         $locale['IT']['address_2'] = array();
     }
     $locale['IT']['address_2']['label'] = 'Interno, scala, palazzina';
+
+    if ( ! isset( $locale['IT']['phone'] ) ) {
+        $locale['IT']['phone'] = array();
+    }
+    $locale['IT']['phone']['required'] = true;
+
     return $locale;
 }
 add_filter( 'woocommerce_get_country_locale', 'sciuuuskids_custom_country_locale', 20 );
