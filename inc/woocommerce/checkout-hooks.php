@@ -99,32 +99,91 @@ function sciuuuskids_checkout_enqueue_turnstile() {
     }, 10, 2 );
 
     // Define the onload callback BEFORE the Turnstile script so it exists when Turnstile initialises.
+    // The click guard runs immediately so "Place Order" is blocked from the first moment,
+    // even before the Turnstile script has finished loading.
     wp_add_inline_script( 'cloudflare-turnstile', '
+        /* ── Block Place Order until Turnstile has issued a token ── */
+        var sciuuusTurnstileTokenReady = false;
+        document.addEventListener( "click", function ( e ) {
+            var btn = e.target.closest( ".wp-block-woocommerce-checkout-actions-block button" );
+            if ( btn && btn.type === "submit" && !sciuuusTurnstileTokenReady ) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var wrap = document.getElementById( "sciuuus-turnstile-wrap" );
+                if ( wrap ) {
+                    wrap.scrollIntoView( { behavior: "smooth", block: "center" } );
+                    wrap.style.outline = "2px solid #c00";
+                    wrap.style.borderRadius = "4px";
+                    setTimeout( function () {
+                        wrap.style.outline = "";
+                        wrap.style.borderRadius = "";
+                    }, 2500 );
+                }
+            }
+        }, true );
+
         function sciuuusTurnstileOnLoad() {
             var siteKey = ' . wp_json_encode( $site_key ) . ';
-            // Poll until the Blocks checkout actions container is in the DOM.
-            var timer = setInterval( function () {
+            var renderScheduled = false;
+
+            function clearToken() {
+                document.cookie = "cf_turnstile_token=; path=/; SameSite=Strict; max-age=0";
+                sciuuusTurnstileTokenReady = false;
+            }
+
+            function renderWidget() {
+                if ( document.getElementById( "sciuuus-turnstile-wrap" ) ) return;
                 var target = document.querySelector( ".wp-block-woocommerce-checkout-actions-block" );
-                if ( target && !document.getElementById( "sciuuus-turnstile-wrap" ) ) {
-                    clearInterval( timer );
-                    var wrap = document.createElement( "div" );
-                    wrap.id = "sciuuus-turnstile-wrap";
-                    wrap.style.marginBottom = "1rem";
-                    target.insertBefore( wrap, target.firstChild );
-                    turnstile.render( "#sciuuus-turnstile-wrap", {
-                        sitekey: siteKey,
-                        callback: function ( token ) {
-                            document.cookie = "cf_turnstile_token=" + encodeURIComponent( token ) + "; path=/; SameSite=Strict";
-                        },
-                        "expired-callback": function () {
-                            document.cookie = "cf_turnstile_token=; path=/; SameSite=Strict; max-age=0";
-                        },
-                        "error-callback": function () {
-                            document.cookie = "cf_turnstile_token=; path=/; SameSite=Strict; max-age=0";
+                if ( !target ) return;
+
+                var wrap = document.createElement( "div" );
+                wrap.id = "sciuuus-turnstile-wrap";
+                wrap.style.marginBottom = "1rem";
+                target.insertBefore( wrap, target.firstChild );
+
+                turnstile.render( "#sciuuus-turnstile-wrap", {
+                    sitekey: siteKey,
+                    callback: function ( token ) {
+                        document.cookie = "cf_turnstile_token=" + encodeURIComponent( token ) + "; path=/; SameSite=Strict";
+                        sciuuusTurnstileTokenReady = true;
+                    },
+                    "expired-callback": clearToken,
+                    "error-callback": clearToken
+                } );
+            }
+
+            function scheduleRender() {
+                if ( renderScheduled ) return;
+                renderScheduled = true;
+                setTimeout( function () { renderScheduled = false; renderWidget(); }, 200 );
+            }
+
+            /* Re-render widget whenever React removes it (e.g. after a failed order attempt)
+               or re-adds the actions block during a checkout re-render. */
+            new MutationObserver( function ( mutations ) {
+                for ( var i = 0; i < mutations.length; i++ ) {
+                    var m = mutations[ i ];
+                    for ( var r = 0; r < m.removedNodes.length; r++ ) {
+                        var rn = m.removedNodes[ r ];
+                        if ( rn.id === "sciuuus-turnstile-wrap" ||
+                             ( rn.querySelector && rn.querySelector( "#sciuuus-turnstile-wrap" ) ) ) {
+                            clearToken();
+                            scheduleRender();
+                            return;
                         }
-                    } );
+                    }
+                    for ( var a = 0; a < m.addedNodes.length; a++ ) {
+                        var an = m.addedNodes[ a ];
+                        if ( ( an.classList && an.classList.contains( "wp-block-woocommerce-checkout-actions-block" ) ) ||
+                             ( an.querySelector && an.querySelector( ".wp-block-woocommerce-checkout-actions-block" ) ) ) {
+                            scheduleRender();
+                            return;
+                        }
+                    }
                 }
-            }, 300 );
+            } ).observe( document.body, { childList: true, subtree: true } );
+
+            scheduleRender();
         }
     ', 'before' );
 }
