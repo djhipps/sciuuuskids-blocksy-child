@@ -112,6 +112,27 @@ function sciuuuskids_checkout_enqueue_turnstile() {
 		var sciuuusTurnstileTokenReady = false;
 		window.sciuuusTurnstileToken   = null;
 
+		/* ── Diagnostic helper — run sciuuusTurnstileDiag() in the browser console ── */
+		window.sciuuusTurnstileDiag = function () {
+			var wrap   = document.getElementById( "sciuuus-turnstile-wrap" );
+			var target = document.querySelector( ".wp-block-woocommerce-checkout-actions-block" );
+			var btn    = document.querySelector( ".wp-block-woocommerce-checkout-actions-block button[type=submit]" );
+			var fetchWrapped = window.fetch.toString().indexOf( "sciuuusTurnstileToken" ) !== -1 ||
+			                   window.fetch.toString().indexOf( "_fetch" ) !== -1;
+			var info = {
+				tokenReady:       sciuuusTurnstileTokenReady,
+				tokenValue:       window.sciuuusTurnstileToken ? window.sciuuusTurnstileToken.substring( 0, 20 ) + "..." : null,
+				widgetInDom:      !!wrap,
+				actionsBlockInDom: !!target,
+				placeOrderBtn:    btn ? { found: true, type: btn.type, disabled: btn.disabled } : { found: false },
+				fetchIntercepted: fetchWrapped,
+				cookie:           document.cookie.indexOf( "cf_turnstile_token=" ) !== -1 ? "SET" : "NOT SET"
+			};
+			console.table( info );
+			return info;
+		};
+		console.log( "[Turnstile] inline script loaded — run sciuuusTurnstileDiag() to inspect state" );
+
 		/* ── 1. Block "Place Order" until Turnstile has solved ──
 		   Capture phase so it fires before React\'s own handlers. */
 		document.addEventListener( "click", function ( e ) {
