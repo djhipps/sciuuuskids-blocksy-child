@@ -1,13 +1,32 @@
 {
 	"folders": [
         {
+            "name": "blocksy-child",
             "path": "."
         },
         {
+            "name": "sciuuusprodreviews",
             "path": "../../plugins/sciuuusprodreviews"
         },
         {
+            "name": "sciuuusreviews",
+            "path": "../../plugins/sciuuusreviews"
+        },
+        {
+            "name": "sciuuusaicontact",
             "path": "../../plugins/sciuuusaicontact"
+        },
+        {
+            "path": "../../plugins/sciuuusadmin"
+        },
+        {
+            "path": "../../plugins/sciuuussize"
+        },
+        {
+            "path": "../../plugins/sciuuusmailfilter"
+        },
+        {
+            "path": "../../plugins/sciuuusnews"
         }
     ],
     "settings": {}
