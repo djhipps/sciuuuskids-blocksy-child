@@ -1066,12 +1066,12 @@
    ========================================================================== */
 
 .single-product .sci-inline-reviews {
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 /* Tighten gap between the two accordion panels. */
 .single-product .product-details-toggle + .sci-inline-reviews {
-    margin-top: 8px !important;
+    margin-top: 0 !important;
 }
 
 .single-product .sci-inline-reviews.sci-reviews-toggle {
