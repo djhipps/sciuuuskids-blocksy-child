@@ -304,7 +304,7 @@
 
 .single-product .ct-cart-actions {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 15px;
 }
 
@@ -735,8 +735,10 @@
     z-index: 10 !important;
 }
 
-.ct-cart-actions a.add_to_cart {
-    margin-top: 15px
+.single-product .ct-cart-actions .single_add_to_cart_button,
+.single-product .ct-cart-actions a.add_to_cart,
+.single-product .ct-cart-actions a.added_to_cart {
+    margin-top: 15px !important;
 }
 
 /* ==========================================================================
@@ -1059,6 +1061,117 @@
     color: var(--brand-gray-medium, #666);
 }
 
+/* ==========================================================================
+   Reviews Toggle Panel (Inline reviews + form)
+   ========================================================================== */
+
+.single-product .sci-inline-reviews {
+    margin-top: 20px;
+}
+
+/* Tighten gap between the two accordion panels. */
+.single-product .product-details-toggle + .sci-inline-reviews {
+    margin-top: 8px !important;
+}
+
+.single-product .sci-inline-reviews.sci-reviews-toggle {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--brand-white, #fff);
+}
+
+.single-product .sci-reviews-toggle-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 18px;
+    background: var(--brand-white, #fff);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-primary, Quicksand);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--brand-black, #000);
+    text-align: left;
+    transition: background-color 0.2s ease;
+}
+
+.single-product .sci-reviews-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.single-product .sci-reviews-toggle-btn .toggle-icon {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--brand-gray-medium, #666);
+}
+
+.single-product .sci-reviews-toggle-btn.is-open {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.single-product .sci-reviews-toggle-content {
+    padding: 18px;
+    background: var(--brand-white, #fff);
+}
+
+.single-product .sci-reviews-toggle-content[hidden] {
+    display: none !important;
+}
+
+.single-product .sci-reviews-toggle-content .commentlist {
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+.single-product .sci-reviews-toggle-content .woocommerce-noreviews {
+    margin-bottom: 16px;
+}
+
+.single-product .sci-reviews-toggle-content .comment-respond {
+    margin-top: 16px;
+}
+
+.single-product .sci-reviews-toggle-content .comment-form input[type="text"],
+.single-product .sci-reviews-toggle-content .comment-form input[type="email"],
+.single-product .sci-reviews-toggle-content .comment-form textarea,
+.single-product .sci-reviews-toggle-content .comment-form select {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-family: var(--font-primary, Quicksand);
+}
+
+.single-product .sci-reviews-toggle-content .form-submit .submit {
+    background: var(--brand-orange, #FC7D06);
+    color: var(--brand-white, #fff);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 18px;
+    font-family: var(--font-primary, Quicksand);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.single-product .sci-reviews-toggle-content .form-submit .submit:hover {
+    background: #e06d05;
+}
+
+/* Match Woo's "View cart" link height/alignment with the add-to-cart button. */
+.single-product .ct-cart-actions a.added_to_cart.wc-forward {
+    margin-top: 15px !important;
+    min-height: 50px;
+    padding: 0 30px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+}
+
 /* Responsive toggle */
 @media (max-width: 640px) {
     .single-product .product-details-toggle-btn {
@@ -1078,6 +1191,15 @@
 
     .single-product .product-attributes-table th {
         width: 40%;
+    }
+
+    .single-product .sci-reviews-toggle-btn {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .single-product .sci-reviews-toggle-content {
+        padding: 15px;
     }
 }
 

@@ -1,0 +1,14 @@
+{
+	"folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "../../plugins/sciuuusprodreviews"
+        },
+        {
+            "path": "../../plugins/sciuuusaicontact"
+        }
+    ],
+    "settings": {}
+}

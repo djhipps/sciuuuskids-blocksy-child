@@ -101,7 +101,7 @@ function blocksy_child_enqueue_styles() {
             'woocommerce-product',
             get_stylesheet_directory_uri() . '/assets/css/woocommerce-product.css',
             array('blocksy-style', 'google-fonts-quicksand'),
-            '1.0.0'
+            '1.0.2'
         );
 
         // Mobile layout fixes for product pages
@@ -126,7 +126,7 @@ function blocksy_child_enqueue_styles() {
         'custom-scripts',
         get_stylesheet_directory_uri() . '/assets/js/custom.js',
         array('jquery'),
-        '1.0.4',
+        '1.0.5',
         true
     );
 }

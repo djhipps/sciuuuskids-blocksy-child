@@ -34,6 +34,7 @@
         initSmoothScroll();
         initDropdownMenus();
         initPercheBarefoot();
+        initProductReviewsToggle();
         
     });
 
@@ -78,6 +79,87 @@
                 menuToggle.attr('aria-expanded', 'false');
                 navigation.removeClass('active');
                 jQuery('.primary-menu .menu-item-has-children').removeClass('active');
+            }
+        });
+    }
+
+    /**
+     * Product Reviews Toggle (single product)
+     * Wraps plugin-rendered inline reviews into an accordion-style panel.
+     */
+    function initProductReviewsToggle() {
+        if (!$('body').hasClass('single-product')) {
+            return;
+        }
+
+        const reviewsSection = document.querySelector('.sci-inline-reviews');
+        if (!reviewsSection || reviewsSection.dataset.toggleInit === '1') {
+            return;
+        }
+
+        const heading = reviewsSection.querySelector('h2');
+        const contentRoot = reviewsSection.querySelector('#reviews') || reviewsSection.querySelector('.woocommerce-Reviews');
+
+        if (!heading || !contentRoot) {
+            return;
+        }
+
+        const titleText = (heading.textContent || 'Reviews').trim();
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'sci-reviews-toggle-btn';
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-controls', 'sci-reviews-toggle-content');
+        button.innerHTML = '<span class="toggle-text"></span><span class="toggle-icon">+</span>';
+        button.querySelector('.toggle-text').textContent = titleText;
+
+        const content = document.createElement('div');
+        content.id = 'sci-reviews-toggle-content';
+        content.className = 'sci-reviews-toggle-content';
+        content.hidden = true;
+
+        while (reviewsSection.firstChild) {
+            const child = reviewsSection.firstChild;
+            reviewsSection.removeChild(child);
+            if (child !== heading) {
+                content.appendChild(child);
+            }
+        }
+
+        reviewsSection.classList.add('sci-reviews-toggle', 'sci-reviews-toggle-ready');
+        reviewsSection.appendChild(button);
+        reviewsSection.appendChild(content);
+        reviewsSection.dataset.toggleInit = '1';
+
+        const setOpenState = function(isOpen) {
+            button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            content.hidden = !isOpen;
+            button.classList.toggle('is-open', isOpen);
+            const icon = button.querySelector('.toggle-icon');
+            if (icon) {
+                icon.textContent = isOpen ? '−' : '+';
+            }
+        };
+
+        button.addEventListener('click', function() {
+            const expanded = button.getAttribute('aria-expanded') === 'true';
+            setOpenState(!expanded);
+        });
+
+        // Open reviews panel when visiting/triggering #reviews anchor.
+        if (window.location.hash === '#reviews' || window.location.hash === '#sci-inline-reviews') {
+            setOpenState(true);
+        }
+
+        document.addEventListener('click', function(event) {
+            const target = event.target;
+            if (!(target instanceof Element)) {
+                return;
+            }
+            const reviewLink = target.closest('a[href="#reviews"]');
+            if (reviewLink) {
+                setOpenState(true);
             }
         });
     }
