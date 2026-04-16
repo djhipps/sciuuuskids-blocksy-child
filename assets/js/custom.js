@@ -105,6 +105,8 @@
         }
 
         const titleText = (heading.textContent || 'Reviews').trim();
+        const reviewCount = parseInt(reviewsSection.getAttribute('data-review-count') || '0', 10) || 0;
+        const buttonTitle = reviewCount > 0 ? titleText + ' (' + reviewCount + ')' : titleText;
 
         const button = document.createElement('button');
         button.type = 'button';
@@ -112,7 +114,7 @@
         button.setAttribute('aria-expanded', 'false');
         button.setAttribute('aria-controls', 'sci-reviews-toggle-content');
         button.innerHTML = '<span class="toggle-text"></span><span class="toggle-icon">+</span>';
-        button.querySelector('.toggle-text').textContent = titleText;
+        button.querySelector('.toggle-text').textContent = buttonTitle;
 
         const content = document.createElement('div');
         content.id = 'sci-reviews-toggle-content';
@@ -142,6 +144,24 @@
             }
         };
 
+        const openHistoryAndScroll = function() {
+            setOpenState(true);
+
+            const historyDetails = content.querySelector('.sci-review-history');
+            const scrollTarget = historyDetails || reviewsSection;
+
+            if (historyDetails) {
+                historyDetails.open = true;
+            }
+
+            window.requestAnimationFrame(function() {
+                scrollTarget.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        };
+
         button.addEventListener('click', function() {
             const expanded = button.getAttribute('aria-expanded') === 'true';
             setOpenState(!expanded);
@@ -149,7 +169,7 @@
 
         // Open reviews panel when visiting/triggering #reviews anchor.
         if (window.location.hash === '#reviews' || window.location.hash === '#sci-inline-reviews') {
-            setOpenState(true);
+            openHistoryAndScroll();
         }
 
         document.addEventListener('click', function(event) {
@@ -159,7 +179,8 @@
             }
             const reviewLink = target.closest('a[href="#reviews"]');
             if (reviewLink) {
-                setOpenState(true);
+                event.preventDefault();
+                openHistoryAndScroll();
             }
         });
     }
