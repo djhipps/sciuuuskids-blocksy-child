@@ -265,6 +265,11 @@ require_once get_stylesheet_directory() . '/inc/footer-custom.php';
 require_once get_stylesheet_directory() . '/inc/customizer.php';
 
 /**
+ * Include product size inline feedback feature.
+ */
+require_once get_stylesheet_directory() . '/inc/size-feedback.php';
+
+/**
  * WooCommerce: Update cart count via AJAX
  */
 function sciuuuskids_cart_count_fragments($fragments) {

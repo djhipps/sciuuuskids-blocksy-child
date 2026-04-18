@@ -1,0 +1,102 @@
+.single-product .sciuuus-size-feedback-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 12px;
+    width: 100%;
+    max-width: 100%;
+}
+
+#sciuuus-size-feedback {
+    min-height: 0;
+    flex: 1 1 auto;
+}
+
+.single-product .sciuuus-sfb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background-color: #fff4eb;
+    border-left: 3px solid var(--brand-orange, #fc7d06);
+    border-radius: 0 4px 4px 0;
+    font-family: var(--font-primary, 'Quicksand', sans-serif);
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: #4a2800;
+}
+
+.single-product .sciuuus-sfb__measurement {
+    flex: 1 1 auto;
+    white-space: nowrap;
+}
+
+.single-product .sciuuus-sfb__measurement strong {
+    font-weight: 700;
+    color: #c46000;
+}
+
+.single-product .sciuuus-sfb__note {
+    font-size: 0.8125rem;
+    color: #7a5530;
+    font-style: italic;
+    flex-basis: 100%;
+}
+
+.single-product .sciuuus-sfb__guide-link {
+    white-space: nowrap;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--brand-orange, #fc7d06);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+}
+
+.single-product .sciuuus-sfb__guide-link:hover,
+.single-product .sciuuus-sfb__guide-link:focus {
+    border-bottom-color: var(--brand-orange, #fc7d06);
+    outline: none;
+}
+
+#sciuuus-size-feedback:not(:empty) .sciuuus-sfb {
+    animation: sfb-appear 0.18s ease;
+}
+
+.single-product .sciuuus-size-feedback-row .sciuuus-auto-inserted {
+    margin: 0 !important;
+    flex: 0 0 auto;
+    width: auto !important;
+    max-width: none !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    margin-left: auto !important;
+}
+
+.single-product .sciuuus-size-feedback-row .sciuuus-size-guide-button {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .single-product .sciuuus-size-feedback-row {
+        display: block;
+        margin: 8px 0;
+    }
+
+    #sciuuus-size-feedback {
+        margin-bottom: 8px;
+    }
+}
+
+@keyframes sfb-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

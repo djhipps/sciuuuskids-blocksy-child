@@ -23,10 +23,10 @@
             "path": "../../plugins/sciuuussize"
         },
         {
-            "path": "../../plugins/sciuuusmailfilter"
+            "path": "../../plugins/sciuuusnews"
         },
         {
-            "path": "../../plugins/sciuuusnews"
+            "path": "../../../.."
         }
     ],
     "settings": {}
