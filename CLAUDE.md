@@ -11,6 +11,8 @@
 - Product desktop styles: `assets/css/woocommerce-product.css`
 - Product mobile styles: `assets/css/product-page-mobile.css`
 - Enqueues and module loading: `functions.php`
+- Shop sidebar pa_color-family swatches: `inc/woocommerce/color-swatches.php` (+ `assets/swatches/*.png`)
+- pa_color-family taxonomy migration: `inc/migrations/colour-family-migration.php` (deploy runbook in `docs/MIGRATION-color-swatches.md`)
 
 ## Important Context
 - Reviews are not fully theme-native: plugin `sciuuusprodreviews` can render inline review summary/form/list.

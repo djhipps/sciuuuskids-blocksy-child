@@ -243,6 +243,23 @@ li.wc-block-product {
     color: var(--brand-orange, #FC7D06) !important;
 }
 
+/* Product rating stars: keep clear padding from card edges */
+.wc-block-product .star-rating,
+.wc-block-product .wc-block-components-product-rating,
+.wc-block-product .wc-block-components-product-rating__stars,
+.woocommerce ul.products li.product .star-rating,
+body.woocommerce-shop ul.products li.product .star-rating,
+body.post-type-archive-product ul.products li.product .star-rating {
+    margin: 12px 20px 8px !important;
+    align-self: flex-start !important;
+}
+
+/* Slightly softer star color */
+.wc-block-product .star-rating,
+.woocommerce ul.products li.product .star-rating {
+    color: #f0a35a !important;
+}
+
 /* ==========================================================================
    Product Price
    ========================================================================== */

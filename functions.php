@@ -364,6 +364,11 @@ if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/checkout-hooks.
     require_once get_stylesheet_directory() . '/inc/woocommerce/checkout-hooks.php';
 }
 
+// pa_color-family filter swatches
+if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/color-swatches.php' ) ) {
+    require_once get_stylesheet_directory() . '/inc/woocommerce/color-swatches.php';
+}
+
 
 // Set custom WooCommerce image sizes
 add_filter( 'woocommerce_get_image_size_thumbnail', function( $size ) {
