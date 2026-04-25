@@ -28,10 +28,8 @@ What it does NOT do:
 Use the Bitnami WP-CLI binary and the WordPress path:
 
 ```bash
-cd /opt/bitnami/wordpress
-sudo /opt/bitnami/wp-cli/bin/wp eval-file \
-  wp-content/themes/blocksy-child/inc/migrations/colour-family-migration.php \
-  --path=/opt/bitnami/wordpress
+cd /opt/bitnami/wordpress 
+sudo /opt/bitnami/wp-cli/bin/wp eval-file wp-content/themes/blocksy-child/inc/migrations/colour-family-migration.php --path=/opt/bitnami/wordpress
 ```
 
 If your stack requires running as `daemon`, use this variant:
