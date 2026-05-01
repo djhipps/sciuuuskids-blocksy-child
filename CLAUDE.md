@@ -14,6 +14,7 @@
 - Shop sidebar custom filters: `inc/woocommerce/custom-shop-filters.php` (+ `assets/css/shop-filters.css` + `assets/swatches/*.png`)
 - Legacy Woo block swatch injector (only if still used): `inc/woocommerce/color-swatches.php`
 - pa_color-family taxonomy migration: `inc/migrations/colour-family-migration.php` (deploy runbook in `docs/MIGRATION-color-swatches.md`)
+- Filter dev handover: `docs/FILTER-HANDOVER.md`
 
 ## Important Context
 - Reviews are not fully theme-native: plugin `sciuuusprodreviews` can render inline review summary/form/list.

@@ -21,7 +21,7 @@ $family_attr_slug = 'color-family';
 
 $expected_terms = [
 	'bianco'      => 'Bianco',
-	'blu'         => 'Blu',
+	'blu'         => 'Blu/Azzurro',
 	'fantasia'    => 'Fantasia',
 	'giallo'      => 'Giallo',
 	'marrone'     => 'Marrone',

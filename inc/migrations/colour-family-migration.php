@@ -47,7 +47,7 @@ $terms = [
 	'nero'        => 'Nero',
 	'verde'       => 'Verde',
 	'giallo'      => 'Giallo',
-	'blu'         => 'Blu',
+	'blu'         => 'Blu/Azzurro',
 	'rosa'        => 'Rosa',
 	'marrone'     => 'Marrone',
 	'multicolore' => 'Multicolore',
@@ -425,7 +425,7 @@ foreach ( $product_ids as $product_id ) {
 			'name'         => $family_taxonomy,
 			'value'        => '',
 			'position'     => $max_position + 1,
-			'is_visible'   => 0,
+			'is_visible'   => 1,
 			'is_variation' => 0,
 			'is_taxonomy'  => 1,
 		];
@@ -439,6 +439,7 @@ foreach ( $product_ids as $product_id ) {
 
 	$attributes[ $family_taxonomy ]['is_taxonomy'] = 1;
 	$attributes[ $family_taxonomy ]['name']        = $family_taxonomy;
+	$attributes[ $family_taxonomy ]['is_visible']  = 1;
 	update_post_meta( $product_id, '_product_attributes', $attributes );
 }
 if ( $attribute_row_backfills > 0 ) {

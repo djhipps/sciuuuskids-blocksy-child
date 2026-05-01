@@ -7,6 +7,7 @@ Maintain SciuuuS Kids child theme behavior with minimal regressions on Woo produ
 - `functions.php`
 - `inc/woocommerce/product-hooks.php`
 - `inc/woocommerce/custom-shop-filters.php`
+- `docs/FILTER-HANDOVER.md`
 - `assets/css/shop-filters.css`
 - `assets/css/woocommerce-product.css`
 - `assets/css/product-page-mobile.css`
@@ -37,3 +38,4 @@ Maintain SciuuuS Kids child theme behavior with minimal regressions on Woo produ
 - Visual regression check: header, product summary, add-to-cart, reviews block, related products, footer.
 - Archive regression check: `/shop` unfiltered baseline + per-color filtered counts change when selecting swatches.
 - Verify `giallo` appears in sidebar filter and behaves like other families.
+- Review `docs/FILTER-HANDOVER.md` before any new filter-thread work.
