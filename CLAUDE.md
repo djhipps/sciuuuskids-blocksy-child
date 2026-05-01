@@ -11,7 +11,8 @@
 - Product desktop styles: `assets/css/woocommerce-product.css`
 - Product mobile styles: `assets/css/product-page-mobile.css`
 - Enqueues and module loading: `functions.php`
-- Shop sidebar pa_color-family swatches: `inc/woocommerce/color-swatches.php` (+ `assets/swatches/*.png`)
+- Shop sidebar custom filters: `inc/woocommerce/custom-shop-filters.php` (+ `assets/css/shop-filters.css` + `assets/swatches/*.png`)
+- Legacy Woo block swatch injector (only if still used): `inc/woocommerce/color-swatches.php`
 - pa_color-family taxonomy migration: `inc/migrations/colour-family-migration.php` (deploy runbook in `docs/MIGRATION-color-swatches.md`)
 
 ## Important Context
@@ -30,6 +31,10 @@
 - Uses the official `wordpress:cli` image, shares the `./wordpress` bind mount and `wordpress_network` with the running stack.
 - Permission allow-rules for this invocation live in `wp-docker/.claude/settings.json`.
 - Useful for: widget state (`wp widget list sidebar-woocommerce`), options, meta, term/attribute inspection — anything the `/wp-admin` UI exposes.
+- For custom shop filter verification prefer:
+  - attribute row in `wp_woocommerce_attribute_taxonomies` (`attribute_name = color-family`)
+  - taxonomy terms in `pa_color-family`
+  - query-string behavior using `filter_color-family` (not `filter_pa_color-family`)
 
 ## Browser / Rendered-Page Inspection
 Two MCP servers are registered at local scope for the `wp-docker` project tree (entries in `~/.claude.json`). Both only load at session start — a fresh Claude Code session under `wp-docker` picks them up automatically.

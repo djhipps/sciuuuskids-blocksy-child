@@ -27,7 +27,6 @@ $family_attr_slug       = 'color-family';
 $family_taxonomy        = 'pa_color-family';
 $family_label           = 'Famiglia Colore'; // admin attribute label (distinct from pa_color)
 $filter_heading         = 'Colore';          // storefront filter heading
-$widget_block_id        = 11;
 $swatches_dir           = get_stylesheet_directory() . '/assets/swatches';
 
 $expected_terms = [
@@ -72,6 +71,13 @@ $collect_colour_signals = function ( $product_id ) use ( $normalize ) {
 			$add( $term->slug );
 		}
 	}
+	$colore_terms = wp_get_post_terms( $product_id, 'pa_colore', [ 'fields' => 'all' ] );
+	if ( ! is_wp_error( $colore_terms ) ) {
+		foreach ( $colore_terms as $term ) {
+			$add( $term->name );
+			$add( $term->slug );
+		}
+	}
 
 	$attributes = get_post_meta( $product_id, '_product_attributes', true );
 	if ( is_array( $attributes ) ) {
@@ -105,10 +111,16 @@ $collect_colour_signals = function ( $product_id ) use ( $normalize ) {
 	foreach ( $variation_ids as $variation_id ) {
 		$variation_color = get_post_meta( $variation_id, 'attribute_pa_color', true );
 		if ( ! $variation_color ) {
+			$variation_color = get_post_meta( $variation_id, 'attribute_pa_colore', true );
+		}
+		if ( ! $variation_color ) {
 			continue;
 		}
 		$add( $variation_color );
 		$term = get_term_by( 'slug', $variation_color, 'pa_color' );
+		if ( ! ( $term && ! is_wp_error( $term ) ) ) {
+			$term = get_term_by( 'slug', $variation_color, 'pa_colore' );
+		}
 		if ( $term && ! is_wp_error( $term ) ) {
 			$add( $term->name );
 		}
@@ -333,17 +345,23 @@ foreach ( $product_ids as $product_id ) {
 $log( 'INFO', "attribute-row backfill added=$rows_added is_variation_fixed=$variation_flags_fixed" );
 
 // ------------------ 6) widget dedupe + heading fixes ------------------
-$widget_blocks = get_option( 'widget_block', [] );
-if ( isset( $widget_blocks[ $widget_block_id ]['content'] ) ) {
-	$content = $widget_blocks[ $widget_block_id ]['content'];
+$widget_blocks   = get_option( 'widget_block', [] );
+$sidebars        = get_option( 'sidebars_widgets', [] );
+$sidebar_widgets = isset( $sidebars['sidebar-woocommerce'] ) && is_array( $sidebars['sidebar-woocommerce'] )
+	? $sidebars['sidebar-woocommerce']
+	: [];
 
-	// Remove ALL existing pa_color-family attribute blocks for this attributeId.
-	$cf_pattern = '/<!-- wp:woocommerce\/product-filter-attribute\s+\{[^}]*"attributeId":' . preg_quote( (string) $attribute_id, '/' ) . '[^}]*\}\s+-->.*?<!-- \/wp:woocommerce\/product-filter-attribute -->/s';
-	preg_match_all( $cf_pattern, $content, $matches );
-	$existing_blocks = $matches[0];
-	$content = preg_replace( $cf_pattern, '', $content );
+$widget_block_ids = [];
+foreach ( $sidebar_widgets as $widget_ref ) {
+	if ( preg_match( '/^block-(\d+)$/', (string) $widget_ref, $m ) ) {
+		$widget_block_ids[] = (int) $m[1];
+	}
+}
+$widget_block_ids = array_values( array_unique( $widget_block_ids ) );
 
-	// Canonical single block.
+if ( empty( $widget_block_ids ) ) {
+	$log( 'WARN', 'sidebar-woocommerce has no block-* widgets; skipped widget normalization' );
+} else {
 	$attrs_json = wp_json_encode( [ 'attributeId' => (int) $attribute_id, 'queryType' => 'or' ] );
 	$new_block  = "\n\n<!-- wp:woocommerce/product-filter-attribute $attrs_json -->\n";
 	$new_block .= "<div class=\"wp-block-woocommerce-product-filter-attribute\">";
@@ -355,31 +373,47 @@ if ( isset( $widget_blocks[ $widget_block_id ]['content'] ) ) {
 	$new_block .= "<!-- /wp:woocommerce/product-filter-checkbox-list --></div>\n";
 	$new_block .= "<!-- /wp:woocommerce/product-filter-attribute -->";
 
-	$needle = '<!-- wp:woocommerce/product-filter-taxonomy';
-	$pos = strpos( $content, $needle );
-	if ( $pos !== false ) {
-		$content = substr( $content, 0, $pos ) . trim( $new_block ) . "\n\n" . substr( $content, $pos );
-	} else {
+	$updated_blocks = 0;
+	foreach ( $widget_block_ids as $block_id ) {
+		if ( empty( $widget_blocks[ $block_id ]['content'] ) ) {
+			continue;
+		}
+		$content = $widget_blocks[ $block_id ]['content'];
+		if ( strpos( $content, '<!-- wp:woocommerce/product-filters' ) === false ) {
+			continue;
+		}
+
+		$cf_pattern = '/<!-- wp:woocommerce\/product-filter-attribute\s+\{[^}]*"attributeId":' . preg_quote( (string) $attribute_id, '/' ) . '[^}]*\}\s+-->.*?<!-- \/wp:woocommerce\/product-filter-attribute -->/s';
+		$content = preg_replace( $cf_pattern, '', $content );
+
+		$needle = '<!-- wp:woocommerce/product-filter-taxonomy';
+		$pos    = strpos( $content, $needle );
+		if ( $pos !== false ) {
+			$content = substr( $content, 0, $pos ) . trim( $new_block ) . "\n\n" . substr( $content, $pos );
+		} else {
+			$content = preg_replace(
+				'#<!-- /wp:woocommerce/product-filters -->\s*$#',
+				trim( $new_block ) . "\n\n<!-- /wp:woocommerce/product-filters -->",
+				$content
+			);
+		}
+
 		$content = preg_replace(
-			'#<!-- /wp:woocommerce/product-filters -->\s*$#',
-			trim( $new_block ) . "\n\n<!-- /wp:woocommerce/product-filters -->",
+			'/(<!-- wp:woocommerce\/product-filter-price -->.*?<h3 class="wp-block-heading" style="margin-top:0;margin-bottom:0.625rem">)Famiglia Colore(<\/h3>.*?<!-- \/wp:woocommerce\/product-filter-price -->)/s',
+			'$1Price$2',
 			$content
 		);
+
+		$widget_blocks[ $block_id ]['content'] = $content;
+		$updated_blocks++;
 	}
 
-	// Repair older bad state: price heading accidentally renamed.
-	$content = preg_replace(
-		'/(<!-- wp:woocommerce\/product-filter-price -->.*?<h3 class="wp-block-heading" style="margin-top:0;margin-bottom:0.625rem">)Famiglia Colore(<\/h3>.*?<!-- \/wp:woocommerce\/product-filter-price -->)/s',
-		'$1Price$2',
-		$content
-	);
-
-	$widget_blocks[ $widget_block_id ]['content'] = $content;
-	update_option( 'widget_block', $widget_blocks );
-	$log( 'OK', 'widget block normalized: deduped pa_color-family + heading fixed' );
-	$log( 'INFO', 'previous pa_color-family blocks found=' . count( $existing_blocks ) );
-} else {
-	$log( 'WARN', "widget_block[$widget_block_id] missing; skipped widget normalization" );
+	if ( $updated_blocks > 0 ) {
+		update_option( 'widget_block', $widget_blocks );
+		$log( 'OK', "widget normalization applied to $updated_blocks block(s) in sidebar-woocommerce" );
+	} else {
+		$log( 'WARN', 'no woocommerce/product-filters block found in sidebar-woocommerce widgets' );
+	}
 }
 
 // ------------------ 7) verification ------------------
@@ -392,12 +426,17 @@ foreach ( $product_ids as $product_id ) {
 }
 $log( 'VERIFY', "products_total=" . count( $product_ids ) . " products_with_family=$with_family" );
 
-$pa_color_type = $wpdb->get_var(
-	$wpdb->prepare(
-		"SELECT attribute_type FROM {$wpdb->prefix}woocommerce_attribute_taxonomies WHERE attribute_name = %s",
-		'color'
-	)
+$pa_color_rows = $wpdb->get_results(
+	"SELECT attribute_name, attribute_label, attribute_type
+	 FROM {$wpdb->prefix}woocommerce_attribute_taxonomies
+	 WHERE attribute_name IN ('color','colore','color-family')",
+	ARRAY_A
 );
-$log( 'VERIFY', 'pa_color attribute_type=' . ( $pa_color_type ?? '(missing)' ) );
+if ( ! empty( $pa_color_rows ) ) {
+	foreach ( $pa_color_rows as $row ) {
+		$log( 'VERIFY', sprintf( '%s (%s) type=%s', $row['attribute_name'], $row['attribute_label'], $row['attribute_type'] ) );
+	}
+} else {
+	$log( 'VERIFY', 'no color-like attributes found in wp_woocommerce_attribute_taxonomies' );
+}
 $log( 'DONE', 'remediation complete' );
-

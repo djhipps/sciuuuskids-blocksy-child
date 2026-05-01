@@ -369,6 +369,11 @@ if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/color-swatches.
     require_once get_stylesheet_directory() . '/inc/woocommerce/color-swatches.php';
 }
 
+// theme-owned shop filters
+if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/custom-shop-filters.php' ) ) {
+    require_once get_stylesheet_directory() . '/inc/woocommerce/custom-shop-filters.php';
+}
+
 
 // Set custom WooCommerce image sizes
 add_filter( 'woocommerce_get_image_size_thumbnail', function( $size ) {
@@ -686,8 +691,9 @@ function sciuuus_custom_woo_wrapper_start() {
 
         echo '<div class="sciuuus-shop-layout ct-container">';
         echo '<aside class="sciuuus-sidebar">';
-
-        if (is_active_sidebar('sidebar-woocommerce')) {
+        if ( function_exists( 'sciuuus_render_custom_shop_filters' ) ) {
+            sciuuus_render_custom_shop_filters();
+        } elseif (is_active_sidebar('sidebar-woocommerce')) {
             dynamic_sidebar('sidebar-woocommerce');
         }
 
