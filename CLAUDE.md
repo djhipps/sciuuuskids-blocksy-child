@@ -35,6 +35,9 @@
   - attribute row in `wp_woocommerce_attribute_taxonomies` (`attribute_name = color-family`)
   - taxonomy terms in `pa_color-family`
   - query-string behavior using `filter_color-family` (not `filter_pa_color-family`)
+  - expected family set currently includes `giallo`
+  - multi-family assignment is allowed for genuinely multi-color products
+  - archive product cards render color-family chips to explain filtered inclusion
 
 ## Browser / Rendered-Page Inspection
 Two MCP servers are registered at local scope for the `wp-docker` project tree (entries in `~/.claude.json`). Both only load at session start — a fresh Claude Code session under `wp-docker` picks them up automatically.

@@ -42,6 +42,65 @@ function sciuuuskids_show_product_categories() {
 add_action( 'woocommerce_before_shop_loop_item_title', 'sciuuuskids_show_product_categories', 5 );
 
 /**
+ * Show color-family chips on archive product cards.
+ * Helps users understand why a product appears in filtered results,
+ * even when the primary image shows only one color variant.
+ */
+function sciuuuskids_show_product_color_family_chips() {
+    global $product;
+
+    // Render only on shop archives, never in single-product related/upsell areas.
+    if ( is_product() || ! ( is_shop() || is_product_category() || is_product_tag() ) ) {
+        return;
+    }
+
+    if ( ! $product || ! taxonomy_exists( 'pa_color-family' ) ) {
+        return;
+    }
+
+    $terms = get_the_terms( $product->get_id(), 'pa_color-family' );
+    if ( ! $terms || is_wp_error( $terms ) ) {
+        return;
+    }
+
+    $theme_dir = get_stylesheet_directory();
+    $theme_uri = get_stylesheet_directory_uri();
+    $selected  = function_exists( 'sciuuus_get_selected_color_family_slugs' )
+        ? sciuuus_get_selected_color_family_slugs()
+        : [];
+
+    echo '<div class="sciuuus-color-family-chips" aria-label="' . esc_attr__( 'Famiglie colore prodotto', 'blocksy-child' ) . '">';
+
+    foreach ( $terms as $term ) {
+        $attachment_id = (int) get_term_meta( $term->term_id, 'product_attribute_image', true );
+        $swatch_url    = $attachment_id ? wp_get_attachment_image_url( $attachment_id, 'thumbnail' ) : '';
+        if ( ! $swatch_url ) {
+            $bundled = $theme_dir . '/assets/swatches/' . $term->slug . '.png';
+            if ( file_exists( $bundled ) ) {
+                $swatch_url = $theme_uri . '/assets/swatches/' . $term->slug . '.png';
+            }
+        }
+
+        $chip_class = 'sciuuus-color-family-chip';
+        if ( in_array( $term->slug, $selected, true ) ) {
+            $chip_class .= ' is-selected';
+        }
+
+        echo '<span class="' . esc_attr( $chip_class ) . '" title="' . esc_attr( $term->name ) . '">';
+        if ( $swatch_url ) {
+            echo '<img class="sciuuus-color-family-chip__swatch" src="' . esc_url( $swatch_url ) . '" alt="' . esc_attr( $term->name ) . '" width="14" height="14" loading="lazy" decoding="async" />';
+        } else {
+            echo '<span class="sciuuus-color-family-chip__swatch sciuuus-color-family-chip__swatch--fallback" aria-hidden="true"></span>';
+        }
+        echo '<span class="sciuuus-color-family-chip__label">' . esc_html( $term->name ) . '</span>';
+        echo '</span>';
+    }
+
+    echo '</div>';
+}
+add_action( 'woocommerce_after_shop_loop_item_title', 'sciuuuskids_show_product_color_family_chips', 12 );
+
+/**
  * Customize archive page title
  * Example: Change "Scarpe bambini" display format
  */

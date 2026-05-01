@@ -8,7 +8,7 @@
  * Steps (each gated on existing state — re-runnable):
  *   1. Create global attribute pa_color-family (type=select, label "Famiglia Colore").
  *   2. Register taxonomy in this CLI run.
- *   3. Create 8 family terms.
+ *   3. Create 9 family terms.
  *   4. Sideload theme-bundled swatch PNGs as media; store attachment id as
  *      term meta `product_attribute_image`.
  *   5. Insert a pa_color-family product-filter-attribute block into the
@@ -46,6 +46,7 @@ $terms = [
 	'bianco'      => 'Bianco',
 	'nero'        => 'Nero',
 	'verde'       => 'Verde',
+	'giallo'      => 'Giallo',
 	'blu'         => 'Blu',
 	'rosa'        => 'Rosa',
 	'marrone'     => 'Marrone',
@@ -143,6 +144,9 @@ $family_rules = [
 	],
 	'verde'       => [
 		'verde', 'green', 'smeraldo', 'oliva', 'salvia', 'menta', 'foresta',
+	],
+	'giallo'      => [
+		'giallo', 'yellow', 'senape', 'ocra gialla', 'lime',
 	],
 	'blu'         => [
 		'blu', 'blue', 'azzurro', 'celeste', 'navy', 'marina', 'denim', 'indaco', 'turchese',

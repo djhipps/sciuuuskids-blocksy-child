@@ -20,6 +20,9 @@ Maintain SciuuuS Kids child theme behavior with minimal regressions on Woo produ
   - Woo attribute `color-family` (taxonomy `pa_color-family`)
   - URL params `filter_color-family` and `query_type_color-family=or`
 - Do not assume Woo filter widget/block markup exists on live.
+- Family taxonomy includes `giallo` in addition to the original families.
+- Multi-family product assignment is valid when product variants span multiple colors.
+- Archive cards should surface color-family chips for filter transparency.
 
 ## Change Rules
 - Prefer non-invasive CSS and hook-priority adjustments over template overrides.
@@ -33,3 +36,4 @@ Maintain SciuuuS Kids child theme behavior with minimal regressions on Woo produ
 - `php -l` on all touched PHP files.
 - Visual regression check: header, product summary, add-to-cart, reviews block, related products, footer.
 - Archive regression check: `/shop` unfiltered baseline + per-color filtered counts change when selecting swatches.
+- Verify `giallo` appears in sidebar filter and behaves like other families.

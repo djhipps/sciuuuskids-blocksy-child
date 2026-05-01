@@ -20,8 +20,8 @@ The migration script is idempotent and safe to re-run.
 ## What the migration script does
 
 - Creates global product attribute `pa_color-family` (attribute name `color-family`, label `Famiglia Colore`).
-- Inserts 8 family terms:
-  - `bianco`, `nero`, `verde`, `blu`, `rosa`, `marrone`, `multicolore`, `fantasia`
+- Inserts 9 family terms:
+  - `bianco`, `nero`, `verde`, `giallo`, `blu`, `rosa`, `marrone`, `multicolore`, `fantasia`
 - Sideloads theme swatch PNGs from `assets/swatches/` and stores each as `product_attribute_image` term-meta.
 - Auto-tags products using existing color signals, skipping products that already have at least one `pa_color-family` term.
 
@@ -29,6 +29,8 @@ The migration script is idempotent and safe to re-run.
 
 - It does not change variation color behavior (`pa_color`).
 - It does not guarantee every product gets a family term (manual curation may still be required).
+- Multi-family assignment is valid and expected for genuinely multi-color products.
+- Primary product-card image may show one color while additional colors exist in variation photos.
 - It does not require widget-block edits for color filtering anymore.
 
 ## Pre-flight
@@ -76,12 +78,35 @@ foreach (get_terms(["taxonomy"=>"pa_color-family","hide_empty"=>false]) as $t) {
 ' --path=/opt/bitnami/wordpress
 ```
 
+## Troubleshooting checklist (live, read-only)
+
+When filters show strange combinations or empty results, run the audit script first:
+
+```bash
+sudo /opt/bitnami/wp-cli/bin/wp eval-file \
+  /opt/bitnami/wordpress/wp-content/themes/blocksy-child/inc/migrations/colour-family-audit.php \
+  --path=/opt/bitnami/wordpress
+```
+
+The audit prints:
+
+- `SETUP`: attribute/taxonomy integrity and expected term set.
+- `BASELINE`: published products vs shop-visible products after visibility/stock constraints.
+- `TERM_COUNTS`: raw taxonomy counts vs effective shop-visible counts for each family slug.
+- `ZERO_TRAP`: terms that have assignments but produce 0 visible results.
+- `MISMATCH`: product-level suspicious assignments (`assigned` vs `inferred` from color signals).
+
+Use `MISMATCH` output as the manual fix list in wp-admin products.
+No DB changes are made by this audit script.
+
 ## Visual checks
 
 1. Open `/shop` and confirm `Colore` appears in the sidebar with swatches.
 2. Click one color and confirm results change and URL includes `filter_color-family=<slug>`.
 3. Multi-select colors and confirm URL includes comma-separated values plus `query_type_color-family=or`.
 4. Clear filters and confirm baseline shop result set is restored.
+5. Confirm products can appear in more than one family when they genuinely include multiple colors.
+6. Confirm product card color chips explain inclusion when main image color differs from variation colors.
 
 Note: if Woo setting `woocommerce_hide_out_of_stock_items=yes`, filtered result counts can be lower than taxonomy term counts.
 
