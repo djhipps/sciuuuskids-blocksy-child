@@ -38,6 +38,16 @@ function sciuuus_get_selected_color_family_slugs() {
 }
 
 /**
+ * Return the current archive URL normalized to page 1.
+ *
+ * This prevents filter links from carrying stale `/page/N/` fragments
+ * that can produce 404s once query args are applied.
+ */
+function sciuuus_get_filters_base_url() {
+	return get_pagenum_link( 1 );
+}
+
+/**
  * Render custom color-family filter sidebar content.
  */
 function sciuuus_render_custom_shop_filters() {
@@ -61,6 +71,7 @@ function sciuuus_render_custom_shop_filters() {
 	}
 
 	$selected = sciuuus_get_selected_color_family_slugs();
+	$base_url = sciuuus_get_filters_base_url();
 	$term_map = [];
 	foreach ( $terms as $term ) {
 		$term_map[ $term->slug ] = $term;
@@ -97,7 +108,8 @@ function sciuuus_render_custom_shop_filters() {
 					'query_type_color-family' => false,
 					'paged'                      => false,
 					'product-page'               => false,
-				]
+				],
+				$base_url
 			);
 			?>
 			<a class="sciuuus-custom-filters__clear" href="<?php echo esc_url( $clear_url ); ?>">
@@ -133,7 +145,7 @@ function sciuuus_render_custom_shop_filters() {
 						$args['query_type_color-family'] = 'or';
 					}
 
-					$link = add_query_arg( $args );
+					$link = add_query_arg( $args, $base_url );
 
 					$attachment_id = (int) get_term_meta( $term->term_id, 'product_attribute_image', true );
 					$swatch_url    = $attachment_id ? wp_get_attachment_image_url( $attachment_id, 'thumbnail' ) : '';
