@@ -1,5 +1,43 @@
 # Filter Development Handover (pa_color-family)
 
+## Size Filter Rollout (Temporary Bridge + Migration)
+### Implementation Status (as of 2026-05-02)
+- Implemented in theme code:
+  - `filter_size` + `query_type_size=or` URL contract support
+  - Size filter UI section in `inc/woocommerce/custom-shop-filters.php`
+  - Temporary bridge query logic:
+    - matches `pa_size` terms when present
+    - matches legacy variation meta keys `attribute_size` / `attribute_taglia`
+    - maps matches to parent product IDs for archive filtering
+  - Migration script created: `inc/migrations/size-taxonomy-migration.php`
+  - Audit script created: `inc/migrations/size-taxonomy-audit.php`
+- Implemented verification in local theme workspace:
+  - PHP lint checks pass for modified files
+- Not executed yet (live operations step):
+  - running migration/audit scripts on production/staging data
+  - Woo lookup regeneration after each migration batch
+  - transient cleanup only if storefront/filter output is stale
+- Exit criteria to remove bridge path:
+  - audit shows 100% intended `pa_size` coverage and no remaining legacy-key dependency
+
+- Frontend query contract:
+  - `filter_size`
+  - `query_type_size=or`
+- Bridge behavior is theme-owned in `inc/woocommerce/custom-shop-filters.php`:
+  - reads variation legacy keys `attribute_size` and `attribute_taglia`
+  - maps selected slugs to parent products
+  - also matches `pa_size` terms when available
+- Migration script:
+  - `inc/migrations/size-taxonomy-migration.php`
+- Audit script:
+  - `inc/migrations/size-taxonomy-audit.php`
+- Bridge stays enabled until audit coverage is 100% on `pa_size`.
+- After each migration batch:
+  - run full lookup regeneration
+  - clear transients only if filter/catalog output remains stale
+- Required cross-team reminder:
+  - mirror this rollout checklist in `sciuuusadmin` Product Attributes admin page banner/checklist so operators run migration + audit + lookup regeneration in order.
+
 ## Current State
 - Shop sidebar filter is theme-owned via `inc/woocommerce/custom-shop-filters.php`.
 - Query contract is:
@@ -52,4 +90,8 @@ sudo /opt/bitnami/wp-cli/bin/wp eval-file /opt/bitnami/wordpress/wp-content/them
 # Regenerate Woo lookup + clear transients (replace <admin_login>)
 sudo /opt/bitnami/wp-cli/bin/wp wc tool run regenerate_product_attributes_lookup_table --user=<admin_login> --path=/opt/bitnami/wordpress
 sudo /opt/bitnami/wp-cli/bin/wp wc tool run clear_transients --user=<admin_login> --path=/opt/bitnami/wordpress
+
+# Size migration + audit
+sudo /opt/bitnami/wp-cli/bin/wp eval-file /opt/bitnami/wordpress/wp-content/themes/blocksy-child/inc/migrations/size-taxonomy-migration.php --path=/opt/bitnami/wordpress
+sudo /opt/bitnami/wp-cli/bin/wp eval-file /opt/bitnami/wordpress/wp-content/themes/blocksy-child/inc/migrations/size-taxonomy-audit.php --path=/opt/bitnami/wordpress
 ```

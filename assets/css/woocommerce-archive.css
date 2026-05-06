@@ -895,7 +895,8 @@ body.post-type-archive-product ul.products li.product .ct-woo-card-actions {
 
 /* Color-family chips shown on product cards (custom archive filters transparency) */
 body.woocommerce-shop ul.products li.product .sciuuus-color-family-chips,
-body.post-type-archive-product ul.products li.product .sciuuus-color-family-chips {
+body.post-type-archive-product ul.products li.product .sciuuus-color-family-chips,
+.woocommerce ul.products li.product .sciuuus-color-family-chips {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -904,7 +905,8 @@ body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip
 }
 
 body.woocommerce-shop ul.products li.product .sciuuus-color-family-chip,
-body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip {
+body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip,
+.woocommerce ul.products li.product .sciuuus-color-family-chip {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -920,7 +922,8 @@ body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip
 }
 
 body.woocommerce-shop ul.products li.product .sciuuus-color-family-chip__swatch,
-body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip__swatch {
+body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip__swatch,
+.woocommerce ul.products li.product .sciuuus-color-family-chip__swatch {
     inline-size: 12px;
     block-size: 12px;
     border-radius: 50%;
@@ -930,12 +933,14 @@ body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip
 }
 
 body.woocommerce-shop ul.products li.product .sciuuus-color-family-chip__swatch--fallback,
-body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip__swatch--fallback {
+body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip__swatch--fallback,
+.woocommerce ul.products li.product .sciuuus-color-family-chip__swatch--fallback {
     background: #d1d5db;
 }
 
 body.woocommerce-shop ul.products li.product .sciuuus-color-family-chip.is-selected,
-body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip.is-selected {
+body.post-type-archive-product ul.products li.product .sciuuus-color-family-chip.is-selected,
+.woocommerce ul.products li.product .sciuuus-color-family-chip.is-selected {
     border-color: #2563eb;
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18);
     background: #f8fbff;

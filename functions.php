@@ -364,10 +364,8 @@ if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/checkout-hooks.
     require_once get_stylesheet_directory() . '/inc/woocommerce/checkout-hooks.php';
 }
 
-// pa_color-family filter swatches
-if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/color-swatches.php' ) ) {
-    require_once get_stylesheet_directory() . '/inc/woocommerce/color-swatches.php';
-}
+// Legacy block swatch injector intentionally disabled.
+// Theme-owned custom filters render swatches directly.
 
 // theme-owned shop filters
 if ( file_exists( get_stylesheet_directory() . '/inc/woocommerce/custom-shop-filters.php' ) ) {
