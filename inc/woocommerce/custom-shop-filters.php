@@ -16,6 +16,46 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Allowed color-family slugs and max selection guard.
+ */
+function sciuuus_get_color_filter_policy() {
+	return [
+		'allowed' => [
+			'bianco',
+			'nero',
+			'blu',
+			'rosa',
+			'giallo',
+			'verde',
+			'marrone',
+			'fantasia',
+			'multicolore',
+		],
+		'max' => 2,
+		'max_raw_length' => 100,
+	];
+}
+
+/**
+ * Return raw color-family query tokens before whitelist/capping.
+ */
+function sciuuus_get_raw_color_family_filter_tokens() {
+	$raw = isset( $_GET['filter_color-family'] ) ? wp_unslash( (string) $_GET['filter_color-family'] ) : '';
+	if ( $raw === '' ) {
+		return [];
+	}
+
+	$tokens = array_filter(
+		array_map(
+			'sanitize_title',
+			array_map( 'trim', explode( ',', $raw ) )
+		)
+	);
+
+	return array_values( array_unique( $tokens ) );
+}
+
+/**
  * Return selected color-family slugs from query string.
  *
  * Uses WooCommerce layered-nav query parameter shape:
@@ -35,7 +75,24 @@ function sciuuus_get_selected_color_family_slugs() {
 		)
 	);
 
-	return array_values( array_unique( $slugs ) );
+	$policy = sciuuus_get_color_filter_policy();
+	$slugs  = array_values( array_unique( $slugs ) );
+	$slugs  = array_values(
+		array_filter(
+			$slugs,
+			static function ( $slug ) use ( $policy ) {
+				return in_array( $slug, $policy['allowed'], true );
+			}
+		)
+	);
+
+	sort( $slugs, SORT_STRING );
+
+	if ( count( $slugs ) > (int) $policy['max'] ) {
+		$slugs = array_slice( $slugs, 0, (int) $policy['max'] );
+	}
+
+	return $slugs;
 }
 
 /**
@@ -61,6 +118,26 @@ function sciuuus_get_selected_size_slugs() {
 	$blocked = [ 'nessuno', 'none', 'n-a', 'na', 'null' ];
 	$slugs   = array_values( array_unique( $slugs ) );
 	$slugs   = array_values( array_diff( $slugs, $blocked ) );
+
+	// Runtime safety: only allow numeric sizes within policy range.
+	$slugs = array_values(
+		array_filter(
+			$slugs,
+			static function ( $slug ) {
+				if ( ! preg_match( '/^\d+$/', (string) $slug ) ) {
+					return false;
+				}
+
+				$size = (int) $slug;
+				return $size >= 20 && $size <= 44;
+			}
+		)
+	);
+
+	// Hard cap prevents combinatorial abuse in query args.
+	if ( count( $slugs ) > 8 ) {
+		$slugs = array_slice( $slugs, 0, 8 );
+	}
 
 	return $slugs;
 }
@@ -119,6 +196,18 @@ function sciuuus_size_label_from_slug( $slug ) {
  */
 function sciuuus_get_size_filter_options() {
 	global $wpdb;
+
+	$cache_key = 'sciuuus_size_filter_options_v1';
+	$cached    = wp_cache_get( $cache_key, 'sciuuus_filters' );
+	if ( is_array( $cached ) ) {
+		return $cached;
+	}
+
+	$cached = get_transient( $cache_key );
+	if ( is_array( $cached ) ) {
+		wp_cache_set( $cache_key, $cached, 'sciuuus_filters', 300 );
+		return $cached;
+	}
 
 	$options = [];
 	$taxonomy = 'pa_size';
@@ -180,6 +269,9 @@ function sciuuus_get_size_filter_options() {
 		}
 	);
 
+	set_transient( $cache_key, $options, 5 * MINUTE_IN_SECONDS );
+	wp_cache_set( $cache_key, $options, 'sciuuus_filters', 300 );
+
 	return $options;
 }
 
@@ -214,6 +306,84 @@ function sciuuus_get_grouped_size_filter_options() {
 function sciuuus_get_filters_base_url() {
 	return get_pagenum_link( 1 );
 }
+
+/**
+ * True when current request is a shop/tax archive with filter query args.
+ */
+function sciuuus_is_filtered_archive_request() {
+	if ( ! ( is_shop() || is_product_taxonomy() ) ) {
+		return false;
+	}
+
+	return isset( $_GET['filter_color-family'] ) || isset( $_GET['filter_size'] );
+}
+
+/**
+ * Normalize and cap filter query args before expensive archive queries run.
+ */
+function sciuuus_normalize_filter_query_request() {
+	if ( is_admin() || ! sciuuus_is_filtered_archive_request() ) {
+		return;
+	}
+
+	$policy = sciuuus_get_color_filter_policy();
+	$raw    = isset( $_GET['filter_color-family'] ) ? wp_unslash( (string) $_GET['filter_color-family'] ) : '';
+	if ( $raw !== '' ) {
+		if ( strlen( $raw ) > (int) $policy['max_raw_length'] ) {
+			status_header( 400 );
+			wp_die( esc_html__( 'Bad Request', 'blocksy-child' ), esc_html__( 'Bad Request', 'blocksy-child' ), [ 'response' => 400 ] );
+		}
+
+		$raw_tokens = sciuuus_get_raw_color_family_filter_tokens();
+		if ( count( $raw_tokens ) > (int) $policy['max'] ) {
+			status_header( 400 );
+			wp_die( esc_html__( 'Bad Request', 'blocksy-child' ), esc_html__( 'Bad Request', 'blocksy-child' ), [ 'response' => 400 ] );
+		}
+
+		$unknown_tokens = array_values( array_diff( $raw_tokens, $policy['allowed'] ) );
+		if ( ! empty( $unknown_tokens ) ) {
+			status_header( 400 );
+			wp_die( esc_html__( 'Bad Request', 'blocksy-child' ), esc_html__( 'Bad Request', 'blocksy-child' ), [ 'response' => 400 ] );
+		}
+	}
+
+	$selected_colors = sciuuus_get_selected_color_family_slugs();
+	$selected_sizes  = sciuuus_get_selected_size_slugs();
+	$base_url        = sciuuus_get_filters_base_url();
+
+	$normalized_args = [
+		'paged'                   => false,
+		'product-page'            => false,
+		'filter_color-family'     => ! empty( $selected_colors ) ? implode( ',', $selected_colors ) : false,
+		'query_type_color-family' => ! empty( $selected_colors ) ? 'or' : false,
+		'filter_size'             => ! empty( $selected_sizes ) ? implode( ',', $selected_sizes ) : false,
+		'query_type_size'         => ! empty( $selected_sizes ) ? 'or' : false,
+	];
+
+	$target_url   = add_query_arg( $normalized_args, $base_url );
+	$current_path = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( (string) $_SERVER['REQUEST_URI'] ) : '';
+	$current_url  = home_url( $current_path );
+
+	if ( $current_url !== $target_url ) {
+		wp_safe_redirect( $target_url, 302 );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'sciuuus_normalize_filter_query_request', 1 );
+
+/**
+ * Filtered archive states are utility pages, not SEO landing pages.
+ */
+function sciuuus_add_filtered_archive_robots_and_canonical() {
+	if ( ! sciuuus_is_filtered_archive_request() ) {
+		return;
+	}
+
+	$canonical = sciuuus_get_filters_base_url();
+	echo '<meta name="robots" content="noindex,follow" />' . "\n";
+	echo '<link rel="canonical" href="' . esc_url( $canonical ) . '" />' . "\n";
+}
+add_action( 'wp_head', 'sciuuus_add_filtered_archive_robots_and_canonical', 1 );
 
 /**
  * Render custom color-family filter sidebar content.
@@ -464,45 +634,48 @@ function sciuuus_apply_size_filter_bridge_to_main_query( $query ) {
 		return;
 	}
 
-	global $wpdb;
+	if ( count( $selected ) > 8 ) {
+		$query->set( 'post__in', [ 0 ] );
+		$query->set( 'orderby', 'post__in' );
+		return;
+	}
 
-	$product_ids = [];
-	$selected_map = array_fill_keys( $selected, true );
+	sort( $selected );
+	$cache_key = 'size_bridge_ids_v1_' . md5( implode( ',', $selected ) );
+	$cached    = wp_cache_get( $cache_key, 'sciuuus_filters' );
+	if ( is_array( $cached ) ) {
+		$product_ids = $cached;
+	} else {
+		$cached = get_transient( $cache_key );
+		if ( is_array( $cached ) ) {
+			$product_ids = $cached;
+			wp_cache_set( $cache_key, $product_ids, 'sciuuus_filters', 300 );
+		} else {
+			global $wpdb;
 
-	$size_rows = $wpdb->get_results(
-		"SELECT DISTINCT p.ID AS product_id, pm.meta_key, pm.meta_value
-		 FROM {$wpdb->posts} v
-		 INNER JOIN {$wpdb->posts} p ON p.ID = v.post_parent
-		 INNER JOIN {$wpdb->postmeta} pm ON pm.post_id = v.ID
-		 INNER JOIN {$wpdb->postmeta} stock ON stock.post_id = v.ID
-		 WHERE v.post_type = 'product_variation'
-		   AND v.post_status IN ('publish','private')
-		   AND p.post_type = 'product'
-		   AND p.post_status = 'publish'
-		   AND stock.meta_key = '_stock_status'
-		   AND stock.meta_value = 'instock'
-		   AND pm.meta_key IN ('attribute_pa_size','attribute_size','attribute_taglia')
-		   AND pm.meta_value <> ''",
-		ARRAY_A
-	);
+			$in_placeholders = implode( ',', array_fill( 0, count( $selected ), '%s' ) );
+			$sql             = $wpdb->prepare(
+				"SELECT DISTINCT p.ID AS product_id
+				 FROM {$wpdb->posts} v
+				 INNER JOIN {$wpdb->posts} p ON p.ID = v.post_parent
+				 INNER JOIN {$wpdb->postmeta} pm ON pm.post_id = v.ID
+				 INNER JOIN {$wpdb->postmeta} stock ON stock.post_id = v.ID
+				 WHERE v.post_type = 'product_variation'
+				   AND v.post_status IN ('publish','private')
+				   AND p.post_type = 'product'
+				   AND p.post_status = 'publish'
+				   AND stock.meta_key = '_stock_status'
+				   AND stock.meta_value = 'instock'
+				   AND pm.meta_key IN ('attribute_pa_size','attribute_size','attribute_taglia')
+				   AND pm.meta_value IN ($in_placeholders)",
+				$selected
+			);
 
-	if ( is_array( $size_rows ) ) {
-		foreach ( $size_rows as $row ) {
-			$meta_key = (string) ( $row['meta_key'] ?? '' );
-			$raw      = (string) ( $row['meta_value'] ?? '' );
-			if ( $raw === '' ) {
-				continue;
-			}
+			$rows = $wpdb->get_col( $sql );
+			$product_ids = array_values( array_unique( array_map( 'intval', is_array( $rows ) ? $rows : [] ) ) );
 
-			$size_slug = $meta_key === 'attribute_pa_size'
-				? sanitize_title( $raw )
-				: sciuuus_normalize_legacy_size_slug( $raw );
-
-			if ( $size_slug === '' || ! isset( $selected_map[ $size_slug ] ) ) {
-				continue;
-			}
-
-			$product_ids[] = (int) ( $row['product_id'] ?? 0 );
+			set_transient( $cache_key, $product_ids, 5 * MINUTE_IN_SECONDS );
+			wp_cache_set( $cache_key, $product_ids, 'sciuuus_filters', 300 );
 		}
 	}
 
