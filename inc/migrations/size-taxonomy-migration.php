@@ -1,17 +1,19 @@
 <?php
 /**
- * Idempotent migration for global size attribute taxonomy (pa_size).
+ * Idempotent fallback migration for global size attribute taxonomy (pa_size).
  *
  * Invocation:
  *   wp eval-file wp-content/themes/blocksy-child/inc/migrations/size-taxonomy-migration.php
  *
- * Purpose:
+ * Purpose (fallback path only):
  * - Create global attribute `size` (taxonomy pa_size) if missing.
- * - Create normalized size terms (edit $size_terms if needed before first live run).
+ * - Create normalized numeric size terms (20..44).
  * - Map legacy variation keys attribute_size / attribute_taglia to attribute_pa_size.
  * - Assign product-level pa_size terms for stable archive filtering.
  *
- * NOTE: This script is intentionally not loaded by functions.php.
+ * NOTE: The canonical process is now the manual one-by-one workflow in
+ * sciuuusadmin Product Attributes -> Taglia (pa_size).
+ * Keep this script as a controlled fallback only.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -54,13 +56,10 @@ $size_terms = [
 	'38'      => '38',
 	'39'      => '39',
 	'40'      => '40',
-	'xs'      => 'XS',
-	's'       => 'S',
-	'm'       => 'M',
-	'l'       => 'L',
-	'xl'      => 'XL',
-	'xxl'     => 'XXL',
-	'one-size'=> 'Taglia unica',
+	'41'      => '41',
+	'42'      => '42',
+	'43'      => '43',
+	'44'      => '44',
 ];
 
 $legacy_keys = [ 'attribute_size', 'attribute_taglia' ];

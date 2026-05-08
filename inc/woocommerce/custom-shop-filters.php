@@ -122,54 +122,87 @@ function sciuuus_get_size_filter_options() {
 
 	$options = [];
 	$taxonomy = 'pa_size';
-	$blocked  = [ 'nessuno', 'none', 'n-a', 'na', 'null' ];
+	$blocked  = [ 'nessuno', 'none', 'n-a', 'na', 'null', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', '3xl', '4xl', 'one-size', 'unica' ];
 
-	if ( taxonomy_exists( $taxonomy ) ) {
-		$terms = get_terms(
-			[
-				'taxonomy'   => $taxonomy,
-				'hide_empty' => false,
-				'orderby'    => 'name',
-				'order'      => 'ASC',
-			]
-		);
-		if ( ! is_wp_error( $terms ) ) {
-			foreach ( $terms as $term ) {
-				if ( in_array( $term->slug, $blocked, true ) ) {
-					continue;
-				}
-				$options[ $term->slug ] = $term->name;
-			}
-		}
-	}
-
-	$legacy_keys   = [ 'attribute_size', 'attribute_taglia' ];
-	$placeholders  = implode( ',', array_fill( 0, count( $legacy_keys ), '%s' ) );
-	$raw_size_vals = $wpdb->get_col(
-		$wpdb->prepare(
-			"SELECT DISTINCT pm.meta_value
-			 FROM {$wpdb->postmeta} pm
-			 INNER JOIN {$wpdb->posts} v ON v.ID = pm.post_id
-			 WHERE v.post_type = 'product_variation'
-			   AND v.post_status IN ('publish','private')
-			   AND pm.meta_key IN ($placeholders)
-			   AND pm.meta_value <> ''",
-			$legacy_keys
-		)
+	$size_rows = $wpdb->get_results(
+		"SELECT DISTINCT pm.meta_key, pm.meta_value
+		 FROM {$wpdb->postmeta} pm
+		 INNER JOIN {$wpdb->posts} v ON v.ID = pm.post_id
+		 INNER JOIN {$wpdb->posts} p ON p.ID = v.post_parent
+		 INNER JOIN {$wpdb->postmeta} stock ON stock.post_id = v.ID
+		 WHERE v.post_type = 'product_variation'
+		   AND v.post_status IN ('publish','private')
+		   AND p.post_type = 'product'
+		   AND p.post_status = 'publish'
+		   AND stock.meta_key = '_stock_status'
+		   AND stock.meta_value = 'instock'
+		   AND pm.meta_key IN ('attribute_pa_size','attribute_size','attribute_taglia')
+		   AND pm.meta_value <> ''",
+		ARRAY_A
 	);
 
-	if ( is_array( $raw_size_vals ) ) {
-		foreach ( $raw_size_vals as $raw ) {
-			$slug = sciuuus_normalize_legacy_size_slug( $raw );
-			if ( $slug === '' || in_array( $slug, $blocked, true ) || isset( $options[ $slug ] ) ) {
+	if ( is_array( $size_rows ) ) {
+		foreach ( $size_rows as $row ) {
+			$meta_key = (string) ( $row['meta_key'] ?? '' );
+			$raw      = (string) ( $row['meta_value'] ?? '' );
+			if ( $raw === '' ) {
 				continue;
 			}
+
+			$slug = $meta_key === 'attribute_pa_size'
+				? sanitize_title( $raw )
+				: sciuuus_normalize_legacy_size_slug( $raw );
+
+			if ( $slug === '' || in_array( $slug, $blocked, true ) || isset( $options[ $slug ] ) || ! preg_match( '/^\d+$/', (string) $slug ) ) {
+				continue;
+			}
+			$size = (int) $slug;
+			if ( $size < 20 || $size > 44 ) {
+				continue;
+			}
+
+			if ( taxonomy_exists( $taxonomy ) ) {
+				$term = get_term_by( 'slug', $slug, $taxonomy );
+				if ( $term instanceof WP_Term ) {
+					$options[ $slug ] = $term->name;
+					continue;
+				}
+			}
+
 			$options[ $slug ] = sciuuus_size_label_from_slug( $slug );
 		}
 	}
 
-	asort( $options, SORT_NATURAL | SORT_FLAG_CASE );
+	uksort(
+		$options,
+		static function ( $a, $b ) {
+			return (int) $a <=> (int) $b;
+		}
+	);
+
 	return $options;
+}
+
+/**
+ * Build grouped numeric size options for UI.
+ */
+function sciuuus_get_grouped_size_filter_options() {
+	$options = sciuuus_get_size_filter_options();
+	$groups  = [
+		'Bimbo (20-35)' => [],
+		'Adulto (36-44)' => [],
+	];
+
+	foreach ( $options as $slug => $label ) {
+		$size = (int) $slug;
+		if ( $size >= 20 && $size <= 35 ) {
+			$groups['Bimbo (20-35)'][ $slug ] = $label;
+		} elseif ( $size >= 36 && $size <= 44 ) {
+			$groups['Adulto (36-44)'][ $slug ] = $label;
+		}
+	}
+
+	return array_filter( $groups );
 }
 
 /**
@@ -206,10 +239,18 @@ function sciuuus_render_custom_shop_filters() {
 	}
 
 	$selected = sciuuus_get_selected_color_family_slugs();
+	$size_selected = sciuuus_get_selected_size_slugs();
 	$base_url = sciuuus_get_filters_base_url();
 	$term_map = [];
 	foreach ( $terms as $term ) {
 		$term_map[ $term->slug ] = $term;
+	}
+	$size_groups  = sciuuus_get_grouped_size_filter_options();
+	$size_map     = [];
+	foreach ( $size_groups as $group_options ) {
+		foreach ( $group_options as $slug => $label ) {
+			$size_map[ $slug ] = $label;
+		}
 	}
 
 	$theme_dir = get_stylesheet_directory();
@@ -218,21 +259,60 @@ function sciuuus_render_custom_shop_filters() {
 	<div class="sciuuus-custom-filters" aria-label="<?php esc_attr_e( 'Product filters', 'blocksy-child' ); ?>">
 		<h3 class="sciuuus-custom-filters__title"><?php esc_html_e( 'Filters', 'blocksy-child' ); ?></h3>
 
-		<?php if ( ! empty( $selected ) ) : ?>
+		<?php if ( ! empty( $selected ) || ! empty( $size_selected ) ) : ?>
 			<div class="sciuuus-custom-filters__active" aria-label="<?php esc_attr_e( 'Active filters', 'blocksy-child' ); ?>">
 				<?php foreach ( $selected as $slug ) : ?>
 					<?php if ( isset( $term_map[ $slug ] ) ) : ?>
-						<span class="sciuuus-filter-chip">
+						<?php
+						$next = array_values( array_diff( $selected, [ $slug ] ) );
+						$args = [
+							'paged'                      => false,
+							'product-page'               => false,
+							'filter_size'                => ! empty( $size_selected ) ? implode( ',', $size_selected ) : false,
+							'query_type_size'            => ! empty( $size_selected ) ? 'or' : false,
+							'filter_color-family'        => ! empty( $next ) ? implode( ',', $next ) : false,
+							'query_type_color-family'    => ! empty( $next ) ? 'or' : false,
+						];
+						$remove_link = add_query_arg( $args, $base_url );
+						?>
+						<a class="sciuuus-filter-chip" href="<?php echo esc_url( $remove_link ); ?>">
 							<?php
 							echo esc_html(
 								sprintf(
 									/* translators: %s: selected color-family term name */
-									__( 'Famiglia Colore: %s', 'blocksy-child' ),
+									__( 'Famiglia Colore: %s ×', 'blocksy-child' ),
 									$term_map[ $slug ]->name
 								)
 							);
 							?>
-						</span>
+						</a>
+					<?php endif; ?>
+				<?php endforeach; ?>
+				<?php foreach ( $size_selected as $size_slug ) : ?>
+					<?php if ( isset( $size_map[ $size_slug ] ) ) : ?>
+						<?php
+						$next_size = array_values( array_diff( $size_selected, [ $size_slug ] ) );
+						$args      = [
+							'paged'                      => false,
+							'product-page'               => false,
+							'filter_color-family'        => ! empty( $selected ) ? implode( ',', $selected ) : false,
+							'query_type_color-family'    => ! empty( $selected ) ? 'or' : false,
+							'filter_size'                => ! empty( $next_size ) ? implode( ',', $next_size ) : false,
+							'query_type_size'            => ! empty( $next_size ) ? 'or' : false,
+						];
+						$remove_link = add_query_arg( $args, $base_url );
+						?>
+						<a class="sciuuus-filter-chip" href="<?php echo esc_url( $remove_link ); ?>">
+							<?php
+							echo esc_html(
+								sprintf(
+									/* translators: %s: selected size value */
+									__( 'Taglia: %s ×', 'blocksy-child' ),
+									$size_map[ $size_slug ]
+								)
+							);
+							?>
+						</a>
 					<?php endif; ?>
 				<?php endforeach; ?>
 			</div>
@@ -316,47 +396,49 @@ function sciuuus_render_custom_shop_filters() {
 		</div>
 
 		<?php
-		$size_options  = sciuuus_get_size_filter_options();
 		$size_selected = sciuuus_get_selected_size_slugs();
 		?>
-		<?php if ( ! empty( $size_options ) ) : ?>
+		<?php if ( ! empty( $size_groups ) ) : ?>
 			<div class="sciuuus-custom-filters__section">
 				<h4 class="sciuuus-custom-filters__section-title"><?php esc_html_e( 'Taglia', 'blocksy-child' ); ?></h4>
-				<ul class="sciuuus-swatch-filter-list">
-					<?php foreach ( $size_options as $size_slug => $size_label ) : ?>
-						<?php
-						$is_active = in_array( $size_slug, $size_selected, true );
-						$next      = $size_selected;
+				<?php foreach ( $size_groups as $group_label => $size_options ) : ?>
+					<p class="sciuuus-size-group-title"><?php echo esc_html( $group_label ); ?></p>
+					<ul class="sciuuus-size-chip-list">
+						<?php foreach ( $size_options as $size_slug => $size_label ) : ?>
+							<?php
+							$is_active = in_array( $size_slug, $size_selected, true );
+							$next      = $size_selected;
 
-						if ( $is_active ) {
-							$next = array_values( array_diff( $next, [ $size_slug ] ) );
-						} else {
-							$next[] = $size_slug;
-							$next   = array_values( array_unique( $next ) );
-						}
+							if ( $is_active ) {
+								$next = array_values( array_diff( $next, [ $size_slug ] ) );
+							} else {
+								$next[] = $size_slug;
+								$next   = array_values( array_unique( $next ) );
+							}
 
-						$args = [
-							'paged'        => false,
-							'product-page' => false,
-						];
+							$args = [
+								'paged'        => false,
+								'product-page' => false,
+							];
 
-						if ( empty( $next ) ) {
-							$args['filter_size']     = false;
-							$args['query_type_size'] = false;
-						} else {
-							$args['filter_size']     = implode( ',', $next );
-							$args['query_type_size'] = 'or';
-						}
+							if ( empty( $next ) ) {
+								$args['filter_size']     = false;
+								$args['query_type_size'] = false;
+							} else {
+								$args['filter_size']     = implode( ',', $next );
+								$args['query_type_size'] = 'or';
+							}
 
-						$link = add_query_arg( $args, $base_url );
-						?>
-						<li>
-							<a class="sciuuus-swatch-filter-item<?php echo $is_active ? ' is-active' : ''; ?>" href="<?php echo esc_url( $link ); ?>">
-								<span class="sciuuus-swatch-filter-item__label"><?php echo esc_html( $size_label ); ?></span>
-							</a>
-						</li>
-					<?php endforeach; ?>
-				</ul>
+							$link = add_query_arg( $args, $base_url );
+							?>
+							<li>
+								<a class="sciuuus-size-chip<?php echo $is_active ? ' is-active' : ''; ?>" href="<?php echo esc_url( $link ); ?>">
+									<?php echo esc_html( $size_label ); ?>
+								</a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
 	</div>
@@ -385,63 +467,43 @@ function sciuuus_apply_size_filter_bridge_to_main_query( $query ) {
 	global $wpdb;
 
 	$product_ids = [];
-
-	$taxonomy = 'pa_size';
-	if ( taxonomy_exists( $taxonomy ) ) {
-		$taxonomy_ids = get_posts(
-			[
-				'post_type'      => 'product',
-				'post_status'    => 'publish',
-				'posts_per_page' => -1,
-				'fields'         => 'ids',
-				'tax_query'      => [
-					[
-						'taxonomy' => $taxonomy,
-						'field'    => 'slug',
-						'terms'    => $selected,
-						'operator' => 'IN',
-					],
-				],
-			]
-		);
-		if ( ! empty( $taxonomy_ids ) ) {
-			$product_ids = array_merge( $product_ids, $taxonomy_ids );
-		}
-	}
-
-	$legacy_keys  = [ 'attribute_size', 'attribute_taglia' ];
-	$legacy_in    = implode( ',', array_fill( 0, count( $legacy_keys ), '%s' ) );
 	$selected_map = array_fill_keys( $selected, true );
 
-	$legacy_rows = $wpdb->get_results(
-		$wpdb->prepare(
-			"SELECT DISTINCT p.ID AS product_id, pm.meta_value
-			 FROM {$wpdb->posts} v
-			 INNER JOIN {$wpdb->posts} p ON p.ID = v.post_parent
-			 INNER JOIN {$wpdb->postmeta} pm ON pm.post_id = v.ID
-			 WHERE v.post_type = 'product_variation'
-			   AND v.post_status IN ('publish','private')
-			   AND p.post_type = 'product'
-			   AND p.post_status = 'publish'
-			   AND pm.meta_key IN ($legacy_in)
-			   AND pm.meta_value <> ''",
-			$legacy_keys
-		),
+	$size_rows = $wpdb->get_results(
+		"SELECT DISTINCT p.ID AS product_id, pm.meta_key, pm.meta_value
+		 FROM {$wpdb->posts} v
+		 INNER JOIN {$wpdb->posts} p ON p.ID = v.post_parent
+		 INNER JOIN {$wpdb->postmeta} pm ON pm.post_id = v.ID
+		 INNER JOIN {$wpdb->postmeta} stock ON stock.post_id = v.ID
+		 WHERE v.post_type = 'product_variation'
+		   AND v.post_status IN ('publish','private')
+		   AND p.post_type = 'product'
+		   AND p.post_status = 'publish'
+		   AND stock.meta_key = '_stock_status'
+		   AND stock.meta_value = 'instock'
+		   AND pm.meta_key IN ('attribute_pa_size','attribute_size','attribute_taglia')
+		   AND pm.meta_value <> ''",
 		ARRAY_A
 	);
 
-	$legacy_ids = [];
-	if ( is_array( $legacy_rows ) ) {
-		foreach ( $legacy_rows as $row ) {
-			$legacy_slug = sciuuus_normalize_legacy_size_slug( $row['meta_value'] ?? '' );
-			if ( $legacy_slug === '' || ! isset( $selected_map[ $legacy_slug ] ) ) {
+	if ( is_array( $size_rows ) ) {
+		foreach ( $size_rows as $row ) {
+			$meta_key = (string) ( $row['meta_key'] ?? '' );
+			$raw      = (string) ( $row['meta_value'] ?? '' );
+			if ( $raw === '' ) {
 				continue;
 			}
-			$legacy_ids[] = (int) $row['product_id'];
+
+			$size_slug = $meta_key === 'attribute_pa_size'
+				? sanitize_title( $raw )
+				: sciuuus_normalize_legacy_size_slug( $raw );
+
+			if ( $size_slug === '' || ! isset( $selected_map[ $size_slug ] ) ) {
+				continue;
+			}
+
+			$product_ids[] = (int) ( $row['product_id'] ?? 0 );
 		}
-	}
-	if ( ! empty( $legacy_ids ) ) {
-		$product_ids = array_merge( $product_ids, $legacy_ids );
 	}
 
 	$product_ids = array_values( array_unique( array_map( 'intval', $product_ids ) ) );
