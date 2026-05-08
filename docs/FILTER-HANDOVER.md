@@ -1,5 +1,65 @@
 # Filter Development Handover (pa_color-family)
 
+## Runtime Safeguards (as of 2026-05-08)
+- Implemented in theme code: `inc/woocommerce/custom-shop-filters.php`
+- Guardrail objective:
+  - treat filter state as bounded input, not open crawlable URL space.
+
+### Server-Side Request Guard (Early)
+- Hook:
+  - `template_redirect` at priority `1` (`sciuuus_normalize_filter_query_request`)
+- Behavior:
+  - validates filter query args before expensive Woo archive query work.
+  - rejects invalid requests with HTTP `400 Bad Request`.
+
+### Color Filter Policy (`filter_color-family`)
+- Allowed values whitelist:
+  - `bianco`, `nero`, `blu`, `rosa`, `giallo`, `verde`, `marrone`, `fantasia`, `multicolore`
+- Rules:
+  - remove duplicates
+  - normalize/sort for stable URL
+  - max selected colors: `2`
+  - max raw param length: `100`
+  - unknown values: `400`
+  - over-limit values: `400`
+
+### Size Filter Policy (`filter_size`)
+- Allowed values:
+  - numeric-only sizes `20..44`
+- Rules:
+  - remove duplicates
+  - normalize/sort for stable URL
+  - max selected sizes: `8`
+  - max raw param length: `100`
+  - non-numeric values: `400`
+  - out-of-range values: `400`
+  - over-limit values: `400`
+
+### Canonicalization and SEO
+- Filtered archive requests are canonicalized to one normalized URL shape.
+- Filtered states output:
+  - `<meta name="robots" content="noindex,follow">`
+  - canonical link to base archive URL (`get_pagenum_link(1)`).
+- Base archive/tag pages remain indexable.
+
+### Runtime Cost Controls
+- Size bridge path now uses:
+  - bounded input
+  - narrowed SQL (`pm.meta_value IN (...)`) instead of full scan
+  - short-TTL caching (transient + object cache) for option map and product-id sets
+
+### Expected Behavior
+- Allowed:
+  - `/shop/?filter_color-family=blu`
+  - `/shop/?filter_color-family=blu,verde`
+  - `/shop/?filter_size=24,25`
+- Rejected (`400`):
+  - color with >2 values
+  - any unknown color value
+  - size with non-numeric value
+  - size outside `20..44`
+  - overlong raw filter strings
+
 ## Size Filter Rollout (Temporary Bridge + Migration)
 ### Implementation Status (as of 2026-05-02)
 - Implemented in theme code:

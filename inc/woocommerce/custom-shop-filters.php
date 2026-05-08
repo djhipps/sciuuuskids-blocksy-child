@@ -37,10 +37,41 @@ function sciuuus_get_color_filter_policy() {
 }
 
 /**
+ * Allowed size-filter policy and request bounds.
+ */
+function sciuuus_get_size_filter_policy() {
+	return [
+		'min'            => 20,
+		'max'            => 44,
+		'max_selected'   => 8,
+		'max_raw_length' => 100,
+	];
+}
+
+/**
  * Return raw color-family query tokens before whitelist/capping.
  */
 function sciuuus_get_raw_color_family_filter_tokens() {
 	$raw = isset( $_GET['filter_color-family'] ) ? wp_unslash( (string) $_GET['filter_color-family'] ) : '';
+	if ( $raw === '' ) {
+		return [];
+	}
+
+	$tokens = array_filter(
+		array_map(
+			'sanitize_title',
+			array_map( 'trim', explode( ',', $raw ) )
+		)
+	);
+
+	return array_values( array_unique( $tokens ) );
+}
+
+/**
+ * Return raw size query tokens before numeric range filtering.
+ */
+function sciuuus_get_raw_size_filter_tokens() {
+	$raw = isset( $_GET['filter_size'] ) ? wp_unslash( (string) $_GET['filter_size'] ) : '';
 	if ( $raw === '' ) {
 		return [];
 	}
@@ -119,24 +150,26 @@ function sciuuus_get_selected_size_slugs() {
 	$slugs   = array_values( array_unique( $slugs ) );
 	$slugs   = array_values( array_diff( $slugs, $blocked ) );
 
+	$policy = sciuuus_get_size_filter_policy();
+
 	// Runtime safety: only allow numeric sizes within policy range.
 	$slugs = array_values(
 		array_filter(
 			$slugs,
-			static function ( $slug ) {
+			static function ( $slug ) use ( $policy ) {
 				if ( ! preg_match( '/^\d+$/', (string) $slug ) ) {
 					return false;
 				}
 
 				$size = (int) $slug;
-				return $size >= 20 && $size <= 44;
+				return $size >= (int) $policy['min'] && $size <= (int) $policy['max'];
 			}
 		)
 	);
 
 	// Hard cap prevents combinatorial abuse in query args.
-	if ( count( $slugs ) > 8 ) {
-		$slugs = array_slice( $slugs, 0, 8 );
+	if ( count( $slugs ) > (int) $policy['max_selected'] ) {
+		$slugs = array_slice( $slugs, 0, (int) $policy['max_selected'] );
 	}
 
 	return $slugs;
@@ -344,6 +377,33 @@ function sciuuus_normalize_filter_query_request() {
 		if ( ! empty( $unknown_tokens ) ) {
 			status_header( 400 );
 			wp_die( esc_html__( 'Bad Request', 'blocksy-child' ), esc_html__( 'Bad Request', 'blocksy-child' ), [ 'response' => 400 ] );
+		}
+	}
+
+	$size_policy = sciuuus_get_size_filter_policy();
+	$size_raw    = isset( $_GET['filter_size'] ) ? wp_unslash( (string) $_GET['filter_size'] ) : '';
+	if ( $size_raw !== '' ) {
+		if ( strlen( $size_raw ) > (int) $size_policy['max_raw_length'] ) {
+			status_header( 400 );
+			wp_die( esc_html__( 'Bad Request', 'blocksy-child' ), esc_html__( 'Bad Request', 'blocksy-child' ), [ 'response' => 400 ] );
+		}
+
+		$size_tokens = sciuuus_get_raw_size_filter_tokens();
+		if ( count( $size_tokens ) > (int) $size_policy['max_selected'] ) {
+			status_header( 400 );
+			wp_die( esc_html__( 'Bad Request', 'blocksy-child' ), esc_html__( 'Bad Request', 'blocksy-child' ), [ 'response' => 400 ] );
+		}
+
+		foreach ( $size_tokens as $size_token ) {
+			if ( ! preg_match( '/^\d+$/', (string) $size_token ) ) {
+				status_header( 400 );
+				wp_die( esc_html__( 'Bad Request', 'blocksy-child' ), esc_html__( 'Bad Request', 'blocksy-child' ), [ 'response' => 400 ] );
+			}
+			$size_value = (int) $size_token;
+			if ( $size_value < (int) $size_policy['min'] || $size_value > (int) $size_policy['max'] ) {
+				status_header( 400 );
+				wp_die( esc_html__( 'Bad Request', 'blocksy-child' ), esc_html__( 'Bad Request', 'blocksy-child' ), [ 'response' => 400 ] );
+			}
 		}
 	}
 
