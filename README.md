@@ -127,6 +127,19 @@ blocksy-child/
 └── Other documentation files
 ```
 
+## Documentation
+
+- `docs/PRODUCTION-DIFFERENCES.md` - Cloudflare baseline, production-only dependencies, and mobile product-page debugging notes
+- `docs/CLOUDFLARE-AB-TEST.md` - A/B test sequence for proxied vs origin mobile product-page checks
+- `docs/FILTER-HANDOVER.md` - Shop filter implementation and live validation notes
+- `docs/MIGRATION-color-swatches.md` - Color-family / swatch migration notes
+
+## Deployment Scope
+
+- This repository only deploys files inside `wp-content/themes/blocksy-child`.
+- When a fix touches a plugin under `wp-content/plugins/...`, that plugin must be deployed separately.
+- For troubleshooting work, always note plugin-side changes explicitly so they are not missed during release.
+
 ## Customization
 
 ### Changing Header Layout

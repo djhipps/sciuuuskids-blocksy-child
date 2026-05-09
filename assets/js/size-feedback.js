@@ -26,21 +26,48 @@
         return field ? field.value : '';
     }
 
-    function escapeHtml(value) {
-        return String(value)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
-    }
-
     function clearFeedback() {
         var container = getContainer();
         if (!container) {
             return;
         }
-        container.innerHTML = '';
+        container.replaceChildren();
+    }
+
+    function appendText(parent, value) {
+        parent.appendChild(document.createTextNode(value));
+    }
+
+    function buildMeasurementNode(slug, entry) {
+        var wrapper = document.createElement('span');
+        wrapper.className = 'sciuuus-sfb__measurement';
+
+        var strong = document.createElement('strong');
+        var soleLengthNum = Number(entry.lunghezza_suola_cm);
+        var soleWidthNum = Number(entry.larghezza_suola_cm);
+
+        if (!Number.isNaN(soleLengthNum) && soleLengthNum > 0) {
+            appendText(wrapper, 'EU ' + slug + ' -> suola ');
+            strong.textContent = soleLengthNum.toFixed(1) + (
+                !Number.isNaN(soleWidthNum) && soleWidthNum > 0
+                    ? ' x ' + soleWidthNum.toFixed(1)
+                    : ''
+            ) + ' cm';
+            wrapper.appendChild(strong);
+            return wrapper;
+        }
+
+        var minNum = Number(entry.cm_min);
+        var maxNum = Number(entry.cm_max);
+        if (Number.isNaN(minNum) || Number.isNaN(maxNum)) {
+            return null;
+        }
+
+        appendText(wrapper, 'EU ' + slug + ' -> piede ');
+        strong.textContent = minNum.toFixed(1) + '-' + maxNum.toFixed(1) + ' cm';
+        wrapper.appendChild(strong);
+
+        return wrapper;
     }
 
     function render(slug) {
@@ -55,41 +82,33 @@
         }
 
         var entry = config.sizeMap[slug];
-        var safeSlug = escapeHtml(slug);
-        var safeGuideUrl = escapeHtml(config.guideUrl || '#');
-        var note = entry.note ? '<span class="sciuuus-sfb__note">' + escapeHtml(entry.note) + '</span>' : '';
-        var measurementHtml = '';
+        var root = document.createElement('div');
+        root.className = 'sciuuus-sfb';
 
-        var soleLengthNum = Number(entry.lunghezza_suola_cm);
-        var soleWidthNum = Number(entry.larghezza_suola_cm);
-        if (!Number.isNaN(soleLengthNum) && soleLengthNum > 0) {
-            var soleLength = soleLengthNum.toFixed(1);
-            var soleWidth = !Number.isNaN(soleWidthNum) && soleWidthNum > 0 ? soleWidthNum.toFixed(1) : '';
-            measurementHtml =
-                'EU ' + safeSlug + ' &rarr; suola <strong>' + soleLength +
-                (soleWidth ? ' x ' + soleWidth : '') +
-                ' cm</strong>';
-        } else {
-            var minNum = Number(entry.cm_min);
-            var maxNum = Number(entry.cm_max);
-            if (Number.isNaN(minNum) || Number.isNaN(maxNum)) {
-                clearFeedback();
-                return;
-            }
-            measurementHtml =
-                'EU ' + safeSlug + ' &rarr; piede <strong>' + minNum.toFixed(1) + '&ndash;' + maxNum.toFixed(1) + ' cm</strong>';
+        var measurementNode = buildMeasurementNode(slug, entry);
+        if (!measurementNode) {
+            clearFeedback();
+            return;
         }
 
-        container.innerHTML =
-            '<div class="sciuuus-sfb">' +
-                '<span class="sciuuus-sfb__measurement">' +
-                    measurementHtml +
-                '</span>' +
-                note +
-                '<a class="sciuuus-sfb__guide-link" href="' + safeGuideUrl + '" target="_blank" rel="noopener">' +
-                    'Come misurare il piede' +
-                '</a>' +
-            '</div>';
+        root.appendChild(measurementNode);
+
+        if (entry.note) {
+            var note = document.createElement('span');
+            note.className = 'sciuuus-sfb__note';
+            note.textContent = String(entry.note);
+            root.appendChild(note);
+        }
+
+        var link = document.createElement('a');
+        link.className = 'sciuuus-sfb__guide-link';
+        link.href = String(config.guideUrl || '#');
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = 'Come misurare il piede';
+        root.appendChild(link);
+
+        container.replaceChildren(root);
     }
 
     function getSlugFromVariation(variation) {

@@ -45,23 +45,17 @@
         // Use more specific selector
         var menuToggle = jQuery('.mobile-menu-toggle .menu-toggle');
         var navigation = jQuery('.header-navigation-section .header-navigation');
-        
-        console.log('Menu toggle found:', menuToggle.length);
-        console.log('Navigation found:', navigation.length);
-        
+
         menuToggle.on('click', function(e) {
             e.preventDefault();
-            console.log('Button clicked!');
-            
+
             var isExpanded = jQuery(this).attr('aria-expanded') === 'true';
-            
+
             // Toggle aria-expanded
             jQuery(this).attr('aria-expanded', !isExpanded);
-            
+
             // Toggle active class
             navigation.toggleClass('active');
-            
-            console.log('Active class toggled. Has active:', navigation.hasClass('active'));
         });
         
         // Handle submenu clicks
@@ -113,8 +107,17 @@
         button.className = 'sci-reviews-toggle-btn';
         button.setAttribute('aria-expanded', 'false');
         button.setAttribute('aria-controls', 'sci-reviews-toggle-content');
-        button.innerHTML = '<span class="toggle-text"></span><span class="toggle-icon">+</span>';
-        button.querySelector('.toggle-text').textContent = buttonTitle;
+
+        const toggleText = document.createElement('span');
+        toggleText.className = 'toggle-text';
+        toggleText.textContent = buttonTitle;
+
+        const toggleIcon = document.createElement('span');
+        toggleIcon.className = 'toggle-icon';
+        toggleIcon.textContent = '+';
+
+        button.appendChild(toggleText);
+        button.appendChild(toggleIcon);
 
         const content = document.createElement('div');
         content.id = 'sci-reviews-toggle-content';
@@ -141,6 +144,14 @@
             const icon = button.querySelector('.toggle-icon');
             if (icon) {
                 icon.textContent = isOpen ? '−' : '+';
+            }
+
+            if (isOpen) {
+                window.requestAnimationFrame(function() {
+                    window.setTimeout(function() {
+                        document.dispatchEvent(new CustomEvent('sci-reviews-opened'));
+                    }, 0);
+                });
             }
         };
 
