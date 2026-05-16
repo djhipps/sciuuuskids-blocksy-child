@@ -11,8 +11,8 @@
 defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'wc_create_attribute' ) ) {
-    echo "[FAIL] WooCommerce not available.\n";
-    return;
+    fwrite( STDERR, "[FAIL] WooCommerce not available.\n" );
+    exit( 1 );
 }
 
 $attribute_slug = 'collo-del-piede';
@@ -35,8 +35,8 @@ if ( $existing_id ) {
     ] );
 
     if ( is_wp_error( $attribute_id ) ) {
-        echo "[FAIL] Could not create attribute: " . $attribute_id->get_error_message() . "\n";
-        return;
+        fwrite( STDERR, "[FAIL] Could not create attribute: " . $attribute_id->get_error_message() . "\n" );
+        exit( 1 );
     }
 
     delete_transient( 'wc_attribute_taxonomies' );
@@ -75,7 +75,7 @@ foreach ( $terms as $t ) {
     if ( is_wp_error( $result ) ) {
         echo "[FAIL] Term '{$t['slug']}': " . $result->get_error_message() . "\n";
     } else {
-        update_term_meta( $result['term_id'], 'order_pa_collo-del-piede', $t['order'] );
+        update_term_meta( $result['term_id'], 'order_' . $taxonomy, $t['order'] );
         echo "[OK] Created term '{$t['slug']}' (ID {$result['term_id']}).\n";
     }
 }
