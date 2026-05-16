@@ -7,7 +7,7 @@
  *
  * Purpose (fallback path only):
  * - Create global attribute `size` (taxonomy pa_size) if missing.
- * - Create normalized numeric size terms (20..44).
+ * - Create normalized numeric size terms (18..45).
  * - Map legacy variation keys attribute_size / attribute_taglia to attribute_pa_size.
  * - Assign product-level pa_size terms for stable archive filtering.
  *
@@ -35,6 +35,8 @@ $size_label     = 'Taglia';
  * Keys are normalized slugs, values are human labels.
  */
 $size_terms = [
+	'18'      => '18',
+	'19'      => '19',
 	'20'      => '20',
 	'21'      => '21',
 	'22'      => '22',
@@ -60,6 +62,7 @@ $size_terms = [
 	'42'      => '42',
 	'43'      => '43',
 	'44'      => '44',
+	'45'      => '45',
 ];
 
 $legacy_keys = [ 'attribute_size', 'attribute_taglia' ];

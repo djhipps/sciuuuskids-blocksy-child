@@ -41,8 +41,8 @@ function sciuuus_get_color_filter_policy() {
  */
 function sciuuus_get_size_filter_policy() {
 	return [
-		'min'            => 20,
-		'max'            => 44,
+		'min'            => 18,
+		'max'            => 45,
 		'max_selected'   => 8,
 		'max_raw_length' => 100,
 	];
@@ -337,7 +337,8 @@ function sciuuus_get_grouped_size_filter_options() {
  * that can produce 404s once query args are applied.
  */
 function sciuuus_get_filters_base_url() {
-	return get_pagenum_link( 1 );
+	// false = return raw URL, not HTML-escaped. HTML-escaped &#038; breaks add_query_arg (parsed as fragment).
+	return get_pagenum_link( 1, false );
 }
 
 /**
